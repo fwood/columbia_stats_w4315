@@ -1,0 +1,83 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Regression Introduction and Estimation Review}
+\author{Dr. Frank Wood}
+
+\date{}
+
+\DeclareMathOperator*{\Ave}{\mathbb{E}}
+\DeclareMathOperator*{\Var}{Var}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\frame[t] {
+ \frametitle{Quick Example - Scatter Plot}
+\begin{figure}
+  \includegraphics[height=60mm]{qeg.png}
+\end{figure}
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\end{document}

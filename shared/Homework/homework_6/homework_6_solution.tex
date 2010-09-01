@@ -1,0 +1,149 @@
+% Essential Formatting
+
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+%\usepackage[questions, answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
+\usepackage[answers]{urmathtest}[2001/05/12]
+
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 6}%{10/22/2009}
+
+ \begin{center}
+ Due: 03/09/2010\\
+  Instructor: Frank Wood
+ \end{center}
+%%\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            You may use back pages if necessary.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+} \finishfirstpage
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{15} {
+ Refer to the data `hw6p1.dat' on the course website and
+ read into MATLAB as the design matrix( the first column is already added as a $\textbf{1}$ vector interpreted as the intercept). Check `fread' command using the help system. What is the most complex model in terms of number of parameters
+ that one could fit to this data?\\
+ Extra credits: Which parameters should be non-zero? \\
+ Hint: Consider the rank of the design matrix, and read about
+ principle component analysis(PCA) online.
+}
+ { \vfill
+  \answer
+} {
+The design matrix $\bf{X}$ is a $n\times p$ matrix, where n is the number of observations for each predictor variable and (p-1) is the number of predictor variables. In this problem, n=20 and p=61. %The most complex model in terms of number of parameters that one could fit to this data should include all the predictor variables and all possible interaction terms between these predictor variables and it has total $2^p=2^{61}$ parameters.\\
+
+In ordinary linear regression analysis, one of the key assumptions is that the design matrix $\bf{X}$ must have full column rank p. Since $n<p$ for this data, $\bf{X}$ does not have full rank, some of the parameters are not identifiable.  One way to see how many parameters could be identified is to use the matlab function ``rank''.  
+
+
+% To solve the problem, we can use principal component analysis to reduce the predictor variables. In Matlab, you can use the "princomp" function to conduct a principal component analysis on the data. \\
+
+Matlab Code:\\
+format long\\
+$X=load('hw6p1.dat')$\\
+$[n,p]=size(X)$\\
+$rk=rank(X)$\\
+
+This shows that the rank of $X$ is 10.  To fit more that 10 parameters, PCA or regularization of some form must be employed.  These will be covered later in the class.
+
+%The result shows that the covariance matrix of X has only 10 non-zero eigenvalues, the remaining ones are all zero. The non-zero eigenvalues in descending order is shown below. \\
+
+  %1.0e+004 *\\
+
+  % 1.10662325679383\\
+   %0.37282658668514\\
+   %0.20354185680597\\
+   %0.16099970378938\\
+   %0.13618720270965\\
+   %0.06497887675382\\
+   %0.05020696212171\\
+   %0.03758886363463\\
+   %0.02479281065096\\
+   %0.01978260144493\\
+
+%The transformed data in the space of the principal components  contains 10 non-zero column vectors, the remaining column vectors are all zero. The new data has a dimension of $20\times 10$, the parameters for the non-zero variables in the transformed data should be non-zero. 
+
+ }
+
+\problem{45}{
+ Suppose $X_1,...,X_n$ are i.i.d. samples from $N(0,\sigma^2)$. Denote $\bar{X}$ as the sample mean. Prove $S=\displaystyle\sum_{i=1}^n (X_i-\bar{X})^2 \sim \sigma^2 \chi^2(n-1)$ following the steps below using Cochran's theorem: \\
+ a. Remember that we have the decomposition
+ \begin{eqnarray}
+ \displaystyle \sum_{i=1}^n X_i^2=\sum_{i=1}^n (X_i-\bar{X})^2+n\bar{X}^2
+ \end{eqnarray}
+ Show the matrices corresponding to all the three quadratic terms in (3).\\
+ b. Derive the rank of each matrix above. (Hint: Recall problem 3 in homework 5.)\\
+ c. Use Cochran's theorem to prove $S\sim \sigma^2 \chi^2(n-1)$.
+ 
+ 
+ 
+}
+{ \vfill
+\answer 
+}
+{
+a. Denote $\textbf{X} =(X_1,...,X_n)'$, then we have the matrix form of (1) as
+\begin{center} 
+$\textbf{X}'\textbf{X}=\textbf{X}'(\textbf{I}-\frac{1}{n}\textbf{J})\textbf{X}+\textbf{X}'\frac{1}{n}\textbf{J}\textbf{X}$
+\end{center}
+where $\textbf{J}$ is an $n \times n$ matrix whose elements are all 1. 
+So the corresponding matrics for (1) are respetively $\textbf{I},\bf{I}-\frac{1}{n}\textbf{J},\frac{1}{n}\textbf{J}$.\\
+b. \\
+Since $\textbf{I}$ is an $n \times n$ identity matrix, so $r(\textbf{I})=n$.\\
+For the 2nd matrix, it's easy to verify that $\textbf{I}-\frac{1}{n}\textbf{J}$ is idempotent, since
+\begin{align*}
+(\textbf{I}-\frac{1}{n}\textbf{J})(\textbf{I}-\frac{1}{n}\textbf{J})&=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n^2}\textbf{J}^2\\
+                                                                       &=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n^2}n\textbf{J}\\
+                                                                       &=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n}\textbf{J}\\
+                                                                       &=\textbf{I}-\frac{1}{n}\textbf{J}
+\end{align*}
+The 2nd equation holds since $\textbf{J}^2=n\textbf{J}$. Now that $\bf{I}-\frac{1}{n}\bf{J}$ is idempotent, we have
+\begin{align*}
+rk(\textbf{I}-\frac{1}{n}\textbf{J})&=tr(\textbf{I}-\frac{1}{n}\textbf{J})\\
+                                                  &=tr(\textbf{I})-tr(\frac{1}{n}\textbf{J})\\
+                                                  &=n-\frac{1}{n}\times n\\
+                                                  &=n-1
+\end{align*}
+where $tr(\textbf{A})$ stands for the trace of matrix $\textbf{A}$, $rk(\textbf{A})$ for the rank of it. It's apparent from the definition of rank of a matrix that $rk(\frac{1}{n}\textbf{J})=1$.\\
+c. Since $rk(\textbf{I})=rk(\textbf{I}-\frac{1}{n}\textbf{J})+rk(\frac{1}{n}\textbf{J})$, we can directly apply Cochran's theorem, so $S\sim \sigma^2 \chi^2(n-1)$.
+
+
+
+
+}
+
+
+\end{document}

@@ -1,0 +1,70 @@
+\def\CTeXPreproc{Created by ctex v0.2.12, don't edit!}\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Regression Estimation - Least
+Squares and Maximum Likelihood}
+\author{Dr. Frank Wood}
+
+\date{}
+
+\DeclareMathOperator*{\Ave}{\mathbb{E}}
+\DeclareMathOperator*{\Var}{Var}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\frame[t] {
+ \frametitle{Least Squares Max(min)imization}
+ \begin{enumerate}
+\item Function to minimize w.r.t. $\beta_0, \beta_1$
+$$Q = \sum_{i=1}^n (Y_i - (\beta_0 + \beta_1 X_i))^2$$
+\item Minimize this by maximizing $-Q$
+\item Find partials and set both equal to zero
+\begin{eqnarray*}
+\frac{dQ}{d\beta_0} &=& 0 \\
+\frac{dQ}{d\beta_1} &=& 0
+\end{eqnarray*}
+\end{enumerate}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+ $\Ave(g(x)), \Var(g(g))$
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{columns}
+\begin{column}{.5\linewidth}
+First Column stuff
+\end{column}
+\begin{column}{.5\linewidth}
+Second Column stuff
+\end{column}
+\end{columns}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{block}{Stuff to Highlight}
+\end{block}
+}
+\end{document}

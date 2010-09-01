@@ -1,0 +1,107 @@
+% Essential Formatting
+
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage[questions, answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answers]{urmathtest}[2001/05/12]
+
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 3}{09/16/2009}
+ \begin{center}
+  Instructor: Frank Wood
+ \end{center}
+%%\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            You may use back pages if necessary.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{50} {\footnote[1]{This is
+problem 2.5 in "Applied Linear Regression Models(4th edition)" by
+Kutner etc.} 
+ Refer to \textbf{Copier maintenance} Problem 1.20.\\
+ a. Estimate the change in the mean service time when the number of copiers serviced increases by one. Use a 90 percent confidence interval. Interpret your confidence interval.\\
+ b. Conduct a \textit{t} test to determine whether or not there is a linear association between X and Y here; control the $\alpha$ risk at .10. State the alternatives, decision rule, and conclusion. What is the \textit{P}-value of your test?\\
+ c. Are your results in parts (a) and (b) consistent? Explain.\\
+ d. The manufacturer has suggested that the mean required time should not increase by more than 14 minutes for each additional copier that is serviced on a service call. Conduct a test to decide whether this standard is being satisfied by Tri-City. Control the risk of a Type I error at .05. State the alternatives, decision rule, and conclusion. What is the \textit{P}-value of the test?\\
+ e. Does $b_0$ give any relevant information here about the ``start-up'' time on calls-i.e., about the time required before service work is begun on the copiers at a customer location? 
+   }
+ { \vfill
+  \answer
+} { }
+
+\problem{20} {\footnote[2]{This is
+problem 2.19 in "Applied Linear Regression Models(4th edition)" by
+Kutner etc.} 
+ Consider the test problem in a normal error regression model:
+ \begin{center}
+ $Y_i=\beta_0+\beta_1 X_i+\epsilon_i$\\
+ \end{center}
+ where:\\
+ \begin{center}
+ $\beta_0$ and $\beta_1$ are parameters\\
+ $X_i$ are known constants\\
+ $\epsilon_i$ are independent $N(0,\sigma^2)$
+ \end{center}
+ When testing whether or not $\beta_1=0$, why is the \textit{F} test a one-sided test even though $H_a$ includes both $\beta_1<0$ and $\beta_1>0$? [Hint: refer to the following problem]
+   }
+ { \vfill
+  \answer
+} { }
+
+\problem{30} {\footnote[3]{This is
+problem 2.57 in "Applied Linear Regression Models(4th edition)" by
+Kutner etc.} 
+ Consider the same normal regression model as in problem 2.\\
+ a. When testing $H_0:~\beta_1=5$ versus $H_a:~\beta_1\ne 5$ by means of a general linear test, what is the reduced model? What are the degrees of freedom $df_R$?\\
+ b. When testing $H_0:~ \beta_0=2,~\beta_1=5$ versus $H_a:$~not both $\beta_0=2$ and $\beta_1=5$ by means of a general linear test, what is the reduced model? What are the degrees of freedom $df_R$? 
+}
+ { \vfill
+  \answer
+} {}
+
+
+
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document

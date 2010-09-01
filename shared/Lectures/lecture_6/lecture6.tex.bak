@@ -1,0 +1,210 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{ANOVA}
+\author{Dr. Frank Wood}
+
+\date{}
+
+\DeclareMathOperator*{\Ave}{\mathbb{E}}
+\DeclareMathOperator*{\Var}{Var}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\frame[t] {
+ \frametitle{ANOVA}
+\begin{enumerate}
+\item ANOVA is nothing new but is instead a way of organizing the parts of linear regression so as to make easy inference recipes.
+
+\item Will return to ANOVA when discussing multiple regression and other types of linear statistical models.
+
+\end{enumerate}
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+
+\frame[t] {
+ \frametitle{}
+
+}
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Linear Regression Models\\W4315}
+\author{Instructor: Dr. Frank Wood}
+
+\date{Text: Applied Linear Regression
+Models\\
+Authors: Kutner, Nachtsheim, Neter}
+
+
+
+\DeclareMathOperator*{\Ave}{\mathbb{E}}
+\DeclareMathOperator*{\Var}{Var}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+ $\Ave(g(x)), \Var(g(g))$
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{columns}
+\begin{column}{.5\linewidth}
+First Column stuff
+\end{column}
+\begin{column}{.5\linewidth}
+Second Column stuff
+\end{column}
+\end{columns}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{block}{Stuff to Highlight}
+\end{block}
+}
+\end{document}

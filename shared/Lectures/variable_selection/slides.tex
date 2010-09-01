@@ -1,0 +1,315 @@
+\documentclass{beamer}
+
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Model Selection}
+\author{Frank Wood}
+\date{\today}
+
+\newcommand{\comment}[1]{}
+\newcommand{\ponedec}{\mathcal{P}^\downarrow_1}
+\newcommand{\pone}{\mathcal{P}_1}
+\newcommand{\rank}[1]{\mathrm{RANK}\left[#1\right]}
+\newcommand{\E}[1]{\mathrm{E}\left[#1\right]}
+\newcommand{\py}{\mathcal{PY}}
+\newcommand{\iid}{iid.}
+\newcommand{\drawiid}{\stackrel{\text{iid}}{\sim}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\indicator}[1]{\text{I}\left[ #1 \right]}
+\newcommand{\pdcoag}{PD(d_1,0)-\text{COAG}}
+\newcommand{\todo}{\textbf{*TODO*}}
+\newcommand{\igram}{\text{$\infty$-gram}}
+\newcommand{\Prob}{\text{P}}
+
+\def\mm{sequence memoizer }
+\def\MM{SM }
+
+\def\pibf{{\boldsymbol{\pi}}}
+\def\kapbf{\boldsymbol{\kappa}}
+\def\taubf{\boldsymbol{\tau}}
+\def\thebf{\boldsymbol{\theta}}
+\def\rhobf{\boldsymbol{\rho}}
+\def\phibf{\boldsymbol{\phi}}
+\def\pbf{\mathbf{p}}
+\def\qbf{\mathbf{q}}
+\def\0bf{\mathbf{0}}
+\def\sbf{\mathbf{s}}
+\def\tbf{\mathbf{t}}
+\def\ybf{\mathbf{y}}
+\def\wbf{\mathbf{w}}
+\def\xbf{\mathbf{x}}
+\def\rbf{\mathbf{r}}
+\def\tbf{\mathbf{t}}
+\def\kbf{\mathbf{k}}
+\def\Xbf{\mathbf{X}}
+\def\0bf{\mathbf{0}}
+\def\Ibf{\mathbf{I}}
+\def\phibf{\mathbf{\phi}}
+\def\Phibf{\mathbf{\Phi}}
+\def\disteq{{\stackrel{D}{=}}}
+\def\EE{{\mathbb{E}}}
+
+\def\phiv{\varphi}
+\def\phivbf{\boldsymbol{\varphi}}
+
+\def\Ocal{\mathcal{O}}
+
+\DeclareMathOperator*{\Bet}{Beta}
+\DeclareMathOperator{\coag}{COAG}
+\DeclareMathOperator{\frag}{FRAG}
+\DeclareMathOperator*{\rnk}{RANK}
+\DeclareMathOperator*{\gem}{GEM}
+\DeclareMathOperator*{\pd}{PD}
+\DeclareMathOperator*{\gd}{GDir}
+\DeclareMathOperator*{\Dir}{Dir}
+%\DeclareMathOperator*{\tanh}{tanh}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+%\section[Outline]{}
+%\frame{\tableofcontents}
+%\section{Introduction}
+%\subsection{Overview of Topics}
+%\section{Bayesian Analysis}
+%\subsection{Single Parameter Model}
+
+ \section{Building a Regression Model}
+ 
+\frame[t] {% slide 1
+ \frametitle{Standard Linear Regression}
+\begin{block}{Recipe}
+\begin{itemize} 
+\item
+\begin{itemize}
+\item Identify the explanatory variables
+\item Decide the functional forms in which the explanatory variables can enter the model
+\item Decide which interactions should be in the model.
+\end{itemize}
+\item Reduce explanatory variables (!?)
+\item Refine model
+\end{itemize}
+
+\end{block}
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Trouble and Strife}
+Form any set of $p-1$ predictors, $2^{p-1}$ alternative linear regression models can be constructed
+\begin{itemize}
+\item Consider all binary vectors of length $p-1$
+\end{itemize}
+Search in that space is exponentially difficult. \\
+\bigskip
+Greedy strategies are typically utilized.
+\bigskip
+
+Is this the only way?
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Selecting between models}
+In order to select between models some score must be given to each model.
+\bigskip
+
+The likelihood of the data under each model is not sufficient because, as we have seen, the likelihood of the data can always be improved by adding more parameters until the model effectively memorizes the data.
+\bigskip
+
+Accordingly some penalty that is a function of the complexity of the model must be included in the selection procedure.
+\bigskip
+
+There are four choices for how to do this
+
+\begin{enumerate}
+\item Explicit penalization of the number of parameters in the model (AIC, BIC, etc.)
+\item Implicit penalization through cross validation
+\item Bayesian regularization / Occam's razor.
+\item Use a fixed model of unbounded complexity (Bayesian nonparametrics).
+\end{enumerate}
+
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Penalized Likelihood}
+The Akaike's information criterion (AIC) and the Bayesian information criterion (BIC) (also called the Schwarz criterion) are two criteria that penalize model complexity.\bigskip
+
+In the linear regression setting
+\begin{eqnarray*}
+AIC_p &=& n \ln SSE_p - l \ln n + 2p \\
+BIC_p &=& n \ln SSE_p - n \ln n + (\ln n) p\footnote{For a good derivation of the BIC see http://myweb.uiowa.edu/cavaaugh/ms\_lec\_6\_ho.pdf}
+\end{eqnarray*}
+
+Roughly you can think of these two criteria as penalizing models with many parameters ($p$ in the case of linear regression).
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Cross Validation}
+A way of doing model selection that implicitely penalizes models of high complexity is cross-validation.  
+\bigskip
+
+If you fit a model with a large number of parameters to a subset of the data then predict the rest of the data using the model you just fit, then
+\begin{itemize}
+\item The average scores of held-out data over different {\em folds} can be used to compare models.
+\item If the held-out data is consistently (over the various folds) well explained by the model then one could conclude that the model is a good model.
+\item If one model performs better on average when predicting held-out data then there is reason to prefer that model.
+\item Overly complex models will not generalize well and will therefor not be selected.
+\end{itemize}
+}
+
+\frame[t] {% slide 1
+ \frametitle{$PRESS_p$ or Leave-One-Out Cross Validation}
+
+The $PRESS_p$ or ``prediction sum of squares'' measures how well a subset model can predict the observed responses $Y_i$.
+\bigskip
+
+Let $\hat Y_i(i)$ be the fiitted value when $i$ is being predicted from a model in which $(i)$ was left out during training.
+\bigskip
+
+The $PRESS_{p}$ criterion is then given by summing over all $n$ cases
+
+\[ PRESS_p = \sum_{i=1}^n(Y_i - \hat Y_{i(i)})^2\]
+\bigskip
+
+$PRESS_p$ values can be calculated without doing $n$ separate regression runs.
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{$PRESS_p$ or Leave-One-Out Cross Validation}
+
+If we let $d_i$ be the {\em deleted residual} for the $i^{th}$ case
+\[d_i = Y_i - \hat Y_{i(i)}\]
+then we can rewrite 
+\[d_i = \frac{e_i}{1-h_{ii}}\]
+where $e_i$ is the ordinary residual for the $i^{th}$ case and $h_{ii}$ is the $i^{th}$ diagonal element in the hat matrix.
+\bigskip
+
+We can obtain the $h_{ii}$ diagonal element of the hat matrix directly from 
+
+\[h_{ii} = \Xbf_i'(\Xbf'\Xbf)^{-1}\Xbf_i\]
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{$PRESS_p$ or Leave-One-Out Cross Validation}
+
+$PRESS_p$ is useful for choosing between models.  Consider
+
+\begin{itemize}
+\item Take two models, one $\mathcal{M}_p$ with $p$ dimensional input and one $\mathcal{M}_{p-1}$ with $p-1$ dimensional input
+\item Calculate the $PRESS_p$ criterion for  $\mathcal{M}_p$ and $\mathcal{M}_{p-1}$
+\item Whichever model has the lowest $PRESS_p$ should be preferred.
+\item Why?
+\end{itemize}
+Unfortunately the $PRESS_p$ criteria can't tell us which variables to include.  For that general search is still required.
+\bigskip
+
+More general cross-validation procedures can be designed.
+\bigskip
+
+Note that the $PRESS_{p}$ criterion is very similar to log-likelihood.
+
+}
+
+
+\frame[t] {% slide 1
+ \frametitle{Detecting Outliers Via Studentized Deleted Residuals}
+
+The {\em studentized deleted residual}, denoted by $t_i$ is
+\[t_i = \frac{d_i}{s\{d_i\}}\] 
+where
+\[ s^2\{d_i\} = \frac{MSE_{(i)}}{1-h_{ii}} \qquad \frac{d_i}{s\{d_i\}} \sim t(n-p-1) \]
+
+Fortunately, again, $t_i$ can be calculated without fitting $n$ different regression models.  It can be shown that 
+
+
+\[ t_i = e_i \left[ \frac{n-p-1}{SSE(1-h_{ii} - e_i^2)}\right]^{1/2}\]
+
+These $t_i$'s can be used to formally test (e.g.~using a Bonferroni test procedure) whether the largest absolute studentized deleted residual is an outlier.  
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Stepwise Regression Methods}
+ A (greedy) procedure for identifying variables to include in the regression model is as follows.  Repeat until finished:
+ \begin{enumerate}
+\item Fit a simple linear regression model for each of the P-1 $X$ variables considered for inclusion.  For each compute the $t^*$ statistics for testing whether or not the slope is zero
+\[ t_k^* = \frac{b_k}{s\{b_k\}}\footnote{Remember $b_k$ is the estimate for $\beta_k$ and $s\{b_k\}$ is the estimator sample standard deviation.}\]
+\item Pick the largest out of the $P-1$ $t^*_k$'s (in the first step $k=1$) and include the corresponding $X$ variable in the regression model if $t^*_k$ exceeds some arbitrary threshold.
+\item If the number of $X$ variables included in the regression model is greater than one, check to see if the model would be improved by dropping variables (using the t-test and a threshold again).
+ \end{enumerate}
+
+
+
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Stepwise Regression Methods}
+Big question: Does this ensure the ``best'' possible model?  Either in the ``is this procedure guaranteed to pick the best possible linear regression model'' or in any other sense?
+\bigskip
+
+There is a tension between including variables (why not include everything?) and needing to reliably estimate many parameters.  Here sharp philosophical differences emerge (partially driven by the needs of the user / application)
+\begin{enumerate}
+\item Try to identify which elements are linearly related to the output.
+\item Include everything and regularize.
+\end{enumerate}
+
+\bigskip
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Finding the Best Model, Case 1}
+
+When there are many parameters and few observations this is known as the big $p$ little $n$ problem.
+\bigskip
+
+One might actually to know (the inference goal) which inputs are linearly related to the output.  
+\bigskip
+
+It is tempting but {\em dangerous} and {\em wrong} to conclude that if by formal testing procedures you find that a particular input feature is not linearly related to the output that there is no relationship between the variables.
+\bigskip
+
+A converse is also potentially {\em dangerous} and {\em wrong}, namely, if you find that a particular feature has a ``statistically significant'' linear effect on the output you cannot necessarily conclude causality.  Carefully controlled experiments are required to establish probable causality.
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Finding the Best Model, Case 2}
+
+Philosophically it makes sense to include all possible features in a regression model.  Why not?
+\bigskip
+
+Unfortunately, in the big $p$ small $n$ setting model estimation is usually difficult.  In linear regression the sample covariance matrix is low rank and not-invertible so the small $n$ big $p$ problem is degenerate.
+\bigskip
+
+Regularization can be employed, but it is difficult to interpret and assign ``physical'' meaning to the resulting regression coefficients.
+\bigskip
+
+This may not matter if prediction is the goal, rather than describing or examining the relationship between the predictors and the output. 
+
+}
+
+\frame[t] {% slide 1
+ \frametitle{Finding the Best Model, Alternative}
+
+It is possible to include all the variables in the model and automatically learn which variables should be included.  
+\bigskip
+
+Techniques for doing this go by different names (LASSO, L1 penalized regression, etc.).  
+\bigskip
+
+They use a different regularizer (L1 instead of L2) term that encourages sparsity (i.e. zero parameters).  
+\bigskip
+
+Fitting such a model becomes significantly more difficult and requires using a constrained optimization solver.
+}
+
+\end{document}

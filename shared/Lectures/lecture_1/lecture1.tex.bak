@@ -1,0 +1,97 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Linear Regression Models\\W4315}
+\author{Instructor: Dr. Frank Wood}
+
+\date{Text: Applied Linear Regression
+Models\\
+Authors: Kutner, Nachtsheim, Neter}
+
+
+
+\DeclareMathOperator*{\Ave}{\mathbb{E}}
+\DeclareMathOperator*{\Var}{Var}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\frame {
+ \frametitle{Not Registered Yet?}
+Fill out the form at\\
+http://tinyurl.com/mqfq95 }
+
+\frame[t] {
+ \frametitle{Course Description}
+Theory and practice of regression analysis, Simple and multiple
+regression, including testing, estimation, and confidence
+procedures, modeling, regression diagnostics and plots, polynomial
+regression, colinearity and confounding, model selection, geometry
+of least squares. Extensive use of the computer to analyse data.}
+
+\frame[t] {
+ \frametitle{Course Outline}
+ \begin{enumerate}
+ \item Roughly 1 chapter per week
+ \item 3-5 weeks, linear regression
+ \subitem Least squares
+ \subitem Maximum likelihood, normal model
+ \subitem Tests / inferences
+ \subitem ANOVA
+ \subitem Diagnostics
+ \subitem Remedial Measures
+ \subitem Linear algebra review
+ \subitem Matrix approach to linear regression }
+\end{enumerate}
+
+
+\frame[t] {
+ \frametitle{}
+}
+
+
+\frame[t] {
+ \frametitle{}
+}
+
+
+\frame[t] {
+ \frametitle{}
+}
+
+
+\frame[t] {
+ \frametitle{}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+ $\Ave(g(x)), \Var(g(g))$
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{columns}
+\begin{column}{.5\linewidth}
+First Column stuff
+\end{column}
+\begin{column}{.5\linewidth}
+Second Column stuff
+\end{column}
+\end{columns}
+}
+
+\frame[t] {% slide 1
+ \frametitle{Example stuff}
+\begin{block}{Stuff to Highlight}
+\end{block}
+}
+
+\end{document}

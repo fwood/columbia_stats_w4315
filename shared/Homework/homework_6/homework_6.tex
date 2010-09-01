@@ -1,0 +1,88 @@
+% Essential Formatting
+
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage[questions, answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answers]{urmathtest}[2001/05/12]
+
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 6}%{10/22/2009}
+
+ \begin{center}
+ Due: 03/09/2010\\
+  Instructor: Frank Wood
+ \end{center}
+%%\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            You may use back pages if necessary.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+} \finishfirstpage
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{15} {
+ Refer to the design matrix given in ``hw6p1.dat'' on the course website.
+ Read it into MATLAB ( the first  $\textbf{1}$ column is already added). Use ``load hw6p1.dat'' to load the file. What is the most complex model in terms of number of parameters
+ that one could fit to this data?
+ 
+ Extra credit: If you fit a model with this number of parameters, how could  you figure out which  should be non-zero? 
+ }
+ { \vfill
+  \answer
+} { }
+
+
+
+\problem{45}{
+ Suppose $X_1,...,X_n$ are i.i.d. samples from $N(0,\sigma^2)$. Denote $\bar{X}$ as the sample mean. Prove $S=\displaystyle\sum_{i=1}^n (X_i-\bar{X})^2 \sim \sigma^2 \chi^2(n-1)$ following the steps below using Cochran's theorem: \\
+ a. Remember that we have the decomposition
+ \begin{eqnarray}
+ \displaystyle \sum_{i=1}^n X_i^2=\sum_{i=1}^n (X_i-\bar{X})^2+n\bar{X}^2
+ \end{eqnarray}
+ Show the matrices corresponding to all the three quadratic terms in (3).\\
+ b. Derive the rank of each matrix above. (Hint: Recall problem 3 in homework 5.)\\
+ c. Use Cochran's theorem to prove $S\sim \sigma^2 \chi^2(n-1)$.
+ 
+ 
+ 
+}
+{ \vfill
+\answer 
+}
+{}
+
+
+\end{document}
