@@ -4,15 +4,15 @@ in_menu: true
 routed_title: Info
 ---
 
-<strong>This is a master's / advanced undergraduate level course in
+<strong>This is a master\'s / advanced undergraduate level course in
 linear regression methods.</strong>
 
 <strong>Text:</strong> 
-<br>
+
 Required: 
 <u>Applied Linear Regression Models</u>
  4th Ed., by Kutner, Nachtsheim, and Neter. McGraw-Hill, 2004. 
-<br>
+
 
 Strongly recommended:
 <u> Pattern Recognition and Machine Learning</u>
