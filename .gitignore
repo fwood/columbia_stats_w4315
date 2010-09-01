@@ -1,0 +1,15 @@
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.bak
+*.1st
+*.lst
+*.dvi
+*~
+webgen.cache
