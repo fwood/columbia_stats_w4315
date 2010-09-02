@@ -7,23 +7,23 @@ routed_title: Syllabus
 |---
 | Lecture | Slides | Chapter | Extras |
 |:-:|:-|:-|:-|:-|
-| 01 | [Introduction](../Lectures/lecture_1/lecture_1.pdf "Slides") | 1 | |
-| 02 | [Simple linear regression model; least squares; residuals](../Lectures/lecture_2/lecture_2.pdf "Slides") | 2 | |
+| 01 | [Introduction](../Lectures/lecture-1/lecture_1.pdf "Slides") | 1 | |
+| 02 | [Simple linear regression model; least squares; residuals](../Lectures/lecture-2/lecture_2.pdf "Slides") | 2 | |
 | 03 | Introduction to MATLAB | | |
-| 04 | [Normal error regression model; maximum likelihood](../Lectures/lecture_3/lecture_3.pdf)
-| 05 | [Proof of Gauss Markov Theorem, confidence intervals and hypothesis testing in the normal regression model. ](../Lectures/lecture_4/lecture4.pdf)
-| 06 | [Convexity, Gradient Descent Methods, Convex Optimization](../Lectures/lecture_convexity/lecture_convexity.pdf)
-| 07 | [Inference in Normal Regression Model](../Lectures/lecture_5/lecture_5.pdf) | 2.7-2.10
-| 08 | [ANOVA](../Lectures/lecture_6/lecture_6.pdf) | | [Cochran\'s theorem](../Misc/Gut_Intermediate_Course_In_Probability_Excerpt.pdf)
-| 09 | [Diagnostics and Remedial Measures](../Lectures/lecture_7/lecture_7.pdf) | 3 |
-| 10 | [Remedial Measures and Transformations](../Lectures/lecture_8/lecture_8.pdf) | 4 |
-| 11 | [Joint estimation, Bonferroni joint confidence intervals](../Lectures/lecture_9/lecture_9.pdf) | 5 |
-| 12 | [Linear Algebra Review](../Lectures/lecture_10/lecture_10.pdf) | | Cheat sheets  [Matrix](http://www.cs.toronto.edu/~roweis/notes/matrixid.pdf), [Gaussian](http://www.cs.toronto.edu/~roweis/notes/gaussid.pdf), [Linear Algebra](http://www.math.upatras.gr/~vpiperig/Mul/Algebra.pdf)
-| 13 | [Introduction to Multiple Linear Regression](../Lectures/lecture_11/lecture_11.pdf) ||
-| 14 | [Multiple linear regression](../Lectures/lecture_11/lecture_11.pdf)
+| 04 | [Normal error regression model; maximum likelihood](../Lectures/lecture-3/lecture_3.pdf)
+| 05 | [Proof of Gauss Markov Theorem, confidence intervals and hypothesis testing in the normal regression model. ](../Lectures/lecture-4/lecture4.pdf)
+| 06 | [Convexity, Gradient Descent Methods, Convex Optimization](../Lectures/lecture-convexity/lecture_convexity.pdf)
+| 07 | [Inference in Normal Regression Model](../Lectures/lecture-5/lecture_5.pdf) | 2.7-2.10
+| 08 | [ANOVA](../Lectures/lecture-6/lecture_6.pdf) | | [Cochran\'s theorem](../Misc/Gut_Intermediate_Course_In_Probability_Excerpt.pdf)
+| 09 | [Diagnostics and Remedial Measures](../Lectures/lecture-7/lecture_7.pdf) | 3 |
+| 10 | [Remedial Measures and Transformations](../Lectures/lecture-8/lecture_8.pdf) | 4 |
+| 11 | [Joint estimation, Bonferroni joint confidence intervals](../Lectures/lecture-9/lecture_9.pdf) | 5 |
+| 12 | [Linear Algebra Review](../Lectures/lecture-10/lecture_10.pdf) | | Cheat sheets  [Matrix](http://www.cs.toronto.edu/~roweis/notes/matrixid.pdf), [Gaussian](http://www.cs.toronto.edu/~roweis/notes/gaussid.pdf), [Linear Algebra](http://www.math.upatras.gr/~vpiperig/Mul/Algebra.pdf)
+| 13 | [Introduction to Multiple Linear Regression](../Lectures/lecture-11/lecture_11.pdf) ||
+| 14 | [Multiple linear regression](../Lectures/lecture-11/lecture_11.pdf)
 | 15 | More multiple linear regression
-| 16 | [Multiple linear regression](../Lectures/lecture_12/lecture_12.pdf)
-| 17 | [ANOVA](../Lectures/lecture_13/13.pdf)
+| 16 | [Multiple linear regression](../Lectures/lecture-12/lecture_12.pdf)
+| 17 | [ANOVA](../Lectures/lecture-13/13.pdf)
 | 18 | [Proof of Cochran\'s Theorem](../Lectures/lecture_cochran/handwritten-notes.pdf)
 | 19 | Midterm
 | 20 | [Model Selection](../Lectures/variable_selection/slides.pdf)

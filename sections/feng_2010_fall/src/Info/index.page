@@ -9,14 +9,9 @@ linear regression methods.</strong>
 
 <strong>Text:</strong> 
 
-Required: 
 <u>Applied Linear Regression Models</u>
  4th Ed., by Kutner, Nachtsheim, and Neter. McGraw-Hill, 2004. 
 
-
-Strongly recommended:
-<u> Pattern Recognition and Machine Learning</u>
-Christopher M. Bishop.  Springer, 2006.
 
 <strong>Prerequisite:</strong> 
 Calculus; probability and statistics at the level
@@ -26,22 +21,39 @@ of W4150, or W4105 and W4107 taken concurrently.
 Linear algebra. 
 
 <strong>Grading:</strong> 
-Grades will be assigned on a curve, using the
-following percentages: 35% Homework, 25% Midterm, 35% Final Project, 5% Participation.  
+Grades will be assigned on a curve, using the following percentages: 25% Homework, 30% Midterm, 45% Final Exam.  
 
-Homework will include a mix of paper and computer problems, and will
-be assigned in class as we go along; the assignments and due dates
-will be posted on this webpage.  No late homework will be accepted; to
-compensate for this, we will drop the lowest score.  Completing all of the homeworks counts as extra credit.
+<strong>Homework:</strong>
+Bi-weekly. Contains a mix of paper and computer problems. The assignments and due dates will be posted on the course page every other week.
+No late homework will be accepted.
+Missed homework will receive a grade of zero. The
+lowest score will be dropped. To receive credit
+on homework, you must show all work neatly, clearly
+label each problem, and staple the entire assignment together in correct order
+with your name printed. No homework should exceed 10 letter-size pages (including computer outputs, thus be selective on what to turn in). The homework will be graded, and each assignment carries equal
+ weight. You are allowed to work with other students on
+ the homework problems, however, verbatim copying of
+ homework is absolutely <i>forbidden</i>.
+ Therefore each student
+ must ultimately produce his or her own homework to be
+ handed in and graded.
+ Any questions regarding homework grades
+ should first be taken up with the TA; if these
+ questions cannot be resolved with the TA, then feel
+ free to discuss them with the instructor. 
+
+<strong>Exams:</strong>
+There will be one in-class midterm exam, and a final exam.  All exams are required and there will be no make-up exams. Missed exams will receive a grade of zero.  All exams are open-book and open-notes. Calculators may be used during the exams. Any questions regarding exam grades should first be taken up with the TA; if these questions cannot be resolved with the TA, then feel free to discuss them with the instructor. Grades will be assigned on a curve.
 
 <strong>Midterm:</strong> 
-The midterm will be during class hours.
+The midterm will be during class hours. Wednesday, Oct 20, 2010
+(tentatively)
 
-<strong>Final project:</strong> 
-The final project will be a small group project of your choice, selected just after the midterm examination.
+<strong>Final exam:</strong> 
+In the exam week. In class, 2 hours. (TBD)
 
 <strong>Computing:</strong> 
-You will be required to use Matlab to complete your homework assignments.  Software of your choice may be used to complete the final project.
+You will be required to use <strong>R</strong> to complete your homework assignments. 
 See the <a href="http://www.columbia.edu/acis/">ACIS page</a> for
 information on software and computing labs.  
 

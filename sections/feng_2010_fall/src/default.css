@@ -46,9 +46,9 @@ border:2px solid #a0a0a0;
 height:110px;
 width:758px;
 margin:0 1px 1px 1px;
-background:#545454;
-color:#ffffff;
-background:url(images/regression.jpg) top center ;
+background:#ffffff;
+color:#303030;
+/*background:url(images/regression.jpg) top center ;*/
 }
 
 #header h1{
@@ -140,7 +140,7 @@ background-color:inherit;
 
 #subcontent{
 float:right;
-width:170px;
+width:180px;
 padding:20px 20px 10px 0;
 line-height:1.4em;
 }
@@ -225,26 +225,26 @@ line-height:1.5em;
 }
 
 table {
-	border-width: 0px;
-	border-spacing: ;
-	border-style: outset;
-	border-color: gray;
-	border-collapse: separate;
-	background-color: white;
+    border-width: 0px;
+    border-spacing: ;
+    border-style: outset;
+    border-color: gray;
+    border-collapse: separate;
+    background-color: white;
 }
 table th {
-	border-width: 1px;
-	padding: 4px;
-	border-style: none;
-	border-color: gray;
-	background-color: rgb(240, 240, 240);
-	-moz-border-radius: ;
+    border-width: 1px;
+    padding: 4px;
+    border-style: none;
+    border-color: gray;
+    background-color: rgb(240, 240, 240);
+    -moz-border-radius: ;
 }
 table td {
-	border-width: 1px;
-	padding: 4px;
-	border-style: none;
-	border-color: gray;
-	background-color: rgb(240, 240, 240);
-	-moz-border-radius: ;
+    border-width: 1px;
+    padding: 4px;
+    border-style: none;
+    border-color: gray;
+    background-color: rgb(240, 240, 240);
+    -moz-border-radius: ;
 }

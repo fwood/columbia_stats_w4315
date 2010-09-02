@@ -4,10 +4,11 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{setspace}
+\usepackage{url}
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
 \title{Linear Regression Models\\W4315}
-\author{Instructor: Dr. Frank Wood}
+\author{Instructor: Dr. Yang Feng}
 
 \date{Required Text: Applied Linear Regression
 Models\\
@@ -23,22 +24,22 @@ Authors: Kutner, Nachtsheim, Neter}
 \frame{\titlepage}
 
 
-\frame[t] {
- \frametitle{Not Registered Yet?}
-Fill out the form at\\
-http://tinyurl.com/mqfq95
-\bigskip
-
-Additional books we will draw material from in this course:
-\begin{itemize}
-\item Pattern Recognition and Machine Learning, by Christopher M. Bishop. Springer, 2006.
-\item Bayesian Data Analysis, Second Edition, by Andrew Gelman, John B. Carlin, Hal S. Stern, and Donald B. Rubin, Chapman \& Hall/CRC Texts in Statistical Science
-\end{itemize}
-
-
-
-
-}
+%\frame[t] {
+% \frametitle{Not Registered Yet?}
+%Fill out the form at\\
+%http://tinyurl.com/mqfq95
+%\bigskip
+%
+%Additional books we will draw material from in this course:
+%\begin{itemize}
+%\item Pattern Recognition and Machine Learning, by Christopher M. Bishop. Springer, 2006.
+%\item Bayesian Data Analysis, Second Edition, by Andrew Gelman, John B. Carlin, Hal S. Stern, and Donald B. Rubin, Chapman \& Hall/CRC Texts in Statistical Science
+%\end{itemize}
+%
+%
+%
+%
+%}
 
 \frame[t] {
  \frametitle{Course Description}
@@ -52,11 +53,10 @@ of least squares. Extensive use of the computer to analyze data.}
  \frametitle{Philosophy and Style}
 \begin{itemize}
 \item Easy first half.
-\item Very hard second half.
-\item Frequent, long digressions from the required book.
+\item Hard second half.
+\item Some digressions from the required book.
 \item Understanding == proof (derivation) {\em plus} implementation.
 \item Practice makes perfect.
-\item Frequentist and Bayesian perspectives taught.
 \end{itemize}
 }
 
@@ -64,27 +64,23 @@ of least squares. Extensive use of the computer to analyze data.}
 \frame[t] {
  \frametitle{About me}
 \begin{itemize}
-\item Computer Science PhD, 2007, Brown University
-\item Postdoc in Machine Learning, Gatsby Unit, University College London
-\item Sports gambling consulting.
-\item Former entrepreneur.
+\item Operations Research \& Financial Engineering PhD, 2010, Princeton University
+\item First time teaching a course...
 \end{itemize}
 My research
 \begin{itemize}
-\item Inference for nonparametric Bayesian models.
-\item Compression.
-\item Natural language data  modeling.
+\item High-dimensional Statistical Learning
+\item Variable Selection
+\item Nonparametric and
+Semi-parametric Statistics
+\item Bioinformatics
 \end{itemize}
 }
 
 
 \frame[t] {
  \frametitle{Course Outline}
- First half of the course is on the traditional view of linear regression.  The first half of the first half is a formal, theoretical review of single variable regression and its classical, frequentist treatment.
-
- \begin{itemize}
- \item Roughly 1 chapter per week
- \item 3-5 weeks, linear regression
+ First half of the course is single variable linear regression. 
  \begin{itemize}
  \item Least squares
  \item Maximum likelihood, normal model
@@ -92,54 +88,32 @@ My research
  \item ANOVA
  \item Diagnostics
  \item Remedial Measures
- \item Linear algebra review
- \item Matrix approach to linear regression
-\end{itemize}
-\end{itemize}
+ \end{itemize}
+ 
 }
 
 
+
+
 \frame[t] {
-
-The second half of the first half covers multiple regression and the various topics that arise from including multiple predictor variables into models.
-
- \frametitle{Course Outline Continued}
+\frametitle{Course Outline (Continued) }
+ Second half of the course is multiple linear regression and other related topics .
+\begin{itemize} 
+\item Multiple linear Regression
  \begin{itemize}
- \item 3-4 weeks multiple regression
- \begin{itemize}
+ \item Linear algebra review
+ \item Matrix approach to linear regression
  \item Multiple predictor variables
  \item Diagnostics
  \item Tests
- \end{itemize}
- \end{itemize}
- Midterm
-
-}
-
-
-\frame[t] {
-
-The remainder of the course will deviate from the book and may be ordered differently than what is shown here.  In general we will retain a focus on models that are linear in the parameters, but will look at nonlinear models and Bayesian treatments of linear models.
-
- \frametitle{Course Outline Continued}
- \begin{itemize}
- \item 3-4 weeks on generalized regression
- \begin{itemize}
- \item Polynomial regression
- \item Logistic regression
- \item Neural networks
- \item Generalized linear models
- \end{itemize}
- \end{itemize}
- \begin{itemize}
- \item 3-4 weeks on Bayesian regression
- \begin{itemize}
- \item MCMC
- \item Bayesian linear regression
- \item Gaussian process regression
- \item Projects
- \end{itemize}
- \end{itemize}
+\end{itemize}
+\item Other topics (If time permits)
+\begin{itemize}
+  \item Principle Component Analysis
+  \item Generalized Linear Models
+  \item Introduction to Bayesian Inference
+\end{itemize}
+\end{itemize}
 }
 
 
@@ -181,44 +155,33 @@ The remainder of the course will deviate from the book and may be ordered differ
 
 
 \frame[t] {
- \frametitle{Projects (homework and final)}
- \begin{itemize}
- \item Software
+ \frametitle{Software}
+ \textbf{R} will be used throughout the course and it is required in all homework. An \textbf{R} tutorial session will be given on Sep 22.
 
- \begin{itemize}
- \item For homework -- Matlab.
- \item For final project, don't care:
- \begin{itemize}
- \item R
- \item Matlab
- \item S-Plus
- \item SAS
- \item Minitab
- \item Excel
- \item java, c++, c, assembly, $\ldots$
- \end{itemize}
- \end{itemize}
- \end{itemize}
+Reasons for \textbf{R}:
+\begin{itemize}
+  \item Completely free software
+  \item Available on various systems, PC, MAC, Linux, $\cdots$
+\end{itemize}
 
 }
 
 \frame[t] {
  \frametitle{Grading}
  \begin{itemize}
- \item Bi-weekly homework $(35\%)$
+ \item Bi-weekly homework $(25\%)$
  \begin{itemize}
  \item Due every other week
  \begin{itemize}
  \item no late homework accepted
  \end{itemize}
- \item One allowed to be missed
- \item Completing all is ``extra-credit''
+ \item Lowest score will be dropped
  \end{itemize}
   \end{itemize}
  \begin{itemize}
- \item Participation $(5\%)$
- \item Midterm examination $(25\%)$
- \item Final project $(35\%)$
+ \item Exams are open book and open notes.
+ \item In Class Midterm exam $(30\%)$, Wednesday, Oct 20, 2010 (tentatively).
+ \item In Class Final exam $(45\%)$.
  \item Curve
  \end{itemize}
 
@@ -227,12 +190,13 @@ The remainder of the course will deviate from the book and may be ordered differ
 \frame[t] {
  \frametitle{Office Hours / Website}
  \begin{itemize}
- \item $http://www.stat.columbia.edu/\sim fwood$
- \item Office hours : Thursday 7:30-9pm subject to change
- \item Office : Room 1011
- \item TA : Heng
+ \item \url{http://www.stat.columbia.edu/~yangfeng}
+ \item Course Materials and homeworks with the due dates will be posted on the course website.
+ \item Office hours : Wednesday 2-4pm subject to change
+ \item Office Location : Room 1012, SSW Building (1255 Amsterdam Avenue, between 121st and 122nd street)
+ \item TA : Qinghua
  \begin{itemize}
- \item TA office hours TBD
+ \item TA office hours TBA
  \end{itemize}
  \end{itemize}
 }
@@ -324,10 +288,6 @@ The remainder of the course will deviate from the book and may be ordered differ
 \end{itemize}
 \end{itemize}
 
-}
-\frame[t]{
-\frametitle{Questions?}
-Good time to ask now. 
 }
 
 \end{document}

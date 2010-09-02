@@ -1,0 +1,150 @@
+\comment{
+\frame[t] {
+ \frametitle{Qualitative(Discrete) Predictor Variables}
+ Until now we have (implicitly) focused on quantitative (continuous)
+ predictor variables.\bigskip
+ 
+ Qualitative(discrete) predictor variables often arise in the real
+ world.\bigskip
+ 
+ Examples:\\
+ \begin{itemize}
+ \item Patient sex: male/female/other
+ \item Goal scored in last minute: yes/no
+ \item Etc
+ \end{itemize}
+
+}
+
+\frame[t] {
+ \frametitle{Example}
+ Regression model to predict the length of hospital stay(Y) based on
+ the age ($X_1$) and gender($X_2$) of the patient. Define gender
+ as:\\
+ 
+ \[ X_2 = \left{
+ \begin{array}{c}
+ 1 \textrm{if patient female}\\
+ 0 \textrm{if patient male}
+ \end{array}\right.\]
+}
+
+And use the standard first-order regression model\\
+\begin{center}
+$Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\epsilon_i$
+\end{center}
+
+
+\frame[t] {
+ \frametitle{Example cont.}
+\begin{itemize}
+\item Where$X_i1$ is patient's age, and $X_i2$ is patient's gender
+\item If $X_2=0$, the response function is $E(Y)=\beta_0+\beta_1 X_1$
+\item Otherwise, it's $E(Y)=(\beta_0+\beta_2)+\beta_1 X_1$
+\item Which is just another parallel linear response function with a
+different intercept
+\end{itemize}
+
+}
+
+\frame[t] {
+ \frametitle{Polynomial Regression}
+ \begin{itemize}
+ \item Polynomial regression models are special cases of the general
+ regression model.
+ \item They can contain squared and higher-order terms of the
+ predictor variables
+ \item The response function becomes curvilinear.
+ \item For example $Y_1=\beta_0+\beta_1
+ X_i+\beta_2X_i^2+\epsilon_i$\\
+ which clearly has the same form as the general regression model.
+ \end{itemize}
+
+}
+
+\frame[t] {
+ \frametitle{General Regression}
+\begin{itemize}
+ \item Transformed variables\\
+ --$log Y, 1/Y$
+ \item Interaction effects\\
+ $Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\beta_2 X_{i1}X_{i2}+\epsilon_i$
+ \item Combinations\\
+ $Y_i=\beta_0+\beta_1 X_{i1}+\beta_2X_{i1}^2+\beta_3X_{i2}+\beta_4X_{i1}X_{i2}+\epsilon_i$
+ \item Key point-all linear in parameters!
+\end{itemize}
+
+}
+
+\frame[t] {
+ \frametitle{General Regression Model in Matrix Terms}
+ \[Y=\begin{pmatrix}
+ Y_1\\
+ .\\
+ .\\
+ .\\
+ Y_n
+ \end{pmatrix}~~~~~~~~X=\begin{pmatrix}
+ 1&X_{11}&X_{12}&...&X_{1,p-1}\\
+ ...\\
+1&X_{n1}&X_{n2}&...&X_{n,p-1}
+ \end{pmatrix}\]\\
+\[\beta=\begin{pmatrix}
+ \beta_0\\
+ .\\
+ .\\
+ .\\
+ \beta_{p-1}
+ \end{pmatrix}~~~~~~~~\epsilon=\begin{pmatrix}
+ \epsilon_1\\
+ .\\
+ .\\
+ .\\
+ \epsilon_n
+ \end{pmatrix}\]
+
+}
+
+\frame[t] {
+ \frametitle{General Linear Regression in Matrix Terms}
+ \begin{center}
+ $Y=X \beta + \epsilon$
+ \end{center}
+ With $E(\epsilon)=0$ and\\
+ \[\sigma^2(\epsilon)=\begin{pmatrix}
+ \sigma^2 & 0&...&0\\
+ 0&\sigma^2&...&0\\
+ ...\\
+ 0&0&...&\sigma^2
+ \end{pmatrix}\]\\
+We have $E(Y)=X\beta$ and $\sigma^2\{\ybf\}=\sigma^2\bf{I}$
+
+}
+
+\frame[t] {
+ \frametitle{Least Squares Estimation}
+ \begin{itemize}
+ \item Same as before $\bbf=(\Xbf'\Xbf)^{-1}\Xbf'\ybf$
+ \item Maximum likelihood under iid normal error assumption results
+ in same estimator
+ \item Fitted values and residuals the same as before as well.
+ \end{itemize}
+
+}
+
+\frame[t] {
+ \frametitle{ANOVA}
+ The sums of squares derived before are the same here\\
+\begin{center}
+ $SSTO=\ybf'\ybf-\frac{1}{n}\ybf'\Jbf\ybf=Y'[I-\frac{1}{n}J]Y$\\
+ $SSE=\ebf'\ebf=(\ybf-\Xbf\bbf)'(\ybf-\Xbf\bbf)=\ybf'\ybf-\bbf'\Xbf'\ybf=Y'(\Ibf-\Hbf)\ybf$\\
+ $SSR=\bbf'\Xbf'\ybf-\frac{1}{n}\ybf'\Jbf\ybf=Y'[H-\frac{1}{n}J]Y$
+ \end{center}
+ but now we have to account for more parameters
+}
+
+
+
+}
+
+
