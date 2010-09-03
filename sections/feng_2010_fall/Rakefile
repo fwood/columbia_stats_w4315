@@ -43,7 +43,18 @@ task :auto_webgen do
   end
 end
 
-desc "Deploy the site"
-task :upload do
-  sh %{webgen; chmod -R 777 out/*; rsync -avz -e ssh out/* #{ENV['SSH_USER']}@www.stat.columbia.edu:~fwood/public_html/w4315}
+desc "Deploy basic application directories"
+task :deploy => :environment do
+  dirs = %w{ app lib test public/images public/stylesheets public/javascripts db}
+  dirs.each do | dir|
+   onserver = "yangfeng@stat.columbia.com:~yangfeng/public_html/w4315"
+   local = "/cygdrive/c/rails_app/" + dir
+   cmd = "rsync -arvz -e ssh #{local} #{onserver} --exclude \"*.svn*\" --exclude \"*~\" "
+
+   puts cmd
+   rsync = IO.popen(cmd, "r")
+   while line = rsync.gets
+   end
+   rsync.close
+  end
 end

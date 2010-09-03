@@ -8,18 +8,18 @@ body{
 font:76% Verdana,Tahoma,Arial,sans-serif;
 line-height:1.4em;
 text-align:center;
-color:#303030;
+color:black;
 background:#e8eaec;
 }
 
 a{
-color:#545454;
+color:black;
 font-weight:bold;
 text-decoration:none;
 background-color:inherit;
 }
 
-a:hover{color:#2a5a8a; text-decoration:none; background-color:inherit;}
+a:hover{color:black; text-decoration:none; background-color:inherit;}
 a img{border:none;}
 
 p{padding:0 0 1.6em 0;}
@@ -38,7 +38,7 @@ margin:20px auto;
 padding:1px 0;
 text-align:left;
 background:#ffffff;
-color:#303030;
+color:black;
 border:2px solid #a0a0a0;
 }
 
@@ -47,7 +47,7 @@ height:110px;
 width:758px;
 margin:0 1px 1px 1px;
 background:#ffffff;
-color:#303030;
+color:black;
 /*background:url(images/regression.jpg) top center ;*/
 }
 
@@ -55,7 +55,7 @@ color:#303030;
 padding:35px 0 0 20px;
 font-size:2.4em;
 background-color:inherit;
-color:#ffffff;
+color:black;
 letter-spacing:-2px;
 font-weight:normal;
 }
@@ -64,14 +64,14 @@ font-weight:normal;
 margin:10px 0 0 40px;
 font-size:1.4em;
 background-color:inherit;
-color:#343434;
+color:black;
 letter-spacing:-1px;
 font-weight:normal;
 }
 
 #header a {
 text-decoration:none;
-color: #545454;
+color: black;
 }
 
 #navigation{
@@ -80,7 +80,7 @@ line-height:2.2em;
 width:758px;
 margin:0 1px;
 background:#545454;
-color:#ffffff;
+color:black;
 }
 
 #navigation li{
@@ -98,7 +98,7 @@ font-weight:normal;
 text-transform:uppercase;
 text-decoration:none;
 background-color:inherit;
-color: #ffffff;
+color: white;
 }
 
 * html #navigation a {width:1%;}
