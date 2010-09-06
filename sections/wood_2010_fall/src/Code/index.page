@@ -10,9 +10,8 @@ routed_title: Code
 	* [plot_gpa_fit.m](./introduction_to_matlab/plot_gpa_fit.m)
 
 * Linear Regression
-	* [demo.m](./linear_regression/demo.m)
+	<!--* [demo.m](./linear_regression/demo.m)-->
 	* [likelihood_demo.m](./linear_regression/likelihood_demo.m)
-	* [t_pdf_demo.m](./linear_regression/t_pdf_demo.m)
 	* [bias_example_plot.m](./linear_regression/bias_example_plot.m)
 	* [low_rank_design_matrix.m](./linear_regression/low_rank_design_matrix.m)
 	* [plot_error_lines.m](./linear_regression/plot_error_lines.m)

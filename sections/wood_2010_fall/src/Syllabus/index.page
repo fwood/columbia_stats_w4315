@@ -9,7 +9,7 @@ routed_title: Syllabus
 |:-:|:-|:-|:-|:-|
 | 01 | [Introduction](../Lectures/lecture_1/lecture_1.pdf "Slides") | 1 | |
 | 02 | [Simple linear regression model; least squares; residuals](../Lectures/lecture_2/lecture_2.pdf "Slides") | 2 | |
-| 03 | Introduction to MATLAB | | [demo.m](/Code/matlab_demo/general_matlab_demo.m) <br> [plot_gpa_fit.m](/Code/matlab_demo/plot_gpa_fit.m) <br> [my_regress.m](/Code/matlab_demo/my_regress.m)<br> [Getting started guide](http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/getstart.pdf)| 04 | [Normal error regression model; maximum likelihood](../Lectures/lecture_3/lecture_3.pdf)
+| 03 | Introduction to MATLAB | | [demo.m](/Code/introduction_to_matlab/general_matlab_demo.m) <br> [plot_gpa_fit.m](/Code/introduction_to_matlab/plot_gpa_fit.m) <br> [my_regress.m](/Code/introduction_to_matlab/my_regress.m)<br> [Getting started guide](http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/getstart.pdf)| 04 | [Normal error regression model; maximum likelihood](../Lectures/lecture_3/lecture_3.pdf)
 | 05 | [Proof of Gauss Markov Theorem, confidence intervals and hypothesis testing in the normal regression model. ](../Lectures/lecture_4/lecture4.pdf)
 | 06 | [Convexity, Gradient Descent Methods, Convex Optimization](../Lectures/lecture_convexity/lecture_convexity.pdf)
 | 07 | [Inference in Normal Regression Model](../Lectures/lecture_5/lecture_5.pdf) | 2.7-2.10
