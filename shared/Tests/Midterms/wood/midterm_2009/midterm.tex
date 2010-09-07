@@ -1,0 +1,136 @@
+% Essential Formatting
+   
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage[questions]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answers]{urmathtest}[2001/05/12]
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{Midterm Examination}{11/05/2009}
+ \begin{center}
+  Instructor: Frank Wood (10:35-11:50) 
+ \end{center}
+\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+ 
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            You may use back pages if necessary.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{40}
+{
+You are a statistical analysis consultant who has been asked to develop a regression model to analyze data collected in the following way:  a team of two food scientists was tasked with developing a new super-fluffy pancake recipe (fluffiness is a made up concept but for our purposes will be defined as measurable scalar quantity denoted $f$) based on experimenting with including varying levels of a secret new ingredient (the concentration of which is denoted by $i$).  Nearly everything went well, each scientist prepared different recipes with varying levels of the secret new ingredient ($i_s^r$ where $s=1$ indicates the first scientist and $s=2$ indicates the second scientist and $r \in [1, \ldots, n_s]$ is an integer that indicates which of the $n_s$ pancake recipes tried by scientist $s$ the input quantity corresponds to.   Each scientist measured the fluffiness using their own machine, producing fluffiness values $f_s^r$.  Unfortunately the variance of the fluffiness measurement produced by the scientists two machines was different (this is the reason why you were called).  Each scientist produced measurement whose errors where identically and independently distributed but whose variance was different than the other ($\sigma^2_s$ is the fluffiness measurement variance for scientist $s$).  
+
+\abcs 
+\item Using matrix notation ($\vec f = [f_1^1,\ldots,f_1^{n_1}, f_2^1,\ldots,f_2^{n_2}]^T$, etc.) set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions.  {\em Hint : use a vector like $\vec{\sigma^2} = [\sigma^2_1,\ldots,\sigma^2_1, \sigma^2_2,\ldots,\sigma^2_2]^T$ where $\sigma^2_s$ is repeated $n_s$ times.}
+\item Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$
+\endabcs
+}
+{
+\vfill
+\newpage
+}
+{
+}
+
+\problem{30}
+{
+Once again you are a statistical consultant sent in to help solve a difficult regression analysis problem.  You have been asked to fit a second order polynomial regression through the origin model to the following data
+\[
+\left[
+\begin{array}{ccc}
+ X_1   & Y  \\
+ 1 & 1  \\
+ 1   & 2  
+\end{array}
+\right]
+\]
+
+\abcs
+\item Using matrix notation, set up the specified regression model.  Show the design and response matrices explicitly.
+\item Using matrix rank identities, prove that the regression problem as specified lacks a unique solution.  Explain the intuition behind your answer in no more than two sentences.  
+\item In one sentence each, explain two options for solving this problem that don't involve changing the number of parameters in the model (i.e.~keeping the model a $2^{nd}$ order polynomial regression model).
+\endabcs
+
+}
+{
+
+\vfill
+ \newpage
+
+}
+{
+}
+
+\problem{30}
+{
+The $F^*$ test statistic for the general linear test given by
+\begin{equation} F^* = \frac{\frac{SSE(R)-SSE(F)}{df_R-df_F}}{\frac{SSE(F)}{df_F}} \sim F(df_R-df_F, df_F) \label{eqn:gen_linear_test} \end{equation}
+can be used in tests of whether or not a full model (denoted by $F$) versus a reduced model (denoted by $R$) would best explain the data.  This test statistic can also be used to decide whether or not input variables should be included in a linear regression model.
+
+In multiple regression (where $E\{Y\} = \beta_0 + \beta_1 X_1 + \ldots + \beta_{p-1}X_{p-1}$) the test statistic
+
+\begin{equation} F^* = \frac{\frac{SSR(X_1, \ldots, X_{p-1})}{p-1}}{\frac{SSE(X_1, \ldots, X_{p-1})}{n-p}}\label{eqn:mult_reg_test}\end{equation}
+
+is used to test whether there is a regression relation between the response variable $Y$ and the set of $X$ variables.  In other words this test statistic can be used to perform (among others) the hypothesis test
+
+\begin{eqnarray}
+H_0 &:& \beta_1 = \beta_2 = \ldots = \beta_{p-1} = 0 \nonumber \\
+H_a &:& \mbox{not all} \; \beta_k (k=1,\ldots,p-1) \; \mbox{equal} \; 0 \label{eqn:hyp_test}  
+\end{eqnarray}
+
+\abcs
+\item State the hypothesis test in \eqref{eqn:hyp_test} in the form of the general linear test in \eqref{eqn:gen_linear_test}.   In other words, identify $SSE(R)$, $SSE(F)$, $df_R$, and $df_F$ for the hypothesis test. 
+\item Show that  the result for (a) is equivalent to the test statistic given in \eqref{eqn:mult_reg_test}.  
+\item If $p=5$ and $n=60$ and $F^* = 5.78$ what should you conclude?  State your conclusion in words (1 sentence).
+\endabcs
+}
+{
+
+\vfill
+
+}
+{
+}
+
+
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document

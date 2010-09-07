@@ -1,0 +1,203 @@
+% Essential Formatting
+   
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+%\usepackage[ questions]{urmathtest}[2001/05/12]
+\usepackage[answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answers]{urmathtest}[2001/05/12]
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{INTRO SURVEY}{01/19/2010}
+ \begin{center}
+  Instructor: Frank Wood (Mathematics 417, Tu-Th, 10:30am-12pm) 
+ \end{center}
+%%\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+ 
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            Please write your CUID on this page.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{0}
+{
+\abcs
+\item
+What is your field of study?  
+\item 
+What is your intended profession?  
+\item
+Why are you taking this course?
+\item
+What regression applications do you have in mind?
+\item
+What would you really like to learn in this course?
+\endabcs
+}
+{
+\vfill
+\vspace{3cm}
+  %\answer
+}
+{
+\begin{eqnarray}
+ \frac{d}{dx})-x^2 + ln(x) ) &=& 0 \\
+ -2x+\frac{1}{x} &=& 0 \\
+  2x^2 &=& 1 \\
+  x &=& \sqrt{\frac{1}{2}} \\
+\end{eqnarray}
+}
+
+\problem{0}
+{
+Find the maximum of the function $x^2+ln(x)$, i.e. find  \[\argmax_{x}  \;\;-x^2+ln(x)\]  Simplify your answer.
+}
+{
+\vspace{3cm}
+
+\vfill
+  \answer
+}
+{
+\begin{eqnarray}
+ \frac{d}{dx})-x^2 + ln(x) -a) &=& 0 \\
+ -2x+\frac{1}{x} &=& 0 \\
+  2x^2 &=& 1 \\
+  x &=& \frac{1}{2} \\
+\end{eqnarray}
+}
+
+\problem{0}
+{
+\abcs
+\item
+Given an algebraic solution to the following matrix equation
+\[ {\bf A} {\bf x} - {\bf b} = {\bf 0}\]
+\item
+What conditions does your answer put on the matrix ${\bf A}$?
+\endabcs
+}
+{
+\vspace{3cm}
+\vfill
+  \answer
+}
+{
+${\bf x} = {\bf A}^{-1}{\bf b}$, ${\bf A}$, ${\bf A}$ must be square and invertible or ${\bf x} = {\bf A}^\dagger{\bf b}$ with fewer restrictions.
+}
+
+\problem{0}
+{
+\abcs
+\item
+Maximize the following quadratic form w.r.t.~${\bf x}$ ($ \boldsymbol{\mu}$ is also a column vector, ${\bf A}$ and $\bf x$ are as in the previous problem)
+\[ ({\bf x - \boldsymbol{\mu}})^T{\bf A}( {\bf x -  \boldsymbol{\mu}} )\]
+\endabcs
+}
+{
+\vspace{3cm}
+\vfill
+
+  \answer
+  \newpage
+}
+{
+$\bf x = \boldsymbol{\mu}$
+}
+
+\problem{0}
+{
+If $X | \lambda \sim \mathrm{Poisson}(\lambda)$ and $\lambda | \alpha, \beta \sim \mathrm{Gamma}(\alpha, \beta)$ how is $X|\alpha, \beta$ distributed?  Hint, remember:
+\begin{eqnarray*}
+P(a|c) &=& \int P(a|b) P(b|c) db \\
+P(X|\lambda) &=& \frac{1}{X!}\lambda^X e^{-\lambda} \\
+P(\lambda|\alpha, \beta) &=& \frac{\beta^\alpha}{\Gamma(\alpha)}\lambda^{\alpha-1} e^{-\beta\lambda} 
+\end{eqnarray*}
+Don't simplify the $\Gamma()$'s in the final result.
+}
+{
+\vspace{3.5in}
+\vfill
+\newpage
+  %\answer
+
+}
+{
+
+This is the solution.  
+}
+
+\problem{0}
+{
+
+Let $\theta_i \sim \mathrm{Exp}(\beta), \, 1 \leq i \leq n$ be samples from an
+exponential distribution.  Remember that for an exponential distribution
+$P(\theta) = \frac{1}{\beta} e^{-\frac{\theta}{\beta}}$ for $\theta > 0$.  Also
+remember that for the exponential distribution $E(\Theta) = \beta$ and $V(\theta) = \beta^2$ where $E()$ stands for
+expectation and $V()$ for variance.
+\abcs
+\item
+Derive the maximum likelihood estimator $\hat \beta$ for $\beta$ given observations $\{\theta_i\}_{i=1}^n$.
+\item
+Is this estimator biased or unbiased?  Show work.  Reminder: the definition of bias is $B(\hat \beta) = \beta - E(\hat \beta)$.
+\item
+Derive the sample variance of the estimator, $V(\hat \beta)$.  Remember $V(aX) = a^2V(X)$.
+\item
+Given a set of samples $\{\theta_i\}_{i=1}^n$ as above, illustrate the large
+sample (for instance, $N > 30$) symmetric confidence interval for $\hat \beta$.  Remember that by the central limit theorem $\frac{\hat \beta - \beta}{\sqrt{V(\hat \beta)}} \sim N(0,1)$ where $N(0,1)$ stands for a standard normal distribution with mean $0$ and variance $1$.  Also, for a sufficiently large $n$ remember that $\frac{\hat \beta - \beta}{\sqrt{V(\hat \beta)}} \approx \frac{\hat \beta - \beta}{S/\sqrt{n}}$ where $S$ is the sample population standard deviation.  The sample variance is
+given by $S^2 = \frac{1}{n-1} \sum_i (\theta_i - \hat \beta)^2$ but
+this expansion is unnecessary for the purposes of this question and is provided only for familiarity.  What
+you should derive is $c$ for a confidence interval 
+\[ \hat \beta - c \leq \beta \leq \hat \beta + c \] 
+in terms of $S$, $n$, and $k$ where $k$ value of the standard normal inverse cumulative distribution for some $1-\alpha/2$ level of confidence.  Also show a representative plot of the sampling distribution of the estimator.
+\endabcs
+}
+{
+\vspace{7in}
+\vfill
+  %\answer
+}
+{
+
+This is the solution.  
+}
+
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document

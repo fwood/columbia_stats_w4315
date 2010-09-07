@@ -8,11 +8,11 @@ routed_title: Code
 	* [general_matlab_demo.m](./introduction_to_matlab/general_matlab_demo.m)
 	* [my_regress.m](./introduction_to_matlab/my_regress.m)
 	* [plot_gpa_fit.m](./introduction_to_matlab/plot_gpa_fit.m)
+	* [CH01PR19.txt](./introduction_to_matlab/CH01PR19.txt)
 
 * Linear Regression
-	* [demo.m](./linear_regression/demo.m)
+	<!--* [demo.m](./linear_regression/demo.m)-->
 	* [likelihood_demo.m](./linear_regression/likelihood_demo.m)
-	* [t_pdf_demo.m](./linear_regression/t_pdf_demo.m)
 	* [bias_example_plot.m](./linear_regression/bias_example_plot.m)
 	* [low_rank_design_matrix.m](./linear_regression/low_rank_design_matrix.m)
 	* [plot_error_lines.m](./linear_regression/plot_error_lines.m)
