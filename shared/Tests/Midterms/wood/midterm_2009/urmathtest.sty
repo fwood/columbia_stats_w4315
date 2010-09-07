@@ -1,0 +1,236 @@
+%
+%    *** urmathtest.sty ***
+%
+%         Version 1.0
+%
+% For typesetting tests!!!!!!!
+%
+
+% The Identification Part
+
+\ProvidesPackage{urmathtest}[2001/05/12]
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+
+% Formatting
+
+\topmargin 0pt
+\advance \topmargin by-\headheight
+\advance \topmargin by-\headsep
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\marginparwidth 0.5in
+\textwidth 6.5in
+\parskip 0in
+\parindent 0in
+\linespread{1.2}
+
+% Some Exam Commands
+
+\newcommand{\examtitle}[3]{
+  \begin{center}
+    {\LARGE #1 \\ \vspace{0.1in}}
+    {\large \@addanswer{#2} \\ \vspace{0.06in}
+     \@titleordate{#3} \vspace{0.32in}}
+  \end{center}
+}
+\newcommand{\studentinfo}{
+  {\bf NAME (please print legibly):} \hrulefill{} \\
+  {\bf Your University ID Number:} \hrulefill{} \\
+}
+\newcommand{\instructions}[1]{#1}
+\newcommand{\content}[3]{
+  #2
+}
+\newcommand{\anotherpage}{\newpage}
+% Below is the command for entering problems
+% #1 is the number of points.  
+% #2 is for the questions.  
+% #3 is for the answer sheet for the students to fill in.  
+% #4 is for the solutions to the questions;  #1 will be followed by #3.
+\newcommand{\problem}[4]{
+  \stepcounter{problem}
+  \stepcounter{consecutive}
+  \addtocontents{pro}{\@chosencounter & #1 \quad & \\ \protect\hline}
+  \addtocounter{total}{#1}
+  {\bf \@chosencounter. (#1 points)}
+  \content{#2}{#3}{#4}
+}
+
+% Some Useful Macros
+
+\newcommand{\pos}{\vspace{\@stdvspace}}
+\newcommand{\nos}{\vspace{-\@stdvspace}}
+
+\newenvironment{abcs}{
+  \begin{list}
+  {(\alph{subpart}) \hfill}
+  {
+    \usecounter{subpart}
+    \setlength{\itemsep}{0in}          % We control the vertical!!
+    \setlength{\topsep}{0in}
+    \setlength{\partopsep}{0in}
+    \setlength{\parsep}{\@stdvspace}
+    \setlength{\leftmargin}{0.285in}   % We control the horizontal!!
+    \setlength{\rightmargin}{0in}
+    \setlength{\itemindent}{0in}
+    \setlength{\labelsep}{0in}
+    \setlength{\labelwidth}{\leftmargin}
+    \advance \labelwidth by-\labelsep
+  }
+}{
+  \end{list}
+}
+
+% Spacing System
+
+\newcommand{\@stdvspace}{0.15in}   % Determines parskip in the exam body!
+\newcommand{\setstdvspace}[1]{\renewcommand{\@stdvspace}{#1}}
+
+% Heading System
+
+\newcommand{\@stdheading}{Part}    % Determines the style of headings!
+\newcommand{\@currentheading}{\@stdheading}
+\newcommand{\stackheading}[1]{\renewcommand{\@currentheading}{#1}}
+
+% Default Command Definitions
+
+\newcommand{\@partheading}{}                % onepart (vs. multipart)
+\newcommand{\@tableheading}{}
+\newcommand{\anotherpart}{}
+
+\newcommand{\@newpage}{\newpage}            % standard (vs. answers)
+\newcommand{\@titleordate}[1]{#1}
+\newcommand{\@addanswer}[1]{#1}
+\newcommand{\finishfirstpage}{
+  \vspace*{-10mm}
+  {\large \@starttoc{pro}}
+  \problemsstart
+}
+\newcommand{\answer}{\vspace{\@stdvspace} \hfill ANSWER: \rule{2.0in}{0.15mm}}
+
+\newcommand{\@chosencounter}{\theproblem}   % nonconsecutive (vs. consecutive)
+
+\newcommand{\@chosenstyle}[1]{\Alph{#1}}    % alphanumeric (vs. roman)
+
+\newcommand{\@extrainstructions}{}
+\newcommand{\additionalinstructions}[1]{
+  \renewcommand{\@extrainstructions}{#1}
+}
+
+% The Declaration of Options
+
+\DeclareOption{letter}{\textheight 8.9in}
+\DeclareOption{legal}{
+  \textheight 11.5in
+  \paperheight 14in
+}
+
+\DeclareOption{onepart}{}
+\DeclareOption{multipart}{
+  \renewcommand{\@partheading}{
+   {\bf \@currentheading\ \@chosenstyle{part}}
+   \vspace{-\@stdvspace} \par
+  }
+  \renewcommand{\@tableheading}{
+    \addtocontents{pro}{\protect\multicolumn{3}{||c||}
+    {\@currentheading\ \@chosenstyle{part}} \\}
+    \addtocontents{pro}{\protect\hline \protect\hline}
+    \renewcommand{\@currentheading}{\@stdheading}   % Used once and gone!
+  }
+  \renewcommand{\anotherpart}{
+    \@partend
+    \addtocontents{pro}{\hskip 1em}
+    \@partstart
+  }
+}
+\DeclareOption{standard}{}
+\DeclareOption{answersheet}{}
+\DeclareOption{answers}{
+  \renewcommand{\@newpage}{}
+  \renewcommand{\@titleordate}[1]{\today}
+  \renewcommand{\studentinfo}{}
+  \renewcommand{\@addanswer}[1]{#1 ANSWERS}
+  \renewcommand{\finishfirstpage}{\problemsstart}
+  \renewcommand{\answer}{}
+  \renewcommand{\instructions}[1]{}
+  \renewcommand{\vfill}{}
+  % The following are used to insert additional content
+  \renewcommand{\content}[3]{#1
+
+\textbf{Answer:}
+  
+#3}
+  \renewcommand{\anotherpage}{}
+}
+\DeclareOption{questions}{
+  \renewcommand{\@newpage}{}
+  \renewcommand{\@titleordate}[1]{\today}
+  \renewcommand{\studentinfo}{}
+  \renewcommand{\@addanswer}[1]{#1 QUESTIONS}
+  \renewcommand{\finishfirstpage}{\problemsstart}
+  \renewcommand{\answer}{}
+  \renewcommand{\instructions}[1]{}
+  \renewcommand{\vfill}{}
+  % The following are used to insert additional content
+  \renewcommand{\content}[3]{#1}
+}
+
+\DeclareOption{nonconsecutive}{}
+\DeclareOption{consecutive}{
+  \renewcommand{\@chosencounter}{\theconsecutive}
+}
+
+\DeclareOption{alphanumeric}{}
+\DeclareOption{roman}{
+  \renewcommand{\@chosenstyle}[1]{\Roman{#1}}
+}
+
+% The Execution of Options
+
+\ExecuteOptions{letter,onepart,standard,nonconsecutive,alphanumeric}
+\ProcessOptions
+
+% Definition of Counters
+
+\newcounter{total}[part]
+\newcounter{problem}[part]
+\newcounter{consecutive}
+\newcounter{subpart}
+
+% The Following Commands Produce the Table as well as the Problems
+
+\newcommand{\problemsstart}{
+  \parskip \@stdvspace
+  \addtocontents{pro}{\protect\begin{center}}
+  \@partstart
+}
+\newcommand{\@partstart}{
+  % This sets up the beginning of a part
+  \@newpage
+  \stepcounter{part}
+  \@partheading
+  % This starts the form of the table
+  \addtocontents{pro}{\protect\tabular{||r|r|c||}}
+  \addtocontents{pro}{\protect\multicolumn {3}{c}{\mbox{}} \\}
+  \addtocontents{pro}{\protect\hline \protect\hline}
+  \@tableheading
+  \addtocontents{pro}{QUESTION & VALUE & SCORE \\}
+  \addtocontents{pro}{\protect\hline \protect\hline}
+}
+\newcommand{\@partend}{
+  % This finishes the form of the table
+  \addtocontents{pro}{\protect\hline}
+  \addtocontents{pro}{TOTAL & \thetotal\ \quad & \\ \protect\hline}
+  \addtocontents{pro}{\protect\hline}
+  \addtocontents{pro}{\protect\endtabular}
+}
+\newcommand{\problemsdone}{
+  \@partend
+  \addtocontents{pro}{\protect\end{center}\@extrainstructions}
+  \marginpar{\mbox{}}  % See explanation below!
+}
+
+% The \mbox command is used to produce an invisible margin note
+% on the last page.  This fixes a serious problem which can occur
+% if a user inserts \newpage immediately before \problemsdone.
+% In that case, however, a blank page will be produced.
