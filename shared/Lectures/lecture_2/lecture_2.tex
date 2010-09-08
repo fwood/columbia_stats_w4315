@@ -11,8 +11,7 @@
 
 \date{}
 
-\DeclareMathOperator*{\Ave}{\mathbb{E}}
-\DeclareMathOperator*{\Var}{Var}
+\input{../definitions}
 
 \begin{document}
 
@@ -192,7 +191,7 @@ $$P(X) = 2X, 0 \leq X \leq 1$$
  \frametitle{Variance Properties}
 \begin{eqnarray*}
 \Var(aX) &=& a^2 \Var(X)\\
-\Var(aX + bY) &=& a^2\Var(X) + b^2\Var(Y)\, \mathrm{if} X \perp Y \\
+\Var(aX + bY) &=& a^2\Var(X) + b^2\Var(Y)\, \mathrm{if} X \independent Y \\
 \Var(a +cX)  &=& c^2 \Var(X)\; \mathrm{if} a, c\; \mathrm{both\ constant}
 \end{eqnarray*}
 More generally
@@ -229,7 +228,9 @@ $$Cov(XY)=\mu\nu-\mu\nu=0.$$
 \begin{itemize}
 \item Seek to minimize $$Q = \sum_{i=1}^n (Y_i - (\beta_0 + \beta_1 X_i))^2$$
 \item By careful choice of $b_0$ and $b_1$ where $b_0$ is a point estimator for $\beta_0$ and $b_1$ is the same for
-$\beta_1$\\
+$\beta_1$ \newline
+
+
 How?
 
 \end{itemize}
@@ -266,8 +267,8 @@ point
 
 \frame[t] {%%%change pic%%%
  \frametitle{Function Maximization}
-Find the maximum value of x that satisfies the function $$-x^2 +
-ln(x) = a, x>0$$
+Find $$ \argmax_x \;\;-x^2 +
+ln(x)$$
 \begin{figure}
   \includegraphics[height=60mm]{fmax.png}
 \end{figure} }
@@ -275,7 +276,7 @@ ln(x) = a, x>0$$
 \frame[t] {
  \frametitle{Least Squares Max(min)imization}
 \begin{itemize}
-\item Function to minimize w.r.t. $b_0$ and $ b_1$ -- $b_0$ and $b_1$ are called point estimators of $\beta_0$ and $\beta_1$ respectively
+\item Function to minimize w.r.t. $b_0$ and $ b_1$, $b_0$ and $b_1$ are called point estimators of $\beta_0$ and $\beta_1$ respectively
 $$Q = \sum_{i=1}^n (Y_i - (b_0 + b_1 X_i))^2$$
 \item Minimize this by maximizing -Q
 
