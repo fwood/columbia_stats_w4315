@@ -171,34 +171,15 @@ and then set the derivative to be zero. The solution of the equation
 is just the MLE of $\sigma^2$.\\
 }
 
-\problem{10} { File `unif.txt' contains 200 numbers randomly
-generated from a uniform distribution U(2,5). Read these numbers into MATLAB (using `textread' for instance) and do the following: \\
-a. Take these 200 number as a population. Use command 'randsample'
-of MATLAB, draw 100 numbers out of this population randomly with
-replacement and plot one histogram of
-these 100 numbers.\\
-b. Use command 'rand' in MATLAB, draw 100 samples directly from
-U(2,5) and plot another histogram of these numbers.\\
-c. Compare the two histograms, what can you say about the difference
-between the distribution of samples from the population and from the
-uniform distribution itself? For the convenience of comparison, you
-may want to overlay two histograms onto one graph and to see if any
-apparent difference. }
- { \vfill
-  \answer
-} { }
 
-\problem{10} { File `normal.txt' contains 200
-randomly
-generated numbers from Normal distribution N(-1,$2^2$). Like in problem 3, do the following: \\
-a. Take these 200 number as a population. Use command `randsample'
-of MATLAB, draw 100 numbers out of this population randomly with
-replacement and plot a histogram of
-these 100 numbers.\\
-b. Use command `randn' in MATLAB, draw 100 samples directly from
-N(-1,$2^2$) and plot a histogram of these numbers.\\
-c. Compare the two histograms, can you get the similar conclusion as
-that of problem 3?}
+\problem{20} {$X_1,X_2,X_3,\ldots,X_{100}$ are iid normal random 
+variables with mean $\mu$ and variance $\sigma^2$, we want to estimate 
+the mean $\mu$. Consider two estimators, $X_1$ and $\bar{X}=\frac{1}{n}\sum_{i=1}^{100}X_i$: \\
+a. Show these two estimators are both unbiased. Also derive the
+distribution of each estimator. Which estimator do you think is better? Why?\\
+b. When $\mu=0$ and $\sigma^2=100$, generate $X_1,X_2,X_3,\ldots,X_{100}$. Calculate the estimate $\bar{X}$ and denote
+it as $\hat{\mu}_1$. Repeat this 100 times and plot the density histogram of $\hat{\mu}_1,
+\hat{\mu}_2,\hat{\mu}_3,\ldots,\hat{\mu}_{100}$. Overlay the probability density of $\bar{X}$ on the plot (see matlab function ``normpdf''). \\}
  { \vfill
   \answer
 } { }
