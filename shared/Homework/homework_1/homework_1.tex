@@ -1,7 +1,7 @@
 % Essential Formatting
 
 \documentclass[12pt]{article}
-\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage{epsfig,amsmath,amsthm,amssymb, graphicx}
 \usepackage[questions, answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answers]{urmathtest}[2001/05/12]
@@ -60,84 +60,84 @@ linear regression model with distribution of error terms unspecified
 \frac{\sum(Y_i-\hat Y_i)^2}{n-2}$ is an unbiased estimator for
 $\sigma^2$.  $\hat Y_i = b_0 + b_1 X_i$ where $b_0 = \bar Y - b_1
 \bar X$ and $b_1 = \frac{\sum_i((X_i-\bar X)(Y_i - \bar
-Y))}{\sum_i(X_i-\bar X)}$. } { \vfill
+Y))}{\sum_i(X_i-\bar X)^2}$. } { \vfill
   \answer
 }
 {
 First, let's denote the followings:\\
-$\hat{e_i}=y_i-\hat{y_i}$\\
-$SXX=\displaystyle\sum_{i=1}^n (x_i-\bar{x})^2$\\
-$SYY=\displaystyle\sum_{i=1}^n (y_i-\bar{y})^2$\\
-$SXY=\displaystyle\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})$\\
-\\
-Now we set out to prove the following equation which accomplishes
-essentially the final result:\\
-$Var\hat{e_i}=E\hat{e_i}^2=(\frac{n-2}{n}+\frac{1}{SXX}(\frac{1}{n}\displaystyle\sum_{j=1}^nx_j^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x}))\sigma^2$\\
-To prove the above, realize that:\\
+\begin{equation*}
+\begin{array}{l}
+\hat{e_i}=y_i-\hat{y_i}\\
+S_{XX}=\displaystyle\sum_{i=1}^n (x_i-\bar{x})^2=\displaystyle\sum_{i=1}^n x_i^2-n\bar{x}^2\\
+S_{YY}=\displaystyle\sum_{i=1}^n (y_i-\bar{y})^2=\displaystyle\sum_{i=1}^n y_i^2-n\bar{y}^2\\
+S_{XY}=\displaystyle\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})=\displaystyle\sum_{i=1}^n (x_i-\bar{x})y_i
+\end{array}
+\end{equation*}
+Consequently, $b_1=S_{XY}/S_{XX}$.
+
+Now we set out to prove the following equation which essentially accomplishes the final result:\\
+\[Var\hat{e_i}=E\hat{e_i}^2=(\frac{n-2}{n}+\frac{1}{S_{XX}}(\frac{1}{n}\displaystyle\sum_{j=1}^nx_j^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x}))\sigma^2\]
+To prove the above display, realize that:\\
 \begin{align*}
-Var(\hat{e_i})&=Var(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)\\
-              &=Var((y_i-\beta_0-\beta_1x_i)-(\hat{\beta_0}-\beta_0)-x_i(\hat{\beta_1}-\beta_1))\\
-              &=Var(y_i)+Var(\hat{\beta_0})+x_i^2Var(\hat{\beta_1})-2Cov(y_i,\hat{\beta_0})-2x_iCov(y_i,\hat{\beta_1})+2x_iCov(\hat{\beta_0},\hat{\beta_1})\\
+Var(\hat{e_i})&=Var(y_i-b_0-b_1x_i)\\
+              &=Var((y_i-\beta_0-\beta_1x_i)-(b_0-\beta_0)-x_i(b_1-\beta_1))\\
+              &=Var(y_i)+Var(b_0)+x_i^2Var(b_1)-2Cov(y_i,b_0)-2x_iCov(y_i,b_1)+2x_iCov(b_0,b_1)\\
 \end{align*}
 The last equation holds because the covariance between any random
 variable and a constant is zero, and all the $y_i$'s are independent
 entailing that the $Cov(y_i,y_j)=0,i\not=j$\\
-$Var(y_i)=\sigma^2$\\
-Notice that(some algebras needed here, and the following tricks are
-crucial in reducing the amount of calculation):\\
-$\sum{(x_i-\bar{x})}=0$\\
-$\beta_1=\frac{\sum{x_i-\bar{x}}y_i}{SXX}$\\
-So now we have:\\
+
+Then we need to calculate each term of the above display
 \begin{align*}
- Var(\beta_1)&=Var(\frac{SXY}{SXX})\\
-             &=Var(\frac{\sum{(x_i-\bar{x})}y_i}{SXX})\\
-             &=\frac{1}{SXX^2}\sum{x_i-\bar{x}}^2Var(y_i)\\
-             &=\frac{\sigma^2}{SXX}\\
+ Var(b_1)&=Var(\frac{S_{XY}}{S_{XX}})\\
+             &=Var(\frac{\sum{(x_i-\bar{x})}y_i}{S_{XX}})\\
+             &=\frac{1}{S_{XX}^2}\sum(x_i-\bar{x})^2Var(y_i)\\
+             &=\frac{\sigma^2}{S_{XX}}\\
 \end{align*}
 And:\\
 \begin{align*}
- Var(\beta_0)&=Var(\bar{y}-\hat{\beta_1}\bar{x})\\
-             &=Var(\sum{(\frac{1}{n}-\frac{(x_i-\bar{x})\bar{x}}{SXX})y_i})\\
-             &=\sum{(\frac{1}{n}-\frac{x_i-\bar{x}}{SXX}\bar{x})^2}\sigma^2\\
-             &=\sum{[\frac{1}{n^2}+\frac{SXX*\bar{x}^2}{SXX^2}-\frac{2}{n}\frac{\bar{x}(x_i-\bar{x})}{XSS}]}\sigma^2\\
-             &=[\frac{1}{n}+\frac{n\bar{x}^2}{SXX}]\sigma^2\\
-             &=\frac{\sum{x_i}^2}{n*SXX}\sigma^2
+ Var(b_0)&=Var(\bar{y}-b_1\bar{x})\\
+             &=Var(\sum{(\frac{1}{n}-\frac{(x_i-\bar{x})\bar{x}}{S_{XX}})y_i})\\
+             &=\sum{(\frac{1}{n}-\frac{x_i-\bar{x}}{S_{XX}}\bar{x})^2}\sigma^2\\
+             &=\sum{[\frac{1}{n^2}+\frac{(x_i-\bar{x})^2*\bar{x}^2}{S_{XX}^2}-\frac{2}{n}\frac{\bar{x}(x_i-\bar{x})}{S_{XX}}]}\sigma^2\\
+             &=[\frac{1}{n}+\frac{\bar{x}^2}{S_{XX}}]\sigma^2\\
+             &=\frac{\sum{x_i}^2}{n*S_{XX}}\sigma^2
 \end{align*}
 For the other terms in the decomposition of $Var(\hat{e_i})$, we
 have:\\
 \begin{align*}
- Cov(y_i,\hat{\beta_1})&=Cov(y_i,\frac{sum{x_i-\bar{x}}y_i}{SXX})\\
-                       &=\frac{x_i-\bar{x}}{SXX}Var(y_i)\\
-                       &=\frac{x_i-\bar{x}}{SXX}\sigma^2
+ Cov(y_i,b_1)&=Cov(y_i,\frac{\sum(x_i-\bar{x})y_i}{S_{XX}})\\
+                       &=\frac{x_i-\bar{x}}{S_{XX}}Var(y_i)\\
+                       &=\frac{x_i-\bar{x}}{S_{XX}}\sigma^2
 \end{align*}
 and:\\
 \begin{align*}
- Cov(y_i,\hat{\beta_0})&=Cov(y_i,\bar{y}-\hat{\beta_1}\bar{x})\\
-                       &=Cov(y_i,\frac{\sum{y_i}}{n}-\sum{(x_i-\bar{x})y_i}{SXX}\bar{x})\\
-                       &=\frac{\sigma^2}{n}+\bar{x}\frac{x_i-\bar{x}}{SXX}\sigma^2
+ Cov(y_i,b_0)&=Cov(y_i,\bar{y}-b_1\bar{x})\\
+                       &=Cov(y_i,\frac{\sum{y_i}}{n}-\frac{\sum{(x_i-\bar{x})y_i}}{S_{XX}}\bar{x})\\
+                       &=\frac{\sigma^2}{n}+\bar{x}\frac{x_i-\bar{x}}{S_{XX}}\sigma^2
 \end{align*}
 At last, we have:\\
 \begin{align*}
- Cov(\hat{\beta_0},\hat{\beta_1})&=Cov(\bar{y}-\hat{\beta_1}\bar{x},\hat{\beta_1})\\
-                                 &=Cov(\frac{\sum{y_i}}{n}-\sum{\frac{(x_i-\bar{x})\bar{x}}{SXX}}y_i,\sum{\frac{(x_i-\bar{x})y_i}{SXX}})\\
-                                 &=\displaystyle\sum_{i=i}^{n}(\frac{1}{n}-\frac{x_i-\bar{x}}{SXX}\bar{x})\frac{x_i-\bar{x}}{SXX}\sigma^2\\
-                                 &=-\frac{\bar{x}}{SXX}\sigma^2
+ Cov(b_0,b_1)&=Cov(\bar{y}-b_1\bar{x},b_1)\\
+                                 &=Cov(\frac{\sum{y_i}}{n}-\sum{\frac{(x_i-\bar{x})\bar{x}}{S_{XX}}}y_i,\sum{\frac{(x_i-\bar{x})y_i}{S_{XX}}})\\
+                                 &=\displaystyle\sum_{i=i}^{n}(\frac{1}{n}-\frac{x_i-\bar{x}}{S_{XX}}\bar{x})\frac{x_i-\bar{x}}{S_{XX}}\sigma^2\\
+                                 &=-\frac{\bar{x}}{S_{XX}}\sigma^2
 \end{align*}
 Then plug in all the parts back to the decomposition of
 $Var(\hat{e_i})$, we have:\\
-$Var(\hat{e_i})=(\frac{n-1}{n}+\frac{1}{SXX}(\frac{1}{n}\displaystyle\sum_{j=1}^{n}{x_j}^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x}))\sigma^2$\\
+$Var(\hat{e_i})=(\frac{n-2}{n}+\frac{1}{S_{XX}}(\frac{1}{n}\displaystyle\sum_{j=1}^{n}{x_j}^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x}))\sigma^2$\\
 \noindent Thus,\\
 \begin{align*}
- E\hat{\sigma}^2&=\frac{1}{n}\displaystyle\sum_{i=1}^{n}E\hat{e_i}^2\\
-                &=\frac{1}{n}\displaystyle\sum_{i=1}^{n}[\frac{n-2}{n}+\frac{1}{SXX}(\frac{1}{n}\displaystyle\sum_{j=1}^{n}x_j^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x})]\sigma^2\\
-                &=[\frac{n-2}{n}+\frac{1}{nS_{xx}}\{\displaystyle\sum_{j=1}^{n}x_j^2+\displaystyle\sum_{i=1}^{n}x_i^2-2SXX-2\frac{1}{n}(\displaystyle\sum_{i=1}^{n}x_i)^2\}]\sigma^2\\
-                &=(\frac{n-2}{n}+0)\sigma^2\\
-                &=\frac{n-2}{n}\sigma^2\\
+ E\hat{\sigma}^2&=\frac{1}{n-2}\displaystyle\sum_{i=1}^{n}E\hat{e_i}^2\\
+                &=\frac{1}{n-2}\displaystyle\sum_{i=1}^{n}[\frac{n-2}{n}+\frac{1}{S_{XX}}(\frac{1}{n}\displaystyle\sum_{j=1}^{n}x_j^2+x_i^2-2(x_i-\bar{x})^2-2x_i\bar{x})]\sigma^2\\
+                &=[1+\frac{1}{nS_{xx}}\{\displaystyle\sum_{j=1}^{n}x_j^2+\displaystyle\sum_{i=1}^{n}x_i^2-2S_{XX}-2\frac{1}{n}(\displaystyle\sum_{i=1}^{n}x_i)^2\}]\sigma^2\\
+                &=(1+0)\sigma^2\\
+                &=\sigma^2\\
 \end{align*}
 where the third equation holds because:
-$\sum{}{}x_i\bar{x}=\frac{1}{n}(\sum{}{} x_i)^2$\\
+$\sum x_i\bar{x}=\frac{1}{n}(\sum{}{} x_i)^2$\\
 and the second to last equation holds since
-$\sum{}{} x_i^2-\frac{1}{n}(\sum{}{} x_i)^2=SXX$\\
+$\sum x_i^2-\frac{1}{n}(\sum{}{} x_i)^2=S_{XX}$\\
 From the above equation, the result flows. \\
 }
 
@@ -161,10 +161,10 @@ But to minimize this function is just to principle behind LSE, so
 it's apparent that the MLE of $\beta_0$ and $\beta_1$ are the same
 as their LSE's. Now, substituting in the log-likelihood, to find the
 MLE of $\sigma^2$ we need to maximize\\
-\[-\frac{n}{2}log(2\pi)-\frac{n}{2}log\sigma^2-\frac{\displaystyle\sum_{i=1}^{n}(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2}{2\sigma^2}\]\\
+\[-\frac{n}{2}log(2\pi)-\frac{n}{2}log\sigma^2-\frac{\displaystyle\sum_{i=1}^{n}(y_i-b_0-b_1x_i)^2}{2\sigma^2}\]\\
 This maximization problem is nothing but MLE of $\sigma^2$ in
 ordinary normal sampling problems, which is easily given as\\
-\[\hat{\sigma}^2=\frac{1}{n}\displaystyle\sum_{i=1}^{n}(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2\]\\
+\[\hat{\sigma}^2=\frac{1}{n}\displaystyle\sum_{i=1}^{n}(y_i-b_0-b_1x_i)^2\]\\
 If you are not familiar with the MLE in normal sampling setting, you
 can take derivative with respect to $\sigma^2$ (N.B. not $\sigma$),
 and then set the derivative to be zero. The solution of the equation
@@ -186,9 +186,16 @@ it as $\hat{\mu}_1$. Repeat this 100 times and plot the density histogram of $\h
  {
  a. $X_1$ is unbiased is pretty obvious, for $\bar{X}$, using linearity of expectation, we have
   \[E(\bar{X})=E(\frac{1}{100}\sum_{i=1}^{100}X_i)=\frac{1}{100}\sum_{i=1}^{100}EX_i=\frac{1}{100}\sum_{i=1}^{100}\mu=\mu \]\\
-   Apprantly, $X_1\sim N(\mu,\sigma^2)$. $\bar{X}$ is a linear combination of normal random variables, so it is still a normal random variable. Thanks to indepence, its variance is given by 
+   Apprantly, $X_1\sim N(\mu,\sigma^2)$. $\bar{X}$ is a linear combination of normal random variables, so it is still a normal random variable. Thanks to indepedence, its variance is given by 
    \[Var(\bar{X})=\frac{1}{100^2}Var(\sum_{i=1}^{100}X_i)=\frac{1}{100^2}\sum_{i=1}^{100}Var(X_i)=\frac{\sigma^2}{100}\]
   so $\bar{X}\sim N(\mu, \frac{1}{100}\sigma^2)$. Obviously, $\bar{X}$ is better since it has smaller variance.\\
+
+ b.
+ \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm]{hist.pdf}
+  \end{figure}
+
 } 
 
 
@@ -225,7 +232,19 @@ use any other programming language. Only basic MATLAB operators are
 allowed, do not use any built-in functions to do the regression, i.e.~the function ``regress'' cannot be used except, perhaps, to verify that your answer is correct before submitting your own implementation. \\}
  { \vfill
   \answer
-} { }
+} {
+  a. $y = -0.58 + 15.04*x + \epsilon$; 
+
+  b. Based on the graph, the model fit quite well.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm]{graph.pdf}
+  \end{figure}
+  
+  c. $b_0=-0.58$ means number of minutes spent to servie 0 copier, which doesn't make any practical sense.
+
+  d. $5*b_1+b_0=74.596$.
+} 
 
 
 % Problems End Here % ------------------------------------------------------- %

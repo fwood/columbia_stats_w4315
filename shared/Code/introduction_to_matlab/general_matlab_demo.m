@@ -114,7 +114,7 @@ hist(a)
 % this only gives you count histogram, we need to do
 % some tricks to get the density histogram
 [n,x] = hist(a, [-3:.2:3]) % -3:.2:3 generate a sequence from -3 to 3 with even intervals of .2
-bar = (x, n/1000*.2)
+bar = (x, n/(1000*.2))
 
 
 % now we can start computing some regression stuff
