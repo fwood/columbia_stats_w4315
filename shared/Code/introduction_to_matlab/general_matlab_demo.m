@@ -110,9 +110,7 @@ plot(input,output,'ko')
 % histogram
 % generate standard normal random variables
 a = randn(1, 1000);
-hist(a);
-% this only gives you count histogram, we need to do
-% some tricks to get the density histogram
+hist(a); % the usual hist() function only gives you count histogram, we need to do some tricks to get the density histogram
 [n,x] = hist(a, [-3:.2:3]); % -3:.2:3 generate a sequence from -3 to 3 with even intervals of .2
 bar(x, n/(1000*.2));
 
