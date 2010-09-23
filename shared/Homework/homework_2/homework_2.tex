@@ -53,9 +53,9 @@
 % Problems Start Here % ----------------------------------------------------- %
 
 
-\problem{20} {
- 
-  Consider a simple linear regression model $Y=\beta_0+\beta_1X+\epsilon$. $X$ takes value at all the integers from 1 to 20. We denote the ordinary least squared estimates of $\beta_0$ and $\beta_1$ as $b_0$ and $b_1$. Now assume that $\beta_0=2$, $\beta_1=3$ and $\sigma^2=1$.\\
+\problem{35} {
+  Consider a simple linear regression model $Y=\beta_0+\beta_1X+\epsilon$. $X$ takes value at all the integers from 1 to 20. We denote the ordinary least squared estimates of $\beta_0$ and $\beta_1$ as $b_0$ and $b_1$. Now assume that $\beta_0=2$, $\beta_1=0.3$ and $\sigma^2=4$.\\
+
  a. What are the exact distributions of $b_0$ and $b_1$?
 
  b. Generate $Y$ according to the given model (there are 20 $X$'s, so you need to generate 20 $Y$'s), and calculate the OLS estimates $b_0$ and $b_1$ based on $X$ and the simulated $Y$. Repeat the process for 1,000 times and you will have 1,000 estimates of $\beta_0$ and $\beta_1$. For each parameter, draw a density histogram of the estimates.
@@ -67,32 +67,32 @@
   \answer
 } { }
 
-\problem{10} {
+\problem{25} {
 Write a matlab function to produce the ANOVA table as in TABLE 2.2 page 67 of the textbook. Speficically, the interface of your function should be like this.
 
 \begin{center}                function [SSR, SSE, SSTO, df\_R, df\_E, df\_TO] = anova\_1d(X, Y)
 \end{center}
 
-This function accepts $X$ and $Y$ as arguments and return $SSR$, $SSE$, $SSTO$ and their degrees of freedom. Please construct your function on top of the file ``anov\_1d.m'' that you can find on the homework section of course webstie. We have provided you the head of the function in that file. (As in homework 1, you are only allowed to use basic matlab commands to write this function. )
+This function accepts $X$ and $Y$ as arguments and return $SSR$, $SSE$, $SSTO$ and their degrees of freedom. Please construct your function on top of the file ``anova\_1d.m'' that you can find on the homework section of the course webstie. We have provided you the head of the function in that file. (As in homework 1, you are only allowed to use basic matlab commands to write this function. )
 
   }
  { \vfill
   \answer
 } { }
 
-\problem{20} {
+\problem{40} {
   Use the data in the file ``probelm3.txt'' on the course webstie. This is a 20 by 2 matrix, with the first column being $X$ and second column being $Y$. Assume a simple linear regression model.\\
  a. Give the ordinary least square estimates of $\beta_0$, $\beta_1$ and $\sigma^2$. Draw a scatterplot of the raw data and overlay the fitted line on it.
 
  b. F-test is used to test the linear relationship between $X$ and $Y$. Calculate the F-test statistic and p-value. Draw the probability density function of F distribution with approriate degrees of freedom. What does the p-value mean on the graph?
 
- c. Write your onw function to calcuate p-value of F-test. The interface of your function should be like this.
+ c. Write your own function to calculate p-value of F-test. The interface of your function should be like this.
 
 \begin{center}
 function p\_value = p\_value\_of\_F\_test(X, Y)
 \end{center}
 
-It takes $X$ and $Y$ as arguments and return p-value. Please construct your function on top of the file ``p\_value\_of\_F\_test.m'' that you can find on the homework section of course webstie. We have provided you the head of the function in that file. (As before, you are only allowed to use basic matlab commands. But you can use functions that you wrote in Problem 2.)
+It takes $X$ and $Y$ as arguments and return p-value. Please construct your function on top of the file ``p\_value\_of\_F\_test.m'' that you can find on the homework section of the course webstie. We have provided you the head of the function in that file. (As before, you are only allowed to use basic matlab commands.)
 }
  { \vfill
   \ANSWER
