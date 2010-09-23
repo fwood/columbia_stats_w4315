@@ -1,0 +1,1 @@
+function [SSR, SSE, SSTO, df_R, df_E, df_TO] = anova_1d(X, Y)
