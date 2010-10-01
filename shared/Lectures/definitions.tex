@@ -1,6 +1,12 @@
-\DeclareMathOperator*{\Ave}{\mathbb{E}}
-\DeclareMathOperator*{\Var}{Var}
-
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+%\DeclareMathOperator*{\Ave}{E}
+\DeclareMathOperator*{\VarSym}{\sigma^2}
+\DeclareMathOperator*{\EstVarSym}{{s}^2}
+\newcommand{\EstVar}[1]{\ensuremath{\EstVarSym\{#1\}}}
+\newcommand{\EstStd}[1]{\ensuremath{s\{#1\}}}
+\newcommand{\Var}[1]{\ensuremath{\VarSym\{#1\}}}
+\newcommand{\Std}[1]{\ensuremath{\sigma\{#1\}}}
+\newcommand{\Ave}[1]{\ensuremath{E\{#1\}}}

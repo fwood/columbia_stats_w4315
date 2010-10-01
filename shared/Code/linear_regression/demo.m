@@ -172,7 +172,7 @@ legend(eh,[num2str(polynomial_order) ' Order, mse:  ' num2str(mse,3)])
 
 %% regularized least squares
 
-polynomial_order = 17;
+polynomial_order = 10;
 lambda = linspace(0,10,5);
 legend_text = {'Data'};
 

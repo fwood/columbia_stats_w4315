@@ -3,7 +3,7 @@
 num_samples = 100;
 sample = zeros(num_samples,1);
 
-n = 200;
+n = 5;
 
 for l=1:num_samples
     
@@ -33,6 +33,7 @@ for l=1:num_samples
     hold off
     legend([pdfh lh(1) act_line est_line],['\mu = ' num2str(mu,3) ', \sigma = ' num2str(sigma,3)], 'samples', '\theta', 'est. \theta')
     drawnow
+    
 end
 
 figure(2)

@@ -58,7 +58,7 @@
 
  a. What are the exact distributions of $b_0$ and $b_1$?
 
- b. Generate $Y$ according to the given model (there are 20 $X$'s, so you need to generate 20 $Y$'s), and calculate the OLS estimates $b_0$ and $b_1$ based on $X$ and the simulated $Y$. Repeat the process for 1,000 times and you will have 1,000 estimates of $\beta_0$ and $\beta_1$. For each parameter, draw a density histogram of the estimates.
+ b. Generate $Y$ according to the given model (there are 20 $X$'s, so you need to generate 20 $Y$'s), and calculate the OLS estimates $b_0$ and $b_1$ based on $X$ and the simulated $Y$. Repeat the process 1,000 times and you will have 1,000 estimates of $\beta_0$ and $\beta_1$. For each parameter, draw a density histogram of the estimates.
 
  c. Superimpose the $b_0$ and $b_1$'s probability density functions onto the two histograms respectively. Is the histogram a
  close approximation of the curve?
@@ -68,12 +68,12 @@
 } { }
 
 \problem{25} {
-Write a matlab function to produce the ANOVA table as in TABLE 2.2 page 67 of the textbook. Speficically, the interface of your function should be like this.
+Write a matlab function to produce the ANOVA table as in TABLE 2.2 page 67 of the textbook. Specifically, the interface of your function must be
 
 \begin{center}                function [SSR, SSE, SSTO, df\_R, df\_E, df\_TO] = anova\_1d(X, Y)
 \end{center}
 
-This function accepts $X$ and $Y$ as arguments and return $SSR$, $SSE$, $SSTO$ and their degrees of freedom. Please construct your function on top of the file ``anova\_1d.m'' that you can find on the homework section of the course webstie. We have provided you the head of the function in that file. (As in homework 1, you are only allowed to use basic matlab commands to write this function. )
+This function accepts $X$ and $Y$ as arguments and returns $SSR$, $SSE$, $SSTO$ and their associated degrees of freedom. Please complete the function defined in the file ``anova\_1d.m'' that you can find on the homework section of the course website. We have provided you the exact function interface in that file. (As in homework 1, you are only allowed to use basic matlab commands to write this function. )
 
   }
  { \vfill
@@ -81,18 +81,18 @@ This function accepts $X$ and $Y$ as arguments and return $SSR$, $SSE$, $SSTO$ a
 } { }
 
 \problem{40} {
-  Use the data in the file ``probelm3.txt'' on the course webstie. This is a 20 by 2 matrix, with the first column being $X$ and second column being $Y$. Assume a simple linear regression model.\\
+  Use the data in the file ``problem3.txt'' on the course website. This is a 20 by 2 matrix, with the first column being $X$ and second column being $Y$. Assume a simple linear regression model.\\
  a. Give the ordinary least square estimates of $\beta_0$, $\beta_1$ and $\sigma^2$. Draw a scatterplot of the raw data and overlay the fitted line on it.
 
- b. F-test is used to test the linear relationship between $X$ and $Y$. Calculate the F-test statistic and p-value. Draw the probability density function of F distribution with approriate degrees of freedom. What does the p-value mean on the graph?
+ b. F-test is used to test the linear relationship between $X$ and $Y$. Calculate the F-test statistic and p-value. Draw the probability density function of F distribution with appropriate degrees of freedom. What does the p-value mean on the graph?
 
- c. Write your own function to calculate p-value of F-test. The interface of your function should be like this.
+ c. Write your own function to calculate p-value of F-test. The interface of your function must be:
 
 \begin{center}
 function p\_value = p\_value\_of\_F\_test(X, Y)
 \end{center}
 
-It takes $X$ and $Y$ as arguments and return p-value. Please construct your function on top of the file ``p\_value\_of\_F\_test.m'' that you can find on the homework section of the course webstie. We have provided you the head of the function in that file. (As before, you are only allowed to use basic matlab commands.)
+It takes $X$ and $Y$ as arguments and return p-value. Please implement the function defined in ``p\_value\_of\_F\_test.m'' that you can find on the homework section of the course website. We have provided you the exact function interface in that file. (As before, you are only allowed to use basic matlab commands.)
 }
  { \vfill
   \ANSWER

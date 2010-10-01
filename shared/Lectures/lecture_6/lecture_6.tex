@@ -11,8 +11,7 @@
 
 \date{}
 
-\DeclareMathOperator*{\Ave}{\mathbb{E}}
-\DeclareMathOperator*{\Var}{Var}
+\input{../definitions}
 
 \begin{document}
 
@@ -179,12 +178,12 @@ $$MSE = \frac{SSE}{n-2}$$
 }
 
 \frame[t] {
- \frametitle{ANOVA table for simple lin. regression}
+ \frametitle{ANOVA table for simple linear regression}
 \begin{table}
 \begin{center}
 \scalebox{0.7}{
 \begin{tabular}{|c|c|c|c|c|}
-\hline Source of Variation& SS& df& MS & $\Ave(MS)$ \\\hline
+\hline Source of Variation& SS& df& MS & $\Ave{MS}$ \\\hline
 Regression& $SSR = \sum (\hat{Y_i} - \bar Y )^2$&1&$MSR = SSR/1
 $&$\sigma^2 + \beta_1^2 \sum(X_i - \bar X)^2$\\\hline Error& $SSE =
 \sum (Y_i - \hat{Y_i})^2$&$n-2$&$MSE = SSE/(n-2)
@@ -196,7 +195,7 @@ $&$\sigma^2$\\\hline Total& $SSTO = \sum (Y_i -
 }
 
 \frame[t] {
- \frametitle{$\Ave\{MSE\} = \sigma^2$}
+ \frametitle{$\Ave{MSE} = \sigma^2$}
 \begin{itemize}
 \item Remember the following theorem, presented in an earlier lecture.
 \bigskip
@@ -206,8 +205,8 @@ For the normal error regression model, $\frac{SSE}{\sigma^2}$ is distributed as 
 
  Rewritten this yields $$SSE/\sigma^2 \sim \chi^2(n-2)
 $$
-\item That means that $\Ave\{SSE/\sigma^2\} = n-2$
-\item And thus that $\Ave\{SSE/(n-2)\} = \Ave\{MSE\} = \sigma^2$
+\item That means that $\Ave{SSE/\sigma^2} = n-2$
+\item And thus that $\Ave{SSE/(n-2)} = \Ave{MSE} = \sigma^2$
 \end{itemize}
 }
 
@@ -224,7 +223,7 @@ $$\sigma^2\{b_1\} = E\{b_1^2\} - (E\{b_1\})^2$$
 \frame[t] {
  \frametitle{$E\{MSR\} = \sigma^2 + \beta_1^2 \sum(X_i - \bar X)^2$}
 \begin{itemize}
-\item But we know that $b_1$ is an unbiased estimator of $\beta_1$ so $\Ave\{b_1\} =
+\item But we know that $b_1$ is an unbiased estimator of $\beta_1$ so $\Ave{b_1} =
 \beta_1$
 \item We also know (from previous lectures) that
 $$\sigma^2\{b_1\} = \frac{\sigma^2}{\sum(X_i - \bar X)^2}$$
@@ -242,10 +241,10 @@ E\{b_1^2\} &=& \frac{\sigma^2}{\sum(X_i - \bar X)^2} +\beta_1^2
 \item From the previous slide\begin{eqnarray*}
 E\{b_1^2\} &=& \frac{\sigma^2}{\sum(X_i - \bar X)^2} +\beta_1^2
 \end{eqnarray*}
-\item  Which brings us to this result\\
-$E\{MSR\} = E\{SSR/1\} = E\{b_1^2\}\sum(X_i - \bar X)^2  =
- \sigma^2 + \beta_1^2 \sum(X_i - \bar X)^2$
+\item  Which brings us to our desired result\\
 \end{itemize}
+\[E\{MSR\} = E\{SSR/1\} = E\{b_1^2\}\sum(X_i - \bar X)^2  =
+ \sigma^2 + \beta_1^2 \sum(X_i - \bar X)^2\]
 }
 
 \frame[t] {
@@ -261,6 +260,7 @@ whether $\beta_1 = 0$)
 
 \end{itemize}
 \end{itemize}
+This intuition leads us to a battery of simple rules for constructing linear regression tests
 }
 
 \frame[t] {
@@ -270,33 +270,40 @@ provides an easy test for
 \bigskip
 \begin{columns}
 \begin{column}{.5\linewidth}
-Two-sided test\\
-$H_0 : \beta_1 = 0$\\
-$H_a : \beta_1 \neq 0$\\
-Test statistic
+Two-sided test
+\begin{eqnarray*}
+H_0 &:&  \beta_1 = 0\\
+H_a &:&  \beta_1 \neq 0
+\end{eqnarray*}
 \end{column}
 \begin{column}{.5\linewidth}
-Test statistic from before\\
-$t^* = \frac{b_1-0}{s\{b_1\}}$\\
-ANOVA test statistic\\
-$F^* = \frac{MSR}{MSE}$
+Two-sided t-test statistic from before\\
+\[t^* = \frac{b_1-0}{s\{b_1\}}\]
+ANOVA test statistic
+\[F^* = \frac{MSR}{MSE}\]
 \end{column}
 \end{columns}
+\vspace{10mm}
+
+The ANOVA framework makes many common linear regression tests into almost ``shorthand.''
 }
 
 \frame[t] {
  \frametitle{Sampling distribution of $F^*$}
 \begin{itemize}
 \item The sampling distribution of $F^*$ when $H_0 : \beta_1 = 0$ holds can be derived starting from Cochran's theorem
-
-\item Cochran's theorem
+\end{itemize}
+\begin{block}{Cochran's theorem}
 If all n observations $Y_i$ come from the same normal distribution
 with mean $\mu$ and variance $\sigma^2$, and SSTO is decomposed into
 k sums of squares $SS_r$, each with degrees of freedom $df_r$, then
 the $SS_r/\sigma^2$ terms are independent $\chi^2$ variables with
 $df_r$ degrees of freedom if
 $$\sum_{r=1}^k df_r = n-1$$
-\end{itemize}
+\end{block}
+Does this directly apply to the regression case?
+
+
 }
 
 \frame[t] {

@@ -1,0 +1,115 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Gauss Markov Theorem}
+\author{Dr. Frank Wood}
+
+\date{}
+
+\DeclareMathOperator*{\Ave}{E}
+\DeclareMathOperator*{\Var}{\sigma^2}
+\DeclareMathOperator*{\EstVar}{{\hat \sigma}^2}
+\begin{document}
+
+\frame{\titlepage}
+
+
+\frame[t] {
+ \frametitle{Digression : Gauss-Markov Theorem}
+In a regression model where $\Ave\{\epsilon_i\} = 0$ and variance $\Var\{\epsilon_i\} = \sigma^2 < \infty$
+and $\epsilon_i$ and $\epsilon_j$ are uncorrelated for all $i$ and $j$ the least squares
+estimators $b_0$ and $b_1$ are unbiased and have minimum variance among
+all unbiased linear estimators.\newline 
+
+Remember
+\begin{eqnarray*}
+b_1 &=& \frac{\sum(X_i - \bar X)(Y_i - \bar Y)}{\sum(X_i-\bar X)^2} = \sum k_i Y_i\;, \; k_i = \frac{(X_i - \bar X)}{\sum(X_i-\bar
+X)^2} \\
+b_0 &=& \bar Y - b_1 \bar X
+%\bar X &=& \frac{\sum X_i}{n} \\
+%\bar Y&=&\frac{\sum Y_i}{n}
+\end{eqnarray*}
+\begin{eqnarray*}
+\Var\{b_1\} &=& \Var\{\sum k_i Y_i\} = \sum k_i^2 \Var\{Y_i\}  \\
+%&=& \sum k_i^2 \sigma^2 = \sigma^2   \sum k_i^2 \\
+&=& \sigma^2  \frac{1}{\sum(X_i - \bar X)^2}
+\end{eqnarray*}
+}
+
+
+\frame[t] {
+ \frametitle{Gauss-Markov Theorem}
+\begin{itemize}
+\item The theorem states that $b_1$ has minimum variance among all unbiased linear estimators of the form
+$$\hat \beta_1 = \sum c_i Y_i$$
+\item As this estimator must be unbiased we have
+\begin{eqnarray*}
+\Ave\{{\hat \beta_1}\} &=& \sum c_i \Ave\{Y_i\} = \beta_1 \\
+ &=& \sum c_i  (\beta_0 + \beta_1 X_i) = \beta_0 \sum c_i  + \beta_1 \sum c_i X_i  = \beta_1
+\end{eqnarray*}
+\item This imposes some restrictions on the $c_i$'s.
+\end{itemize}
+}
+
+\frame[t] {
+ \frametitle{Proof}
+\begin{itemize}
+\item Given these constraints
+\begin{eqnarray*}
+\beta_0 \sum c_i  + \beta_1 \sum c_i X_i  = \beta_1
+\end{eqnarray*}
+clearly it must be the case that $\sum c_i =0$ and $\sum c_iX_i = 1$
+
+\item The variance of this estimator is
+\begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sum c_i^2 \Var\{Y_i\} = \sigma^2 \sum c_i^2
+\end{eqnarray*}
+\item This also places a kind of constraint on the $c_i$'s
+\end{itemize}
+}
+
+\frame[t] {
+ \frametitle{Proof cont.}
+Now define $c_i = k_i + d_i$ where the $k_i$ are the constants we
+already defined and the $d_i$ are arbitrary constants.  Let's look
+at the variance of the estimator
+\begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sum c_i^2 \Var\{Y_i\} = \sigma^2 \sum (k_i+d_i)^2 \\
+&=& \sigma^2(\sum k_i^2 + \sum d_i^2 + 2 \sum k_i d_i)
+\end{eqnarray*}
+Note we just demonstrated that $$\sigma^2 \sum k_i^2 = \Var\{b_1\}$$
+So $\Var\{\hat \beta_1\}$ is related to $\Var\{b_1\}$ plus some extra stuff.}
+
+\frame[t] {
+ \frametitle{Proof cont.}
+Now by showing that $\sum k_id_i = 0$ we're almost done
+\begin{eqnarray*}
+ \sum k_i d_i &=& \sum k_i (c_i - k_i) \\
+&=& \sum k_i (c_i - k_i) \\
+&=& \sum k_i c_i - \sum k_i^2 \\
+&=& \sum c_i \left(\frac{X_i - \bar X}{\sum(X_i - \bar X)^2}\right) - \frac{1}{\sum(X_i - \bar X)^2} \\
+&=&  \frac{\sum c_i X_i - \bar X\sum c_i}{\sum(X_i - \bar X)^2} -
+\frac{1}{\sum(X_i - \bar X)^2} = 0
+\end{eqnarray*}
+}
+
+\frame[t] {
+ \frametitle{Proof end}
+So we are left with \begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sigma^2(\sum k_i^2 + \sum d_i^2 ) \\
+&=& \Var(b_1) + \sigma^2(\sum d_i^2 )
+\end{eqnarray*}
+which is minimized when the $d_i= 0 \; \forall\; i$. \newline 
+
+If $d_i = 0$ then $c_i = k_i$. \newline
+
+This means that the least squares estimator $b_1$ has minimum variance among all unbiased linear estimators.
+ }
+
+
+\end{document}

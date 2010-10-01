@@ -281,14 +281,14 @@ Only if the $Y_i$ are independent with finite variance
 \frame[t] {
  \frametitle{Central Limit Theorem Review}
 \begin{block}{Central Limit Theorem}
-Let $Y_1, Y_2, \ldots, Y_n$ be iid random variables with $\Ave(Y_i) = \mu$ and $\Var(Y_i) - \sigma^2 < \infty$.  Define.
+Let $Y_1, Y_2, \ldots, Y_n$ be iid random variables with $\Ave(Y_i) = \mu$ and $\Var(Y_i) = \sigma^2 < \infty$.  Define.
 \begin{equation}
 U_n = \sqrt{n}\left(\frac{\bar Y - \mu}{\sigma}\right) \;\;\; \mbox{where} \;\;\;  \bar Y = \frac{1}{n}\sum_{i=1}^n Y_i
 \end{equation}
 Then the distribution function of $U_n$ converges to a standard normal distribution function as $n\rightarrow\infty$.
 \end{block}
 
-\begin{block}{Alternately}
+\begin{block}{Alternatively}
 \begin{equation}
 P(a\leq U_n\leq b) \rightarrow \int_a^b \left(\frac{1}{\sqrt{2\pi}}\right) e^{\frac{-u^2}{2}}du
 \end{equation}

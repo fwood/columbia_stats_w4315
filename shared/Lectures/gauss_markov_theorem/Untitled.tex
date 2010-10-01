@@ -11,8 +11,9 @@
 
 \date{}
 
-\input{../definitions}
-
+\DeclareMathOperator*{\Ave}{E}
+\DeclareMathOperator*{\Var}{\sigma^2}
+\DeclareMathOperator*{\EstVar}{{\hat \sigma}^2}
 \begin{document}
 
 \frame{\titlepage}
@@ -128,7 +129,7 @@ b_1 &=& \frac{\sum(X_i - \bar X)(Y_i - \bar Y)}{\sum(X_i-\bar X)^2} \\
 \item For a normal error regression model the sampling distribution of $b_1$ is normal, with mean and variance given by
 \begin{eqnarray*}
 \Ave\{b_1\} &=& \beta_1\\
-\Var{b_1} &=& \frac{\sigma^2}{\sum(X_i-\bar X)^2}
+\Var\{b_1\} &=& \frac{\sigma^2}{\sum(X_i-\bar X)^2}
 \end{eqnarray*}
 
 \item To show this we need to go through a number of algebraic steps.
@@ -185,7 +186,7 @@ properties of the sampling distributions of $b_1$ and $b_0$.
 \item A linear combination of independent normal random variables is normally distributed
 \item More formally: when $Y_1,\ldots,Y_n$ are independent normal random variables, the linear combination
 $a_1Y_1 + a_2Y_2 + \ldots + a_nY_n$ is normally distributed, with
-mean $\sum a_i\Ave\{Y_i\}$ and variance $\sum a_i^2\Var{Y_i} $
+mean $\sum a_i\Ave\{Y_i\}$ and variance $\sum a_i^2\Var\{Y_i\}$
 \end{itemize}
 \end{itemize}
 }
@@ -200,11 +201,11 @@ b_1 &=& \sum k_i Y_i, \, k_i = \frac{(X_i - \bar X)}{\sum(X_i-\bar
 X)^2}
 \end{eqnarray*}
 From previous slide
-\[\Ave\{b_1\} = \sum k_i \Ave\{Y_i\}, \; \; \Var{b_1} = \sum k_i^2 \Var{Y_i} \]
+\[\Ave\{b_1\} = \sum k_i \Ave\{Y_i\}, \; \; \Var\{b_1\} = \sum k_i^2 \Var\{Y_i\}\]
 
-This means $b_1 \sim N(\Ave\{b_1\}, \Var{b_1} )$.\newline
+This means $b_1 \sim N(\Ave\{b_1\}, \Var\{b_1\} )$.\newline
 
-To use this we must know $\Ave\{b_1\}$ and $\Var{b_1}$.
+To use this we must know $\Ave\{b_1\}$ and $\Var\{b_1\}$.
 }
 
 \frame[t] {
@@ -227,7 +228,7 @@ So now we know the mean of the sampling distribution of $b_1$ and conveniently (
 Since the $Y_i$ are independent random variables with variance
 $\sigma^2$ and the $k_i's$ are constants we get
 \begin{eqnarray*}
-\Var{b_1} &=& \Var{\sum k_i Y_i} = \sum k_i^2 \Var{Y_i}   \\
+\Var\{b_1\} &=& \Var\{\sum k_i Y_i\} = \sum k_i^2 \Var\{Y_i\}  \\
 &=& \sum k_i^2 \sigma^2 = \sigma^2   \sum k_i^2 \\
 &=& \sigma^2  \frac{1}{\sum(X_i - \bar X)^2}
 \end{eqnarray*}
@@ -243,7 +244,7 @@ Note: this assumes that we know $\sigma^2$. Can we?
 \frame[t] {
  \frametitle{Estimated variance of $b_1$}
 \begin{itemize}
-\item When we don't know $\sigma^2$ then one thing that we can do is to replace it with the MSE estimate of the same
+\item When we don't know $\sigma^2$ then we have to replace it with the MSE estimate
 \item Let
 $$s^2 = MSE = \frac{SSE}{n-2}$$
 where
@@ -252,8 +253,8 @@ and
 $$e_i = Y_i-\hat Y_i$$
 plugging in we get
 \begin{eqnarray*}
-\Var{b_1} &=&  \frac{\sigma^2}{\sum(X_i - \bar X)^2} \\
-\EstVar{b_1} &=&  \frac{s^2}{\sum(X_i - \bar X)^2}
+\Var\{b_1\} &=&  \frac{\sigma^2}{\sum(X_i - \bar X)^2} \\
+\EstVar\{b_1\} &=&  \frac{s^2}{\sum(X_i - \bar X)^2}
 \end{eqnarray*}
 \end{itemize}
 }
@@ -264,8 +265,8 @@ plugging in we get
 \item We now have an expression for the sampling distribution of $b_1$ when $\sigma^2$ is known
 \begin{equation}b_1 \sim \mathcal{N}(\beta_1,  \frac{\sigma^2}{\sum(X_i - \bar X)^2})\label{b1_dist}  \end{equation} 
 \item When $\sigma^2$ is unknown we have an unbiased point estimator of $\sigma^2$ 
-\[\EstVar{b_1} =  \frac{s^2}{\sum(X_i - \bar X)^2}\]
-\item As $n \rightarrow \infty$ (i.e. the number of observations grows large) $\EstVar{b_1} \rightarrow \Var{b_1}$ and we can use Eqn.~\ref{b1_dist}.
+\[\EstVar(b_1) =  \frac{s^2}{\sum(X_i - \bar X)^2}\]
+\item As $n \rightarrow \infty$ (i.e. the number of observations grows large) $\EstVar(b_1) \rightarrow \Var(b_1)$ and we can use Eqn.~\ref{b1_dist}.
 \item Questions
 \begin{itemize}
 \item When is $n$ big enough?
@@ -278,28 +279,105 @@ plugging in we get
 }
 
 \frame[t] {
- \frametitle{Sampling Distribution of $(b_1 - \beta_1)/\EstStd{b_1}$?}
+ \frametitle{Digression : Gauss-Markov Theorem}
+In a regression model where $\Ave\{\epsilon_i\} = 0$ and variance $\Var\{\epsilon_i\} = \sigma^2 < \infty$
+and $\epsilon_i$ and $\epsilon_j$ are uncorrelated for all $i$ and $j$ the least squares
+estimators $b_0$ and $b_1$ are unbiased and have minimum variance among
+all unbiased linear estimators.\\ Remember
+\begin{eqnarray*}
+b_1 &=& \frac{\sum(X_i - \bar X)(Y_i - \bar Y)}{\sum(X_i-\bar X)^2} \\
+b_0 &=& \bar Y - b_1 \bar X
+%\bar X &=& \frac{\sum X_i}{n} \\
+%\bar Y&=&\frac{\sum Y_i}{n}
+\end{eqnarray*}
+
+}
+
+
+\frame[t] {
+ \frametitle{Proof}
 \begin{itemize}
-\item $b_1$ is normally distributed so $(b_1-\beta_1)/(\sqrt{\Var{b_1}})$ is a standard normal variable
-\item We don't know $\Var{b_1}$ because we don't know $\sigma^2$ so it must be estimated from data.  We have already denoted it's estimate $\EstVar{b_1}$
-\item If using the estimate $\EstVar{b_1}$ we will show that
-$$\frac{b_1-\beta_1}{\EstStd{b_1}} \sim t(n-2)$$
-where
-$$\EstStd{b_1} = \sqrt{ \EstVar{b_1}}$$
+\item The theorem states that $b_1$ as minimum variance among all unbiased linear estimators of the form
+$$\hat \beta_1 = \sum c_i Y_i$$
+\item As this estimator must be unbiased we have
+\begin{eqnarray*}
+\Ave\{{\hat \beta_1}\} &=& \sum c_i \Ave\{Y_i\} = \beta_1 \\
+ &=& \sum c_i  (\beta_0 + \beta_1 X_i) = \beta_0 \sum c_i  + \beta_1 \sum c_i X_i  = \beta_1
+\end{eqnarray*}
+\end{itemize}
+}
+
+\frame[t] {
+ \frametitle{Proof cont.}
+\begin{itemize}
+\item Given these constraints
+\begin{eqnarray*}
+\beta_0 \sum c_i  + \beta_1 \sum c_i X_i  = \beta_1
+\end{eqnarray*}
+clearly it must be the case that $\sum c_i =0$ and $\sum c_iX_i = 1$
+
+\item The variance of this estimator is
+\begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sum c_i^2 \Var\{Y_i\} = \sigma^2 \sum c_i^2
+\end{eqnarray*}
+
+\end{itemize}
+}
+
+\frame[t] {
+ \frametitle{Proof cont.}
+Now define $c_i = k_i + d_i$ where the $k_i$ are the constants we
+already defined and the $d_i$ are arbitrary constants.  Let's look
+at the variance of the estimator
+\begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sum c_i^2 \Var\{Y_i\} = \sigma^2 \sum (k_i+d_i)^2 \\
+&=& \sigma^2(\sum k_i^2 + \sum d_i^2 + 2 \sum k_i d_i)
+\end{eqnarray*}
+Note we just demonstrated that $$\sigma^2 \sum k_i^2 = \Var\{b_1\}$$}
+
+\frame[t] {
+ \frametitle{Proof cont.}
+Now by showing that $\sum k_id_i = 0$ we're almost done
+\begin{eqnarray*}
+ \sum k_i d_i &=& \sum k_i (c_i - k_i) \\
+&=& \sum k_i (c_i - k_i) \\
+&=& \sum k_i c_i - \sum k_i^2 \\
+&=& \sum c_i \left(\frac{X_i - \bar X}{\sum(X_i - \bar X)^2}\right) - \frac{1}{\sum(X_i - \bar X)^2} \\
+&=&  \frac{\sum c_i X_i - \bar X\sum c_i}{\sum(X_i - \bar X)^2} -
+\frac{1}{\sum(X_i - \bar X)^2} = 0
+\end{eqnarray*}
+}
+
+\frame[t] {
+ \frametitle{Proof end}
+So we are left with \begin{eqnarray*}
+\Var\{\hat \beta_1\} &=& \sigma^2(\sum k_i^2 + \sum d_i^2 ) \\
+&=& \Var(b_1) + \sigma^2(\sum d_i^2 )
+\end{eqnarray*}
+which is minimized when the $d_i's = 0$. This means that the least
+squares estimator $b_1$ has minimum variance among all unbiased linear
+estimators.
+ }
+
+\frame[t] {
+ \frametitle{Sampling Distribution of $(b_1 - \beta_1)/S(b_1)$}
+\begin{itemize}
+\item $b_1$ is normally distributed so $(b_1-\beta_1)/(\sqrt{\Var(b_1)})$ is a standard normal variable
+\item We don't know $\Var\{b_1\}$ so it must be estimated from data.  We have already denoted it's estimate
+\item If using the estimate $\EstVar\{b_1\}$ it can be shown that
+$$\frac{b_1-\beta_1}{\hat{S}\{b_1\}} \sim t(n-2)$$
+$$\hat S\{b_1\} = \sqrt{ \EstVar\{b_1\}}$$
 \end{itemize}
 }
 
 \frame[t] {
  \frametitle{Where does this come from?}
 \begin{itemize}
-\item For now we need to rely upon the following theorem:\\
+\item For now we need to rely upon the following theorem\\
 \bigskip
-\begin{alertblock}{Cochran's Theorem}
 For the normal error regression model
 $$\frac{SSE}{\sigma^2} = \frac{\sum (Y_i - \hat Y_i)^2}{\sigma^2} \sim \chi^2(n-2)$$
 and is independent of $b_0$ and $b_1$\\
-\end{alertblock}
-
 \bigskip
 \item Intuitively this follows the standard result for the sum of squared normal random
 variables
@@ -313,11 +391,9 @@ freedom by one.
 }
 
 \frame[t] {
- \frametitle{Another useful fact : Student-t distribution}
- A definition: \newline
- 
+ \frametitle{Another useful fact : t distributed random variables}
 Let z and $\chi^2(\nu)$ be independent random variables (standard
-normal and $\chi^2$ respectively).  The following random variable is defined to be a t-distributed random
+normal and $\chi^2$ respectively).  The following random variable is a t-dstributed random
 variable:
 $$t(\nu) = \frac{z}{\sqrt{\frac{\chi^2(\nu)}{\nu}}}$$
 This version of the t distribution has one parameter, the degrees of
@@ -327,30 +403,25 @@ freedom $\nu$
 
 \frame[t] {
  \frametitle{Distribution of the studentized statistic}
- $$\frac{b_1-\beta_1}{\EstStd{b_1}} \sim t(n-2)$$
-Is a so-called "studentized" statistic.  \newline 
-
 To derive the distribution of this statistic, first we do the
 following rewrite
-$$\frac{b_1 - \beta_1}{{\EstStd{b_1}}} = \frac{\frac{b_1 - \beta_1}{{\Std{b_1}}}}{\frac{\EstStd{b_1}}{ \Std{b_1}}}$$
-where 
-
-$$\frac{\EstStd{b_1}}{ \Std{b_1}}= \sqrt{\frac{\EstVar{b_1}}{ \Var{b_1}}}$$}
+$$\frac{b_1 - \beta_1}{{\hat S(b_1)}} = \frac{\frac{b_1 - \beta_1}{{ S(b_1)}}}{\frac{\hat S(b_1)}{ S(b_1)}}$$
+$$\frac{\hat S(b_1)}{ S(b_1)} = \sqrt{\frac{\hat V(b_1)}{ \Var(b_1)}}$$}
 
 \frame[t] {
  \frametitle{Studentized statistic cont.}
 And note the following
-$$\frac{\EstVar{b_1}}{ \Var{b_1}}= \frac{\frac{MSE}{\sum(X_i-\bar X)^2}}{\frac{\sigma^2}{\sum(X_i-\bar X)^2}} = \frac{MSE}{\sigma^2} = \frac{SSE}{\sigma^2(n-2)}$$
-where we know (by the given simple version of Cochran's theorem) that the distribution of the last
+$$\frac{\hat V(b_1)}{ \Var(b_1)} = \frac{\frac{MSE}{\sum(X_i-\bar X)^2}}{\frac{\sigma^2}{\sum(X_i-\bar X)^2}} = \frac{MSE}{\sigma^2} = \frac{SSE}{\sigma^2(n-2)}$$
+where we know (by the given theorem) the distribution of the last
 term is $\chi^2$ and indep. of $b_1$ and $b_0$
 $$\frac{SSE}{\sigma^2(n-2)} \sim \frac{\chi^2(n-2)}{n-2}$$}
 
 \frame[t] {
  \frametitle{Studentized statistic final}
 But by the given definition of the t distribution we have our result
-$$\frac{b_1-\beta_1}{\EstStd{b_1}} \sim t(n-2)$$
+$$\frac{b_1-\beta_1}{\hat{S}(b_1)} \sim t(n-2)$$
 because putting everything together we can see that $$\frac{b_1 -
-\beta_1}{\EstStd{b_1}} \sim
+\beta_1}{\hat S(b_1)} \sim
 \frac{z}{\sqrt{\frac{\chi^2(n-2)}{n-2}}}$$ }
 
 \frame[t] {
@@ -359,7 +430,6 @@ Now that we know the sampling distribution of $b_1$ (t with n-2
 degrees of freedom) we can construct confidence intervals and
 hypothesis tests easily 
 \bigskip
-
 Things to think about
 \begin{itemize}
 \item What does the t-distribution look like?
