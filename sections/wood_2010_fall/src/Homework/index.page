@@ -5,12 +5,12 @@ routed_title: Homework
 ---
 |---
 |:-:|:-:|:-:|:-:|
-| _Homework_ | _Data_ | _Due Date_ | _Solution_ | _Code_
-|[1](/Homework/homework_1/homework_1.pdf "PDF") | | 09/23 | | |
-|[2](/Homework/homework_2/homework_2.pdf "PDF") | [problem3.txt](/Homework/homework_2/problem3.txt "data") | 10/07  | |[anova\_1d.m](/Homework/homework_2/anova_1d.m) <br> [p_value_of_F_test.m](/Homework/homework_2/p_value_of_F_test.m) |
-<!--|[3](/Homework/homework_3/homework_3.pdf "PDF") | | | | |
-|[4](/Homework/homework_4/homework_4.pdf "PDF") | | | | |
-|[5](/Homework/homework_5/homework_5.pdf "PDF") | | | | |
-|[6](/Homework/homework_6/homework_6.pdf "PDF") |[hw6p1.dat](/Homework/homework_6/hw6p1.dat "data") | | | |-->
+| _Homework_ | _Data_ | _Due Date_  | _Code_
+|[1](/Homework/homework_1/homework_1.pdf "PDF") | | 09/23 | | 
+|[2](/Homework/homework_2/homework_2.pdf "PDF") | [problem3.txt](/Homework/homework_2/problem3.txt "data") | 10/07 |[anova\_1d.m](/Homework/homework_2/anova_1d.m) <br> [p_value_of_F_test.m](/Homework/homework_2/p_value_of_F_test.m) |
+|[3](/Homework/homework_3/homework_3.pdf "PDF") |[copier.txt](/Homework/homework_3/copier.txt) <br> [GPA.txt](/Homework/homework_3/GPA.txt)<br> [copier_more.txt](/Homework/homework_3/copier_more.txt)| | | 
+<!--|[4](/Homework/homework_4/homework_4.pdf "PDF") | | | | 
+|[5](/Homework/homework_5/homework_5.pdf "PDF") | | | | 
+|[6](/Homework/homework_6/homework_6.pdf "PDF") |[hw6p1.dat](/Homework/homework_6/hw6p1.dat "data") | | |-->
 
 The [data sets](http://apps.csom.umn.edu/nachtsheim/index.html) referred in the book problems to can be downloaded for free. 
