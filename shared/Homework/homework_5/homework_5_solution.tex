@@ -32,7 +32,6 @@
 \examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 5}%{10/22/2009}
 
  \begin{center}
- Due: 03/04/10\\
   Instructor: Frank Wood
  \end{center}
 %%\studentinfo
@@ -53,128 +52,28 @@
 % Problems Start Here % ----------------------------------------------------- %
 
 
-\problem{20} { In order to get a maximum likelihood estimate of the
-parameters of a Box-Cox transformed simple linear regression model
-($Y_i^\lambda=\beta_0+\beta_1X_i+\epsilon_i$), we need to find the
-gradient of the likelihood with respect to its parameters (the
-gradient consists of the partial derivatives of the likelihood
-function w.r.t.~all of the parameters). Derive the partial
-derivatives of the likelihood w.r.t all parameters assuming that
-$\epsilon_i\sim N(0,\sigma^2)$. (N.B.~the parameters here are
-$\lambda,\beta_0,\beta_1,\sigma$)\\
-(Extra Credit: Given this collection of partial derivatives (the
-gradient), how would you then proceed to arrive at final estimates
-of all the parameters?  Hint: consider how to increase the
-likelihood function by making small changes in the parameter
-settings.)
- }
- { \vfill
-  \answer
-} { The gradient of a multi-variate function is defined to be a
-vector consisting of all the partial derivatives w.r.t every single
-variable. So we need to write down the full likelihood first:\\
-$L=\prod\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\sum(y_i^\lambda-\beta_0-\beta_1 x_i)^2}{2\sigma^2}}$\\
-Then the log-likelihood function is: \\
-$l=-\frac{n}{2}log(\sigma^2)-\frac{\sum(y_i^\lambda-\beta_0-\beta_1 x_i)^2}{2\sigma^2}$\\
-Take derivatives w.r.t to all the four parameters, we have the followings:\\
-\begin{eqnarray}
-\frac{\partial l}{\partial \lambda}=-\frac{1}{\sigma^2}\sum(y_i^\lambda-\beta_0-\beta_1 x_i)y_i^\lambda ln y_i\\
-\frac{\partial l}{\partial \beta_0}=\frac{1}{\sigma^2}\sum(y_i^\lambda-\beta_0-\beta_1 x_i)\\
-\frac{\partial l}{\partial \beta_1}=\frac{1}{\sigma^2}\sum(y_i^\lambda-\beta_0-\beta_1 x_i)x_i\\
-\frac{\partial l}{\partial \sigma^2}=-\frac{n}{2\sigma^2}+\frac{\sum(y_i^\lambda-\beta_0-\beta_1 x_i)^2}{2\sigma^4}
-\end{eqnarray}
-From the above equations array, we can have the gradient.\\
-%Extra credit: It's easily seen that equation (1) has no analytical form of the solution. So in order to find the $\lambda$ we are seeking for, we should try a sequence
-%of $\lambda$'s and figure out the MLE of all other parameters when $\lambda$ taking corresponding value. Then using the MLE of all the parameters we evaluate the corresponding
-%log-likelihood and find the largest one. Then $\lambda$ matching this max log-likelihood generates the appropriate Box-Cox transformation.
-}
 
-\problem{15}{\footnote[1]{This is
+\problem{20}{\footnote[1]{This is
 problem 4.22 in `Applied Linear Regression Models(4th edition)' by
 Kutner etc.} 
-Derive an extension of Bonferroni inequality (4.2a) which is given as
+Bonferroni inequality (4.2a) which is given as
 \begin{center}
 $P(\bar{A_1}\bigcap\bar{A_2})\ge 1-\alpha-\alpha=1-2\alpha$
 \end{center}
-for the case of three statements, each with statement confidence coefficient $1-\alpha$.
+deals with the case of two statements, $A_1$ and $A_2$. Extend the inequality to 
+the case of $n$ statements, namely, $A_1, A_2\ldots, A_n$, each with statement confidence coefficient $1-\alpha$.
 }
 { \vfill
    \answer
 }{
-Following the thread on Page 155 in the textbook, we have:\\
-$Suppose P(A_1)=P(A_2)=P(A_3)=\alpha$, then\\
-$P(\bar A_1 \cap \bar A_2 \cap \bar A_3)=P(\bar {A_1 \cup A_2 \cup A_3})=1-P(A_1 \cup A_2 \cup A_3)=1-{P(A_1)+P(A_2)+P(A_3)-P(A_1A_2)-P(A_1A_3)-P(A_2A_3)+P(A_1A_2A_3)}=1-3\alpha+P(A_1A_2)+P(A_1A_3)+P(A_2A_3)-P(A_1A_2A_3)$\\
-So we have $P(\bar A_1 \cap \bar A_2 \cap \bar A_3) \ge 1-P(A_1)-P(A_2)-P(A_3)$
+Following the thread on Page 155 in the textbook, we have:
+\[P(A_1)=P(A_2)=\ldots=P(A_n)=\alpha\] then
+\[P(\cap_{i=1}^n \bar A_i)=P(\overline {\cup_{i=1}^n A_i})=1-P(\cup_{i=1}^n A_i)\ge 1-\sum_{i=1}^n P(A_i)\]
+So we have $P(\cap_{i=1}^n \bar A_i) \ge 1-n\alpha$
 }
 
-\problem{25}{\footnote[2]{This is
-problem 5.24 in `Applied Linear Regression Models(4th edition)' by
-Kutner etc.} 
-Refer to \textbf{Consumer finance} Problems 5.5 and 5.13.\\
-a. Using matrix methods, obtain the following: (1) vector of estimated regression coefficients, (2) vector of residuals, (3) SSR, (4) SSE, (5) estimated variance-covariance matrix of $\textbf{b}$, (6) point estimate of $E\{Y_h\}$ when $X_h=4$, (7) $s^2$\{pred\} when $X_h=4$\\
-b. From your estimated variance-covariance matrix in part (a5), obtain the following: (1) $s\{b_0,b_1\}$; (2) $s^2\{b_0\}$; (3) $s\{b_1\}$\\
-c. Find the hat matrix $\textbf{H}$\\
-d. Find $s^2\{\textbf{e}\}$
-}
-{\vfill
-  \answer
-}{
-(a) $\textbf{X}=\begin{bmatrix}1&4\\1&1\\1&2\\1&3\\1&3\\1&4\end{bmatrix}$; $\textbf{Y}=\begin{bmatrix}16\\5\\10\\15\\13\\22\end{bmatrix}$;
-$\textbf{X}'\textbf{X}=\begin{bmatrix}1&1&1&1&1&1\\4&1&2&3&3&4\end{bmatrix}\begin{bmatrix}1&4\\1&1\\1&2\\1&3\\1&3\\1&4\end{bmatrix}
-=\begin{bmatrix}6&17\\17&55\end{bmatrix}$\\
-$(\textbf{X}'\textbf{X})^{-1}=\frac{1}{41}\begin{bmatrix}55&17\\-17&6\end{bmatrix}$;\\
-$(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=\frac{1}{41}\begin{bmatrix}55&17\\-17&6\end{bmatrix}\begin{bmatrix}1&1&1&1&1&1\\4&1&2&3&3&4\end{bmatrix}
-=\frac{1}{41}\begin{bmatrix}-13&38&21&4&4&-13\\7&-11&-5&1&1&7\end{bmatrix}$\\
 
-$\textbf{H}=\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=\frac{1}{41}\begin{bmatrix}1&4\\1&1\\1&2\\1&3\\1&3\\1&4\end{bmatrix}\begin{bmatrix}-13&38&21&4&4&-13\\7&-11&-5&1&1&7\end{bmatrix}
-=\frac{1}{41}\begin{bmatrix}15&-6&1&8&8&15\\-6&27&16&5&5&-6\\1&16&11&6&6&1\\8&5&6&7&7&8\\8&5&6&7&7&8\\15&-6&1&8&8&15\end{bmatrix}$
-(1): $\hat{\beta}=(\textbf{X}'\textbf{X})^{-1}\textbf{X}'\textbf{Y}
-=\frac{1}{41}\begin{bmatrix}-13&38&21&4&4&-13\\7&-11&-5&1&1&7\end{bmatrix}\begin{bmatrix}16\\5\\10\\15\\13\\22\end{bmatrix}
-=\frac{1}{41}\begin{bmatrix}18\\189\end{bmatrix}=\begin{bmatrix}0.4390\\4.6098\end{bmatrix}$
-
-(2): Residual=$\textbf{Y}-\textbf{X}\hat{\beta}
-=\begin{bmatrix}16\\5\\10\\15\\13\\22\end{bmatrix}-\begin{bmatrix}1&4\\1&1\\1&2\\1&3\\1&3\\1&4\end{bmatrix}\begin{bmatrix}0.4390\\4.6098\end{bmatrix}
-=\begin{bmatrix}-2.8780\\-0.0488\\0.3415\\0.7317\\-1.2683\\3.1220\end{bmatrix}$
-
-(3): $SSR=\textbf{Y}'[\textbf{H}-\frac{1}{n}\textbf{J}]\textbf{Y}=145.2073$\\
-(4): $SSE=\textbf{Y}'(\textbf{I}-\textbf{H})\textbf{Y}=20.2927$\\
-(5): The estimated variance-covariance matrix of $\textbf{b}=\textbf{s}^2\{\textbf{b}\}=MSE(\textbf{X}'\textbf{X})^{-1}
-=\begin{bmatrix}6.8055&-2.1035\\-2.1035&0.7424\end{bmatrix}$
-(6): The point estimate of $E\{Y_h\}=\textbf{X}'_h\textbf{b}=\begin{bmatrix}1&4\end{bmatrix}\begin{bmatrix}0.4390\\4.6098\end{bmatrix}=18.8780$\\
-(7): At $X_h=4, s^2\{pred\}=MSE(1+\textbf{X}'_h(\textbf{X}'\textbf{X})^{-1}\textbf{X}_h)=6.9292$
-
-(b) $s\{b_0,b_1\}=-2.1035; s^2\{b_0\}=6.8055; s\{b_1\}=\sqrt{0.7424}=0.8616$\\
-
-(c) As calculated in part(a), the hat matrix $\textbf{H}=\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=\frac{1}{41}\begin{bmatrix}1&4\\1&1\\1&2\\1&3\\1&3\\1&4\end{bmatrix}\begin{bmatrix}-13&38&21&4&4&-13\\7&-11&-5&1&1&7\end{bmatrix}\\
-=\frac{1}{41}\begin{bmatrix}15&-6&1&8&8&15\\-6&27&16&5&5&-6\\1&16&11&6&6&1\\8&5&6&7&7&8\\8&5&6&7&7&8\\15&-6&1&8&8&15\end{bmatrix}
-=\begin{bmatrix}0.3659&-0.1463&0.0244&0.1951&0.1951&0.3659\\-0.1463&0.6585&0.3902&0.1220&0.1220&-0.1463\\
-0.0244&0.3902&0.2683&0.1463&0.1463&0.0244\\0.1951&0.1220&0.1463&0.1707&0.1707&0.1951\\
-0.1951&0.1220&0.1463&0.1707&0.1707&0.1951\\0.3659&-0.1463&0.0244&0.1951&0.1951&0.3659\end{bmatrix}$\\
-
-(d) $s^2\{\textbf{e}\}=MSE(\textbf{I}-\textbf{H})=\begin{bmatrix}3.2171&0.7424& -0.1237& -0.9899& -0.9899&-1.8560\\ 0.7424&1.7323&-1.9798&-0.6187&-0.6187& 0.7424\\ -0.1237&-1.9798&3.7121&-0.7424&-0.7424& -0.1237\\ -0.9899&-0.6187&-0.7424&4.2070&-0.8662&-0.9899\\-0.9899&-0.6187&-0.7424&-0.8662&4.2070&-0.9899\\
--1.8560&0.7424 &-0.1237&-0.9899&-0.9899&3.2171\end{bmatrix}$
-
-Matlab Code:\\
-X=[1 4;1 1;1 2;1 3;1 3;1 4]\\
-Y=[16;5;10;15;13;22]\\
-J=ones(6,6)\\
-I=eye(6,6)\\
-$[n,m]=size(Y)$\\
-$Z=inv(X'*X)$\\
-H=X*Z*X'\\
-beta=Z*X'*Y\\
-residual=Y-H*Y\\
-SSR=Y'*(H-(1/n)*J)*Y\\
-SSE=Y'*(I-H)*Y\\
-MSE=SSE/(n-2)\\
-cov=MSE*Z\\
-$s2\_e=MSE*(I-H)$\\
-Xh=[1;4]\\
-Yhhat=Xh'*beta\\
-$s2\_pred=MSE*(1+Xh'*Z*Xh)$\\
-}
-
-\problem{25}{\footnote[3]{This is
+\problem{40}{\footnote[3]{This is
 problem 6.27 in `Applied Linear Regression Models(4th edition)' by
 Kutner etc.} 
 In a small-scale regression study, the following data were obtained:
@@ -192,96 +91,44 @@ Assume that regression model (1) which is:
 \begin{eqnarray}
 Y_i=\beta_0+\beta_1 X_{i1}+\beta X_{i2}+\epsilon_i
 \end{eqnarray}
-with independent normal error terms is appropriate. Using matrix methods, obtain (a) $\textbf{b}$; (b) $\textbf{e};$ (c) $\textbf{H}$; (d) SSR; (e) $s^2\{\textbf{b}\}$; (f) $\hat{Y_h}$ when $X_{h1}=10$, $X_{h2}=30$; (g) $s^2\{\hat{Y_h}\}$ when $X_{h1}=10$, $X_{h2}=30$
+with independent normal error terms is appropriate. Using matrix methods, obtain (a) $\textbf{b}$; (b) $\textbf{e};$ (c) $\textbf{H}$; (d) SSR; (e) $s^2\{\textbf{b}\}$; (f) $\hat{Y_h}$ when $X_{h1}=10$, $X_{h2}=30$; (g) $s^2\{\hat{Y_h}\}$ when $X_{h1}=10$, $X_{h2}=30$. For the notations, please refer to section 6.4.
 }
 {\vfill
   \answer
-}{
-(a) $\textbf{b}=(\textbf{X}'\textbf{X})^{-1}\textbf{X}'\textbf{Y}=\begin{bmatrix}33.9321\\2.7848\\-0.2644\end{bmatrix}$\\
+}{}
 
-(b)
-$\textbf{e}=\textbf{Y}-\textbf{X}\textbf{b}=\begin{bmatrix}-2.6996\\-1.2300\\-1.6374\\-1.3299\\-0.0900\\6.9868\end{bmatrix}$
-
-(c)
-$\textbf{H}=\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=\begin{bmatrix}0.2314&0.2517&0.2118& 0.1489&-0.0548& 0.2110\\
-    0.2517&0.3124&0.0944&0.2663&-0.1479&0.2231\\
-    0.2118&0.0944 &0.7044&-0.3192&0.1045&0.2041\\
-    0.1489&0.2663&-0.3192&0.6143&0.1414&0.1483\\
-   -0.0548&-0.1479&0.1045&0.1414&0.9404&0.0163\\
-    0.2110&0.2231&0.2041&0.1483&0.0163&0.1971\end{bmatrix}$
-
-(d)  $SSR=\textbf{Y}'[\textbf{H}-\frac{1}{n}\textbf{J}]\textbf{Y}=3009.926$\\
-(e)  $s^2\{\textbf{b}\}=MSE(\textbf{X}'\textbf{X})^{-1}
-=\begin{bmatrix}715.4711&-34.1589&-13.5949\\-34.1589&1.6617&0.6441\\-13.5949&0.6441&0.2625\end{bmatrix}$\\
-
-(f) $\hat{Y_h}=\textbf{X}'_h\textbf{b}=\begin{bmatrix}1&10&30\end{bmatrix}\begin{bmatrix}33.9321\\2.7848\\-0.2644\end{bmatrix}=53.8471$\\
-
-(g) At $X_{h1}$=10 and $X_{h2}=30$, $ s^2\{\hat{Y_h}\}=\textbf{X}'_h s^2\{\textbf{b}\}\textbf{X}_h=5.4246$
-
-Matlab Code:\\
-X=[1 7 33;1 4 41;1 16 7;1 3 49;1 21 5; 1 8 31]\\
-Y=[42;33;75;28;91;55]\\
-J=ones(6,6)\\
-I=eye(6,6)\\
-$[n,m]=size(Y)$\\
-Z=inv(X'*X)\\
-H=X*Z*X'\\
-beta=Z*X'*Y\\
-residual=Y-H*Y\\
-SSR=Y'*(H-(1/n)*J)*Y\\
-SSE=Y'*(I-H)*Y\\
-MSE=SSE/(n-3)\\
-cov=MSE*Z\\
-s2\_e=MSE*(I-H)\\
-Xh=[1;10;30]\\
-Yhhat=Xh'*beta\\
-s2\_yhat=Xh'*cov*Xh\\
+\problem{40} {
+Consider the classical regression setup
+\[\bf{y}=\bf{X}\bf{\beta}+\bf{\epsilon}\]
+We want to find the maximum likelihood estimate of the parameters.\\
+a. if $\bf{\epsilon}\sim N(\bf{0},\sigma^2\bf{I})$. Give the maximum likelihood estimate of $\beta$ and $\sigma^2$.\\
+b. if $\bf{\epsilon}\sim N(\bf{0},\Sigma)$ and $\Sigma$ is known. Give the maximum likelihood estimate of $\beta$.
 
 }
 
-\problem{15}{
- Consider the classic regression model using matrix, i.e.
- \begin{center}
- $Y=X\beta+\epsilon$
- \end{center}
- where $X$ is a $n*p$ design matrix whose first column is an all 1 vector, $\epsilon\sim N(\textbf{0},\textbf{I})$ and $I$ is an identity matrix. Prove the followings:\\
- a. The residual sum of squares $RSS=\hat{\textbf{e}}'\hat{\textbf{e}}$ can be written in a matrix form:
- \begin{eqnarray}
- RSS=\textbf{y}'(\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')\textbf{y}
- \end{eqnarray}
- b. We call the RHS of (2) a `sandwich'. Prove the matrix in the middle layer of the `sandwich' $\textbf{N}=\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'$ is an idempotent matrix.\\
- c. Prove that the rank of $\textbf{N}$ defined in part (b) is $n-p$.\\
- N.B. p columns in design matrix means there are $p-1$ predictors plus 1 intercept term. Before handling the problem, make clear of the dimensions of all the matrices here. 
-}
-{\vfill
+{ \vfill
   \answer
-}{
-(a) $SSE=\textbf{e}'\textbf{e}=(\textbf{y}-\textbf{X}\textbf{b})'(\textbf{y}-\textbf{X}\textbf{b})
-=(\textbf{y}'-\textbf{b}'\textbf{X}')(\textbf{y}-\textbf{X}\textbf{b})
-=\textbf{y}'\textbf{y}-2\textbf{b}'\textbf{X}'\textbf{y}+\textbf{b}'\textbf{X}'\textbf{X}\textbf{b}
-=\textbf{y}'\textbf{y}-2\textbf{b}'\textbf{X}'\textbf{y}+\textbf{b}'\textbf{X}'\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'\textbf{y}
-=\textbf{y}'\textbf{y}-2\textbf{b}'\textbf{X}'\textbf{y}+\textbf{b}'\textbf{I}\textbf{X}'\textbf{y}
-=\textbf{y}'\textbf{y}-\textbf{b}'\textbf{X}'\textbf{y}=\textbf{y}'(\textbf{I}-\textbf{b}'\textbf{X}')\textbf{y}
-=\textbf{y}'(\textbf{I}-((\textbf{X}'\textbf{X})^{-1}\textbf{X}')'\textbf{X}')\textbf{y}
-=\textbf{y}'(\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')\textbf{y}$
-
-(b)$\textbf{A}^{2}=\textbf{A}\textbf{A}=(\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')(\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')
-=\textbf{I}-2\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'+\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'
-=\textbf{I}-2\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'+\textbf{X}\textbf{I}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'=A$\\
-Therefore, A is an idempotent matrix. \\
-
-(c) Since A is a symmetric and idempotent matrix, rank(A)=trace(A)\\
-Let $ H=\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}'$\\
-$trace(A)=trace(\textbf{I}_{n\times n}-\textbf{H}_{n\times n})=trace(\textbf{I})-trace(\textbf{H})=n-trace(\textbf{H})
-=n-trace(\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')
-=n-trace((\textbf{X}'\textbf{X})^{-1}_{p\times p}\textbf{X}'_{p\times n}\textbf{X}_{n\times p})
-=n-trace(\textbf{I}_{p\times p})=n-p$\\
-So rank(A)=n-p
+}{ 
+  a. The log likelihood is proportional to
+  \[-n\log(\sigma)-\frac{(y-X\beta)^T\Sigma^{-1}(y-X\beta)}{2\sigma^2}\]
+  take derivatives with respect to $\beta$ and $\sigma$, we have 
+  \[\left\{
+    \begin{array}{l}  -n/\sigma+\frac{(y-X\beta)^T\Sigma^{-1}(y-X\beta)}{\sigma^3}=0\\
+      X^TX\beta-X^Ty=0
+     \end{array} \right. \]
+  The second equation is becasue
+  \begin{align*}
+    &\frac{\partial\beta^TA\beta}{\partial \beta}=2A\beta\\
+    &\frac{\partial \alpha\beta}{\partial\beta}=\alpha^T
+  \end{align*}
+  So 
+  \begin{align*}
+   &\hat{\beta}=(X^TX)^{-1}X^Ty\\
+   &\hat{\sigma^2}=\frac{1}{n}y^T(I-X(X^TX)^{-1}X^T)y=\frac{\text{SSE}}{n}
+  \end{align*}
+b. Very similarly, we have when $\bf{\epsilon}\sim N(\bf{0},\Sigma)$, the MLE of $\beta$ is 
+\[\hat{\beta}=(X^T\Sigma^{-1}X)X^T\Sigma^{-1}y\]
 }
-
-
-
-
 
 
 
