@@ -51,34 +51,64 @@
 % Problems Start Here % ----------------------------------------------------- %
 
 
+\problem{30} {
+ The data below give weight $X$ (kg) and height $Y$ (cm)
+ of 5 teenagers.
 
+\begin{center}
+\begin{tabular}{ll}
+$X$ (kg) & $Y$ (cm) \\
+\hline
+50&160 \\
+60&160 \\
+70&170 \\
+80&170 \\
+90&180\\
+\hline
+\end{tabular}
+\end{center}
+\begin{enumerate}
+\item (10 pts) Draw a scatter plot of height $Y$ versus weight $X$.
+\item (10 pts) Fit a simple linear regression $ Y_i=\beta_0+\beta_1 X_i+\epsilon_i$  by finding the least squares estimators $b_0$ and $b_1$.
+\item (10 pts) In what sense are your estimators optimal? Please specify the minimum
+assumptions required for the optimality to hold.
 
-\problem{30}
-{
-You are a statistical consultant sent in to help solve a difficult regression analysis problem.  You have been asked to fit a simple linear regression model to the following data
-\[ \{ X_1 = 1, Y_1 = 1 \}, \; \{ X_2 = 1, Y_2 = 2\}\]
-
-\abcs
-\item Using matrix notation, set up the specified regression model.  Show the design and response matrices explicitly.
-\item Using matrix rank arguments, prove that the regression problem as specified lacks a unique solution.  Explain the intuition behind your answer in no more than two sentences.  
-\item In one sentence each, explain two options for solving this problem that don't involve changing the number of parameters in the model .
-\endabcs
+\end{enumerate}
 
 }
-{
-
-\vfill
- \newpage
-
-}
-{
-}
-
-
-
+ { \vfill
+  \answer
+} {  }
 
 \problem{30} {
-Consider the classic regression setup
+Consider the same data set and the simple linear regression model specification
+as given in the preceding problem. Suppose, in addition, $\epsilon_i$ are independent,
+normally distributed with mean 0 and variance $\sigma^2$.
+\begin{enumerate}
+  \item (5 pts) Find an unbiased estimator of $\sigma^2$.
+  \item (5 pts) Find a 95\% confidence interval for $\beta_1$.
+  \item (5 pts) Test one-sided hypothesis $H_0: \beta_1\leq 0$ versus $H_a: \beta_1>0$ (level of significance $\alpha=0.05$)
+  \item (5 pts) Find a 95\% Bonferroni Joint Confidence Interval of $\beta_0$ and $\beta_1$.
+  \item (10 pts) Produce an ANOVA table and perform an F-test for $H_0: \beta_1=0$ versus $H_a: \beta_1\neq 0$. (level of significance: $\alpha=0.05$).
+      \begin{table}[!h]
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|}
+\hline Source of Variation& SS& df& MS \\\hline
+Regression&\qquad\qquad\qquad \qquad &\qquad\qquad\qquad\qquad&\qquad\qquad\qquad\qquad\\\hline
+Error& &&\\\hline
+Total& &&\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{enumerate}
+}
+ { \vfill
+  \answer
+} {  }
+
+\problem{30} {
+Consider the classical regression setup
 \[\bf{y}=\bf{X}\bf{\beta}+\bf{\epsilon}\]
 where $\bf{\epsilon}\sim N(\bf{0},\sigma^2\bf{I})$. We know that the least square estimator for the parameter $\beta$ minimizes the residual sum of squares, which in matrix terms can be written $(\bf{y}-\bf{X}\beta)'(\bf{y}-\bf{X}\beta).$  The value of $\beta$ which minimizes this expression has the following analytic form
 \begin{eqnarray}
@@ -92,20 +122,27 @@ Suppose, though, that $\bf X'X$ is not invertible. In this case, this estimator 
 
 %Here, $\bf{X}$ doesn't have its first column as a $\bf{1}$ vector, so to speak, it only contains p covariates and it's an $n\times p$ matrix, which concomitantly means that $\beta$ is a $p\times1$ vector without considering the intercept. $\lambda$ is fixed scalar. 
 
-Derive the ridge regression estimate $\hat{\beta}^{ridge}$ in matrix form (show your work), this is equivalent to finding the $\beta$ which minimizes (2).  In no more than 2 sentences, explain why the resulting estimator will work even when  $\bf X'X$ is singular.
+\abcs
+\item (20 pts) Derive the ridge regression estimate $\hat{\beta}^{ridge}$ in matrix form (show your work), this is equivalent to finding the $\beta$ which minimizes (2).
+\item  (10 pts) In no more than 2 sentences, explain why the resulting estimator will work even when  $\bf X'X$ is singular.
+
+\endabcs
 %It should possess the form very much alike $\hat{\beta}$ in (\ref{ridge}) but taking into account the adjustment to the case that $\bf{X}'\bf{X}$ is non-invertible.
 }
  { \vfill
   \answer
 } {  }
 
-\problem{30}
+
+
+
+\problem{40}
 {
-You are a statistical analysis consultant who has been asked to develop a regression model to analyze data collected in the following way:  a team of two food scientists was tasked with developing a new super-fluffy pancake recipe (fluffiness is a made up concept but for our purposes will be defined as measurable scalar quantity denoted $f$) based on experimenting with including varying levels of a secret new ingredient (the concentration of which is denoted by $i$).  Nearly everything went well, each scientist prepared different recipes with varying levels of the secret new ingredient ($i_s^r$ where $s=1$ indicates the first scientist and $s=2$ indicates the second scientist and $r \in [1, \ldots, n_s]$ is an integer that indicates which of the $n_s$ pancake recipes tried by scientist $s$ the input quantity corresponds to.   Each scientist measured the fluffiness using their own machine, producing fluffiness values $f_s^r$.  Unfortunately the variance of the fluffiness measurement produced by the scientists two machines was different (this is the reason why you were called).  Each scientist produced measurement whose errors were independently distributed but whose variance was dependent on the identify of the scientist ($\sigma^2_s$ is the fluffiness measurement variance for scientist $s$).   In other words, the fluffiness measurement errors were iid only for each scientist individually.
+You, a statistical analysis consultant, are asked to analyze a regression problem. Food scientists invent a new secret ingredient to increase the fluffiness of pancakes (fluffiness is a made up concept but for our purposes will be defined as measurable scalar quantity). They know that the concentration of the new ingredient affects the fluffiness, and they want to figure out how large the effect is. We assume that a linear regression model is appropriate and the error comes from measurement of fluffiness. Two factories experimentally produce the pancakes with varying concentrations of the new ingredient. It could have been a simple linear regression problem, but the difficulty here is that the variances of fluffiness measurement of the pancakes produced by the two factories are DIFFERENT (that is why you are called). In other words, the fluffiness measurement errors were iid only for each scientist individually. Denote fluffiness as $y=[y_1^1,y_1^2,\ldots,y_1^{n_1}, y_2^1,y_2^2,\ldots,y_2^{n_2}]$ and concentration level as $x=[x_1^1,x_1^2,\ldots,x_1^{n_1}, x_2^1,x_2^2,\ldots,x_2^{n_2}]$, where subscripts denote factories. 
 
 \abcs 
-\item Using matrix notation ($\vec f = [f_1^1,\ldots,f_1^{n_1}, f_2^1,\ldots,f_2^{n_2}]^T$, etc.) set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions.  {\em Hint : use a vector like $\vec{\sigma}^2 = [\sigma^2_1,\ldots,\sigma^2_1, \sigma^2_2,\ldots,\sigma^2_2]^T$ where $\sigma^2_s$ is repeated $n_s$ times.}  You may find it easier, once the problem is expressed in matrix form, to simplify the likelihoods by expressing them in scalar form before seeking the ML estimates for some of the variables.
-\item Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$
+\item (20 pts) Using matrix notation to set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions.  {\em Hint : here because the i.i.d. assumption is no longer valid, instead of only one parameter $\sigma^2$, we need to use two parameters $\sigma_1^2$ and $\sigma_2^2$ in our model.}  You may find it easier, once the problem is expressed in matrix form, to simplify the likelihoods by expressing them in scalar form before seeking the ML estimates for some of the variables.
+\item (20 pts) Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$
 \endabcs
 }
 {
@@ -116,23 +153,9 @@ You are a statistical analysis consultant who has been asked to develop a regres
 }
 
 
-\problem{30}
-{
-Let  $X_1, X_2, \mbox{ and } X_3$  be independent and $N(0,1)$-distributed.  Set $Y=8X_1^2 + 5 X_2^2 + 5X_3^2 + 4 X_1X_2 -4 X_1X_3 + 8X_2X_3$.  Show that $\frac{Y}{9}$ is $\chi^2$-distributed, and determine the number of degrees of freedom. }
-{
-\vfill
-\newpage
-}
-{
-}
 
 
-\problem{10} {
-Describe how you would like the rest of the class to be structured and what you would like to have taught.  
-}
- { \vfill
-  \answer
-} {  }
+
 
 % Problems End Here % ------------------------------------------------------- %
 

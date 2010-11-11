@@ -66,17 +66,44 @@
 
 
 
+\problem{15}{	 	
+ Consider the classical matrix approach to multiple regression, i.e.
+	 	
+ \begin{center}
+	 	
+ $\bf y=X\mathbf{\beta}+\mathbf{\epsilon}$
+	 	
+ \end{center}
+	 	
+ where $\mathbf{X}$ is a $n\times p$ design matrix whose first column is all 1's, $\epsilon\sim N(\textbf{0},\textbf{I})$ and $\bf I$ is an identity matrix. Prove the following:\\
+	 	
+ a. The sum of squares error $SSE={\mathbf{e}}'{\mathbf{e}}$ can be written in a matrix form:
+	 	
+ \[SSE=\textbf{y}'(\textbf{I}-\textbf{X}(\textbf{X}'\textbf{X})^{-1}\textbf{X}')\textbf{y} \]
+	 	
+ b. We call the RHS of (2) a quadratic form. Prove that the matrix $\textbf{A}=\mathbf{I}-\mathbf{X}(\mathbf{X}'\mathbf{X})^{-1} \mathbf{X}'$ is an idempotent matrix.\\
+	 	
+ c. Prove that the rank of $\textbf{A}$ defined in part (b) is $n-p$.\\
+	 	
+  N.B. $p$ columns in design matrix means there are $p-1$ predictors plus 1 intercept term. In your solutions please clearly notate the dimensions of all of the matrices.
+ 
+ }
+ { \vfill
+  \answer
+}
+{ }	
+
+
 \problem{45}{
  Suppose $X_1,...,X_n$ are i.i.d. samples from $N(0,\sigma^2)$. Denote $\bar{X}$ as the sample mean. Prove $S=\displaystyle\sum_{i=1}^n (X_i-\bar{X})^2 \sim \sigma^2 \chi^2(n-1)$ following the steps below using Cochran's theorem: \\
  a. Remember that we have the decomposition
- \begin{eqnarray}
+ \begin{eqnarray*}
  \displaystyle \sum_{i=1}^n X_i^2=\sum_{i=1}^n (X_i-\bar{X})^2+n\bar{X}^2
- \end{eqnarray}
+ \end{eqnarray*}
  Show the matrices corresponding to all the three quadratic terms in (3).\\
- b. Derive the rank of each matrix above. (Hint: Recall problem 3 in homework 5.)\\
+ b. Derive the rank of each matrix above. \\
  c. Use Cochran's theorem to prove $S\sim \sigma^2 \chi^2(n-1)$.
- 
- 
+
  
 }
 { \vfill
