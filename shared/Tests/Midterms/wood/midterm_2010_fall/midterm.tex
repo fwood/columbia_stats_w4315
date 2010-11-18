@@ -51,7 +51,7 @@
 % Problems Start Here % ----------------------------------------------------- %
 
 
-\problem{30} {
+\problem{20} {
  The data below give weight $X$ (kg) and height $Y$ (cm)
  of 5 teenagers.
 
@@ -70,8 +70,8 @@ $X$ (kg) & $Y$ (cm) \\
 \begin{enumerate}
 \item (10 pts) Draw a scatter plot of height $Y$ versus weight $X$.
 \item (10 pts) Fit a simple linear regression $ Y_i=\beta_0+\beta_1 X_i+\epsilon_i$  by finding the least squares estimators $b_0$ and $b_1$.
-\item (10 pts) In what sense are your estimators optimal? Please specify the minimum
-assumptions required for the optimality to hold.
+%\item (10 pts) In what sense are your estimators optimal? Please specify the minimum
+%assumptions required for the optimality to hold.
 
 \end{enumerate}
 
@@ -80,15 +80,15 @@ assumptions required for the optimality to hold.
   \answer
 } {  }
 
-\problem{30} {
+\problem{20} {
 Consider the same data set and the simple linear regression model specification
 as given in the preceding problem. Suppose, in addition, $\epsilon_i$ are independent,
 normally distributed with mean 0 and variance $\sigma^2$.
 \begin{enumerate}
-  \item (5 pts) Find an unbiased estimator of $\sigma^2$.
+ % \item (5 pts) Find an unbiased estimator of $\sigma^2$.
   \item (5 pts) Find a 95\% confidence interval for $\beta_1$.
   \item (5 pts) Test one-sided hypothesis $H_0: \beta_1\leq 0$ versus $H_a: \beta_1>0$ (level of significance $\alpha=0.05$)
-  \item (5 pts) Find a 95\% Bonferroni Joint Confidence Interval of $\beta_0$ and $\beta_1$.
+%  \item (5 pts) Find a 95\% Bonferroni Joint Confidence Interval of $\beta_0$ and $\beta_1$.
   \item (10 pts) Produce an ANOVA table and perform an F-test for $H_0: \beta_1=0$ versus $H_a: \beta_1\neq 0$. (level of significance: $\alpha=0.05$).
       \begin{table}[!h]
 \begin{center}
@@ -106,6 +106,7 @@ Total& &&\\\hline
  { \vfill
   \answer
 } {  }
+\newpage
 
 \problem{30} {
 Consider the classical regression setup
@@ -138,12 +139,15 @@ Suppose, though, that $\bf X'X$ is not invertible. In this case, this estimator 
 
 \problem{40}
 {
-You, a statistical analysis consultant, are asked to analyze a regression problem. Food scientists invent a new secret ingredient to increase the fluffiness of pancakes (fluffiness is a made up concept but for our purposes will be defined as measurable scalar quantity). They know that the concentration of the new ingredient affects the fluffiness, and they want to figure out how large the effect is. We assume that a linear regression model is appropriate and the error comes from measurement of fluffiness. Two factories experimentally produce the pancakes with varying concentrations of the new ingredient. It could have been a simple linear regression problem, but the difficulty here is that the variances of fluffiness measurement of the pancakes produced by the two factories are DIFFERENT (that is why you are called). In other words, the fluffiness measurement errors were iid only for each scientist individually. Denote fluffiness as $y=[y_1^1,y_1^2,\ldots,y_1^{n_1}, y_2^1,y_2^2,\ldots,y_2^{n_2}]$ and concentration level as $x=[x_1^1,x_1^2,\ldots,x_1^{n_1}, x_2^1,x_2^2,\ldots,x_2^{n_2}]$, where subscripts denote factories. 
+You, a statistical analysis consultant, are asked to analyze a regression problem. Food scientists invent a new secret ingredient to increase the fluffiness of pancakes (fluffiness is a made up concept but for our purposes will be defined as measurable scalar quantity). They know that the concentration of the new ingredient affects the fluffiness, and they want to figure out how large the effect is. We assume that a linear regression model is appropriate and the error comes from measurement of fluffiness. Two factories experimentally produce the pancakes with varying concentrations of the new ingredient. It could have been a simple linear regression problem, but the difficulty here is that the variances of fluffiness measurement of the pancakes produced by the two factories are DIFFERENT (that is why you are called). In other words, the fluffiness measurement errors were iid only for each factory individually. Denote fluffiness as $y=[y_1^1,y_1^2,\ldots,y_1^{n_1}, y_2^1,y_2^2,\ldots,y_2^{n_2}]$ and concentration level as $x=[x_1^1,x_1^2,\ldots,x_1^{n_1}, x_2^1,x_2^2,\ldots,x_2^{n_2}]$, where subscripts denote factories. 
+
+  {\em Hint : here because the i.i.d. assumption is no longer valid, instead of only one parameter $\sigma^2$, we need to use two parameters $\sigma_1^2$ and $\sigma_2^2$.}  You may find it easier, after expressing the problem in matrix form, to simplify the likelihoods by expressing them in scalar form before seeking the ML estimates for some of the variables.
+
+
 
 \abcs 
-\item (20 pts) Using matrix notation to set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions.  {\em Hint : here because the i.i.d. assumption is no longer valid, instead of only one parameter $\sigma^2$, we need to use two parameters $\sigma_1^2$ and $\sigma_2^2$ in our model.}  You may find it easier, once the problem is expressed in matrix form, to simplify the likelihoods by expressing them in scalar form before seeking the ML estimates for some of the variables.
-\item (20 pts) Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$
-\endabcs
+\item (20 pts) Using matrix notation to set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions. 
+\item (20 pts) Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$\endabcs
 }
 {
 \vfill
