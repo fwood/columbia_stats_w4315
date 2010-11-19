@@ -80,12 +80,13 @@ $X$ (kg) & $Y$ (cm) \\
   \answer
 } {  }
 
-\problem{20} {
+\problem{25} {
 Consider the same data set and the simple linear regression model specification
 as given in the preceding problem. Suppose, in addition, $\epsilon_i$ are independent,
 normally distributed with mean 0 and variance $\sigma^2$.
 \begin{enumerate}
  % \item (5 pts) Find an unbiased estimator of $\sigma^2$.
+ \item (5 pts) What's the sampling distribution of $b_1$?
   \item (5 pts) Find a 95\% confidence interval for $\beta_1$.
   \item (5 pts) Test one-sided hypothesis $H_0: \beta_1\leq 0$ versus $H_a: \beta_1>0$ (level of significance $\alpha=0.05$)
 %  \item (5 pts) Find a 95\% Bonferroni Joint Confidence Interval of $\beta_0$ and $\beta_1$.
@@ -146,8 +147,10 @@ You, a statistical analysis consultant, are asked to analyze a regression proble
 
 
 \abcs 
-\item (20 pts) Using matrix notation to set up a normal regression problem and derive the maximum likelihood estimates for the regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$ under the given assumptions. 
-\item (20 pts) Provide the maximum likelihood estimators for both $\sigma^2_1$ and $\sigma^2_2.$\endabcs
+\item (15 pts) Assume (for now) that the variances $\sigma_1^2$ and $\sigma_2^2$ are {\em known}.   Using matrix notation derive a maximum likelihood estimator  for the vector of regression coefficients $\vec \beta = [\beta_0, \beta_1]^T$, i.e.~$\hat \beta = ?$.
+\item (15 pts) Now assume that $\sigma^2_1$ and $\sigma^2_2$ are unknown.  Use maximum likelihood techniques to derive estimators for both (i.e. $\hat{\sigma_1^2} = ?$ and $\hat{\sigma_2^2} = ?$.  You can plug $\hat \beta$ in for $\beta$ in the final step.
+\item (10 pts) Since the answer to (b) above forms a coupled system of equations, in two or fewer sentences describe a way to use the coupled equations to estimate all unknown parameters.
+\endabcs
 }
 {
 \vfill
