@@ -1,7 +1,7 @@
 % Essential Formatting
    
 \documentclass[12pt]{article}
-\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage{epsfig,amsmath,amsthm,amssymb, booktabs}
 \usepackage[questions]{urmathtest}[2001/05/12]
 %\usepackage[answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answers]{urmathtest}[2001/05/12]
@@ -28,6 +28,7 @@
 
 \begin{document}
 \examtitle{LINEAR REGRESSION MODELS W4315}{Midterm Examination}{11/05/2009}
+
  \begin{center}
   Instructor: Frank Wood (10:35-11:50) 
  \end{center}
@@ -49,46 +50,65 @@
 \finishfirstpage
 
 % Problems Start Here % ----------------------------------------------------- %
+\begin{itemize}
+  \item Percentile table for $t$ distribution.
+\begin{center}
+
+\begin{tabular}{c|cccc}
+  \toprule
+Percentile&0.9&0.95&0.975&0.9875\\
+\midrule
+df=3 & 1.64 & 2.35 & 3.18 & 4.18 \\
+  df=4& 1.53 & 2.13 & 2.78 & 3.50 \\
+  df=5 & 1.48 & 2.02 & 2.57 & 3.16 \\
+\bottomrule
+\end{tabular}
+\end{center}
+ \item Percentile table for $F$ distribution.
+\begin{center}
+
+\begin{tabular}{c|cccc}
+\toprule
+Percentile&0.9&0.95&0.975&0.9875\\
+\midrule
+F(1,3)& 5.54 & 10.13 & 17.44 & 29.07 \\
+F(1,4)&4.54 & 7.71 & 12.22 & 18.62 \\
+F(1,5)&4.06 & 6.61 & 10.01 & 14.52 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{itemize}
 
 
-\problem{20} {
+\problem{40} {
  The data below give weight $X$ (kg) and height $Y$ (cm)
  of 5 teenagers.
 
 \begin{center}
 \begin{tabular}{ll}
+\toprule
 $X$ (kg) & $Y$ (cm) \\
-\hline
+\midrule
 50&160 \\
 60&160 \\
 70&170 \\
 80&170 \\
 90&180\\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
-\begin{enumerate}
-\item (10 pts) Draw a scatter plot of height $Y$ versus weight $X$.
-\item (10 pts) Fit a simple linear regression $ Y_i=\beta_0+\beta_1 X_i+\epsilon_i$  by finding the least squares estimators $b_0$ and $b_1$.
-%\item (10 pts) In what sense are your estimators optimal? Please specify the minimum
-%assumptions required for the optimality to hold.
 
-\end{enumerate}
-
-}
- { \vfill
-  \answer
-} {  }
-
-\problem{25} {
-Consider the same data set and the simple linear regression model specification
-as given in the preceding problem. Suppose, in addition, $\epsilon_i$ are independent,
-normally distributed with mean 0 and variance $\sigma^2$.
+Consider a simple linear regression model specification
+with errors $\epsilon_i$ i.i.d. normally distributed with mean 0 and variance $\sigma^2$. The least square estimators are given by
+\begin{eqnarray*}
+b_1&=&\frac{\sum_{i=1}^n(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^n(X_i-\bar{X})^2}\\
+b_0&=&\bar{Y}-b_1\bar{X}
+\end{eqnarray*}
 \begin{enumerate}
  % \item (5 pts) Find an unbiased estimator of $\sigma^2$.
- \item (5 pts) What's the sampling distribution of $b_1$?
-  \item (5 pts) Find a 95\% confidence interval for $\beta_1$.
-  \item (5 pts) Test one-sided hypothesis $H_0: \beta_1\leq 0$ versus $H_a: \beta_1>0$ (level of significance $\alpha=0.05$)
+ \item (10 pts) What's the sampling distribution of $b_1$?
+  \item (10 pts) Find a 95\% confidence interval for $\beta_1$.
+  \item (10 pts) Test one-sided hypothesis $H_0: \beta_1\leq 0$ versus $H_a: \beta_1>0$ (level of significance $\alpha=0.05$)
 %  \item (5 pts) Find a 95\% Bonferroni Joint Confidence Interval of $\beta_0$ and $\beta_1$.
   \item (10 pts) Produce an ANOVA table and perform an F-test for $H_0: \beta_1=0$ versus $H_a: \beta_1\neq 0$. (level of significance: $\alpha=0.05$).
       \begin{table}[!h]
@@ -103,11 +123,12 @@ Total& &&\\\hline
 \end{center}
 \end{table}
 \end{enumerate}
+
 }
  { \vfill
   \answer
 } {  }
-\newpage
+
 
 \problem{30} {
 Consider the classical regression setup
