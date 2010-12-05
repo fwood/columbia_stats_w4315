@@ -1,0 +1,253 @@
+\documentclass[serif, professionalfont]{beamer}
+\usetheme{Frankfurt}
+
+% \usepackage{fourier}
+% \usepackage{eulervm}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{color}
+\usepackage{amsmath,amsthm,amssymb}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+
+\title{Poisson Regression(Loglinear Model) and Generalized Linear Model Framework}
+\author{Wei Wang}
+\date{Dec 9, 2010}
+% \date{\today}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+% \section[Outline]{}
+% \frame{\tableofcontents}
+% 
+% \section{Introduction}
+% \subsection{Overview of Topics}
+% 
+% \section{Bayesian Analysis}
+% \subsection{Single Parameter Model}
+
+
+\frame[t] {
+  \frametitle{Count Data}
+  \begin{itemize}
+  \item Other than 0-1 binary data, {\color{red}count data} is another discrete data type that we deal with everyday.
+    \vskip 24pt
+  \item number of traffic accidents, number of epidemic incidences etc.
+    \vskip 24pt
+  \item Again we need to link predictors $X$ and response $y$.
+    \vskip 24pt
+  \end{itemize}
+}
+
+\frame[t] {
+  \frametitle{Binomial Regression (Extension of Logistic Regression)}
+  \begin{itemize}
+  \item If response $y_i$ can be naturally interprested as number of success in $n_i$ Bernoulli experiments, then we can still use logistics model.
+    \vskip 24pt
+  \item We only need to treat each observation as $n_i$ data points, with $y_i$ 1's and $(n_i-y_i)$ 0's.
+  \end{itemize}
+
+}
+
+\frame[t] {
+  \frametitle{Example}
+  \begin{itemize}
+  \item We study the proportion of death penalty that were overturned in 34 states in 2000. For each state, $n_i$ is the total number of death sentences in 2000 and $y_i$ is the number of death penalty cases that were overturned.
+    \vskip 24pt
+  \item  Very naturally, logistic regression is a good model for this study.
+  \end{itemize}
+
+}
+
+\frame[t] {
+  \frametitle{Poisson Model}
+  \begin{itemize}
+  \item But in a lot of cases, a binomial model is not appropriate.
+  \vskip 24pt 
+  \item 
+    No natural explanation of success/failure rate; no natural limit of maximum number of incidences.
+  \vskip 24pt
+  \item A more flexible way to model count data is {\color{red}Poisson distribution}.
+   \[P(N=n)=\exp(-\lambda)\frac{\lambda^n}{n!}\]
+  \vskip 24pt
+  \item The parameter (mean) of Poisson distribution $\lambda$ is positive, so we need a transformation that maps $x^T
+\beta$ to $[0,+\infty)$.
+  \end{itemize}
+}
+
+
+\frame[t] {
+  \frametitle{Poisson Regression(Loglinear Model)}
+  \begin{itemize}
+  \item An exponential transformation is a natural choice. 
+    \vskip 12pt
+  \item Formally, a {\color{red}Poisson Regression (Loglinear Model)} is given by 
+   \begin{eqnarray*}
+     Ey_i&=&\lambda_i\\
+     \lambda_i&=&\exp(x_i^T\beta)
+   \end{eqnarray*}
+    \vskip 12pt
+  \item Similar to logistic regression, there is no variance component in Poisson Regression. 
+  \vskip 12pt
+  \item But unlike logistic regression, we will see that absence of variance parameter could cause us trouble in model checking. 
+   
+  \end{itemize}
+
+}
+
+\frame[t]{
+  \frametitle{Example: What cause traffic accidents?}
+  \begin{itemize}
+  \item
+  We study the number of traffic accidents at a group of street intersections. Intersections are indexed by $i$. $y_i$ is the number of traffic accidents in a particular year. For predictors, we have $X_1$, the average speed of vehicles at that intersection, and $X_2$, the indicator of whether the intersection has a traffic signal.
+  \vskip 24pt
+  \item 
+  With standard statistical software, we have the fitted model 
+  \[y_i\sim \text{Poisson}(\exp(2.8+0.012X_{i1}-0.20X_{i2}))\]
+  \vskip 18pt
+  \item At first sight, the signs of the coefficient estimates make sense.
+  \end{itemize}
+
+}
+
+
+
+\frame[t] {
+  \frametitle{Interpretation of the Coefficients}
+  \begin{itemize}
+  \item The slope of $X_1$ is the expected difference in $y$ (on the log scale) for each additional mile-per-hour increase of the average speed of vehicles. The multiplicative increase is an $e^{0.012}-1=1.012-1=1.2\%$ positive difference in the rate of traffic accidents. 
+  \vskip 12pt
+  \item The parameter of $X_2$ tells us the expected difference in $y$ (on the log scale) if the intersection has a traffic signal. The multiplicative decrease is an $1-e^{0.20}=18\%$ in the rate of traffic accidents.
+
+  \end{itemize}
+
+}
+
+
+\frame[t] {
+  \frametitle{Offset}
+  \begin{itemize}
+  
+  \item In most application of Poisson Regression, we want to interpret the count relative to some baseline or "exposure".
+  \vskip 20pt
+  \item
+  In the traffic accidents example, it is natural to think that the rate of traffic accidents at one particular intersection should be proportional to the total number of vehicles that passed that intersection, which we denote as $u_i$.
+  \vskip 20pt
+  \item
+  So the Poisson Regression should be expressed as 
+  \[y_i\sim \text{Poisson}(u_i\exp(x_i^T\beta))\]
+  \vskip 20pt
+  \item $\log(u_i)$ is called {\color{red}offset} in Poisson Regression terminology.
+  \end{itemize}
+
+}
+
+
+\frame[t] {
+  \frametitle{Overdispersion}
+  \begin{itemize}
+  \item Another popular model for binary response data is Probit Model.
+  \vskip 24pt
+  \item In Probit Model, we choose a different mapping from $\mathbb{R}$ to $[0,1]$ unit interval: the CDF of standard normal. 
+  \vskip 24pt
+  \item If $\xi$ is a standard normal random variable and $\Phi$ is its CDF, \[p=\text{probit}(x^T\beta)=P(\xi+x^T\beta>0)=\Phi(-x^T\beta)\]
+
+  \end{itemize}
+
+}
+
+
+\frame[t] {
+  \frametitle{Negative Binomial Regression}
+  \begin{itemize}
+  \item We can view probit model in a {\color{red}Latent Variable Formulation}. Each dicrete outcome $y_i$ is associated with a continuous, unobserved $z_i$ 
+  \begin{eqnarray*}
+  y_i &=& \begin{cases} 1 & \text{if } z_i>0\\ 0 & \text{if } z_i<0 \end{cases}\\
+  z_i &=& x_i^T\beta+\xi_i
+  \end{eqnarray*}
+  $\xi_i$ are i.i.d. standard normal random variables.
+  \item 
+  In fact, we can incorporate logistic regression model into this formulation if we let $\xi_i$ follows {\color{red}logistic distribution}, which is defined by 
+  \[P(\xi_i<x)=\text{logit}^{-1}(x)\]
+  \end{itemize}
+
+}
+
+
+\frame[t] {
+  \frametitle{Zero-Inflated Model}
+  \begin{itemize}
+  \item A lot of statistical problems are easier to understand and tackle from a Latent Variable Formulation point of view.
+  \vskip 24pt
+  \item In practice, logistic regression and probit regression are not very different. In fact, logistic distribution is very close to normal distribution with mean 0 and standard deviation 1.6.
+  \vskip 24pt
+  \item
+  So to use logistic or probit regression is mostly just a matter of taste.
+  \end{itemize}
+
+}
+
+\frame[t]{
+  \frametitle{Estimation}
+  \begin{itemize}
+  \item
+  Unlike simple linear regression, no explicit maximum likelihood estimators can be given for logistic regression.
+  \vskip 24pt
+  \item
+  {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
+  \vskip 24pt
+  \item
+  \end{itemize}
+  We don't delve into details here.
+}
+
+
+\frame[t]{
+  \frametitle{Model Checking: Error Rate}
+  \begin{itemize}
+  \item Another thing that we might want to look at is Error Rate.
+  \vskip 24pt
+  \item If we do deterministic prediction, i.e. guessing $y_i=1$ when fitted value $\text{logit}^{-1}(x_i^T\hat\beta)>.5$ and $y_i=0$ if otherwise, then we define the proportion of wrong prediciton as {\color{red} Error Rate}.
+  \vskip 24pt
+  \item Error Rate need to be at least less than .5(the error rate when we just randomly guess). 
+  \end{itemize}
+}
+
+
+\frame[t]{
+  \frametitle{Model Checking: Deviance}
+  \begin{itemize}
+  \item {\color{red}Deviance} is defined as -2 times the logarithm of the likelihood function. The better the model fit, the lower the deviance is.
+  \vskip 24pt
+  \item If a predictor that is random noise is added to the model, we expect deviance to decrease on average by 1.
+  \vskip 24pt
+  \item If a predictor that is informative is added to the model, we expect deviance to decrease on average by more than 1. The larger the increase, the more relevant the predictor is for our model.
+  \vskip 24pt
+  \item Deviance is a fundmental concept in model comparison and selection.
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Model Checking: Deviance}
+  \begin{itemize}
+  \item For the voting-income example, the null model (only has intercept) has a deviance of 1591.
+  \vskip 24pt
+  \item Added income as a predictor, the model has a deviance of 1557.
+  \vskip 24pt
+  \item This shows that income is informative for predicting vote outcome.
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Software Implementations}
+  \begin{itemize}
+  \item R: \texttt{glm}
+  \vskip 24pt
+  \item Matlab: \texttt{glmfit}
+  \end{itemize}
+}
+
+
+\end{document}
