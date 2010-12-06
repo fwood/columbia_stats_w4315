@@ -1,12 +1,11 @@
-\documentclass[serif, professionalfont]{beamer}
+\documentclass[mathserif]{beamer}
 \usetheme{Frankfurt}
-
+\usepackage[scaled]{helvet}
+\usepackage{eulervm}
+% \usepackage[T1]{fontenc}
 % \usepackage{fourier}
-% \usepackage{eulervm}
-\usepackage[T1]{fontenc}
-\usepackage{fourier}
 \usepackage{color}
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb, bm}
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
 \title{Logistic Regression}
@@ -204,14 +203,36 @@
 \frame[t]{
   \frametitle{Estimation}
   \begin{itemize}
+
   \item
-  Unlike simple linear regression, no explicit maximum likelihood estimators can be given for logistic regression.
-  \vskip 24pt
+  Maximum likelihood approach is used to estimate the parameters of logistic regression
+  \[\bm{b}=\text{arg}\max \log L(\beta)\]
+  \item
+  The covariance matrix of the estimators is given by the Hessian matrix of loglikelihood function.
+  \[\bm{s^2}\{\bm{b}\}=-\Big(\frac{\partial^2 log L(\beta)}{\partial \beta^2}\Big)^{-1}\]
+  \vskip 12pt
   \item
   {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
-  \vskip 24pt
+  \vskip 12pt
   \item
-  We don't delve into details here.
+  These estimations are routinely provided by standard softwares.
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Inference about parameters: Wald Test}
+  \begin{itemize}
+  \item
+  Testing and confidence interval building for a single parameter.
+  \item
+  The covariance matrix of the estimators is given by the Hessian matrix of loglikelihood function.
+  \[\bm{s^2}\{\bm{b}\}=-\Big(\frac{\partial^2 log L(\beta)}{\partial \beta^2}\Big)^{-1}\]
+  \vskip 12pt
+  \item
+  {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
+  \vskip 12pt
+  \item
+  These estimations are routinely provided by standard softwares.
   \end{itemize}
 }
 
@@ -226,7 +247,6 @@
       \caption{Residual plot for voting-income example}
     \end{figure}
   \end{itemize}
-
 }
 
 \frame[t]{
