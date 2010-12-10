@@ -15,17 +15,33 @@ yr <- 1992
 fit.1 <- glm (vote ~ income, family=binomial(link="logit"))
 display(fit.1)
 
- pdf("fitted_model")
- # Graph figure 5.1 (a)
- curve (invlogit(fit.1$coef[1] + fit.1$coef[2]*x), 1, 5, ylim=c(-.01,1.01),
-         xlim=c(-2,8), xaxt="n", xaxs="i", mgp=c(2,.5,0),
-         ylab="Pr (Republican vote)", xlab="Income", lwd=4)
-  curve (invlogit(fit.1$coef[1] + fit.1$coef[2]*x), -2, 8, lwd=.5, add=T)
-  axis (1, 1:5, mgp=c(2,.5,0))
-  mtext ("(poor)", 1, 1.5, at=1, adj=.5)
-  mtext ("(rich)", 1, 1.5, at=5, adj=.5)
-  points (jitter (income, .5), jitter (vote, .08), pch=20, cex=.1)
- dev.off()
+female <- data$gender[ok] - 1
+fit.2 <- glm(vote ~ income * female, family=binomial(link="logit"))
+display(fit.2)
+
+pdf("fitted_model.pdf")
+                                        # Graph figure 5.1 (a)
+curve (invlogit(fit.1$coef[1] + fit.1$coef[2]*x), 1, 5, ylim=c(-.01,1.01),
+       xlim=c(-2,8), xaxt="n", xaxs="i", mgp=c(2,.5,0),
+       ylab="Pr (Republican vote)", xlab="Income", lwd=4)
+curve (invlogit(fit.1$coef[1] + fit.1$coef[2]*x), -2, 8, lwd=.5, add=T)
+axis (1, 1:5, mgp=c(2,.5,0))
+mtext ("(poor)", 1, 1.5, at=1, adj=.5)
+mtext ("(rich)", 1, 1.5, at=5, adj=.5)
+points (jitter (income, .5), jitter (vote, .08), pch=20, cex=.1)
+dev.off()
+
+pdf("fitted_model_compare.pdf")
+curve (invlogit(fit.2$coef[1] + fit.2$coef[2]*x + fit.2$coef[3] +
+                fit.2$coef[4]*x), 1, 5, ylim=c(-.01,1.01),  xlim=c(0,6),
+       xaxt="n", xaxs="i", mgp=c(2,.5,0),
+       ylab="Pr (Republican vote)", xlab="Income", lwd=4)
+curve (invlogit(fit.2$coef[1] + fit.2$coef[2]*x), 1, 5, lwd=4, lty=2, add = T )
+axis (1, 1:5, mgp=c(2,.5,0))
+mtext ("(poor)", 1, 1.5, at=1, adj=.5)
+mtext ("(rich)", 1, 1.5, at=5, adj=.5)
+points (jitter (income, .5), jitter (vote, .08), pch=20, cex=.1)
+dev.off()
 
  # Graph figure 5.1 (b)
 sim.1 <- sim(fit.1)
@@ -50,6 +66,7 @@ curve (invlogit(fit.1$coef[1] + fit.1$coef[2]*x), .5, 5.5, ylim=c(-.01,1.01),
  points(c(-6, 0), c(.5,.5), type='l', lty=2)
  points(c(0,0), c(0,.5), type='l', lty=2)
  dev.off()
+
 
 # Residual plot and binned residual plot
 pdf("residual.pdf")

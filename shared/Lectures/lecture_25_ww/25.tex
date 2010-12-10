@@ -1,5 +1,6 @@
 \documentclass[mathserif]{beamer}
 \usetheme{Frankfurt}
+
 \usepackage[scaled]{helvet}
 \usepackage{eulervm}
 % \usepackage[T1]{fontenc}
@@ -8,7 +9,7 @@
 \usepackage{amsmath,amsthm,amssymb, bm}
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
-\title{Logistic Regression}
+\title{Binary Response and Logistic Regression}
 \author{Wei Wang}
 \date{Dec 7, 2010}
 % \date{\today}
@@ -27,6 +28,18 @@
 % \section{Bayesian Analysis}
 % \subsection{Single Parameter Model}
 
+\frame[t]{
+  \frametitle{Outline}
+  \begin{itemize}
+  \item Model Setup
+  \item A simple example: Voting, Income and Gender
+  \item Interpretation of coefficients
+  \item Latent Variable Formulation: Probit and Robit model
+  \item Estimation and Inference about Parameters
+  \item Prediction
+  \item Diagnostics
+  \end{itemize}
+}
 
 \frame[t] {
   \frametitle{Binary Response Data}
@@ -35,7 +48,7 @@
     \vskip 24pt
   \item sucess/failure, won/lost, healthy/ill etc.
     \vskip 24pt
-  \item We want a reasonable model that link predictors $X$ and response $y$
+  \item We want a reasonable model that link predictors $X$ and response $y$.
     \vskip 24pt
   \end{itemize}
 }
@@ -55,14 +68,14 @@
 \frame[t] {
   \frametitle{Model Setup}
   \begin{itemize}
-  \item However, this doesn't work out well because $X\beta$ doesn't necessarily fall into $[0,1]$ unit interval. (This is not a concern for simple linear regression.)
+  \item However, this doesn't work out well because $X\beta$ doesn't necessarily fall into $(0,1)$ unit interval. (This is not a concern for simple linear regression.)
     \vskip 12pt
-  \item If we still want to maintain {\color{red}linearity} of our model, we need to come up with some transformation to scale $X\beta$ to $[0,1]$ unit interval.
+  \item If we still want to maintain {\color{red}linearity} of our model, we need to come up with some transformation to scale $X\beta$ to $(0,1)$ unit interval.
     \vskip 12pt
   \item It turns out that there are a lot of such transformations, the most widely used is inverse-logit function.
     \begin{eqnarray*}
-      \text{logit}(p)&=&\log\frac{p}{1-p}\\
-      \text{logit}^{-1}(a)&=&\frac{\exp(a)}{1+\exp(a)}
+      \text{logit}(p)&=&\log\frac{p}{1-p}, p\in (0,1)\\
+      \text{logit}^{-1}(a)&=&\frac{\exp(a)}{1+\exp(a)}, a\in \mathbb{R}
     \end{eqnarray*}
   \end{itemize}
 
@@ -85,11 +98,11 @@
 \frame[t] {
   \frametitle{A Simple Example: Voting and Income}
   \begin{itemize}
-  \item Conservative parties generally receive more support among voters with higher income.
+  \item Repulicans generally receive more support among voters with higher income.
     \vskip 12pt
   \item We use a poll from 1992 Presidential Election. 
     \vskip 12pt
-  \item For 1197 respondents, $y_i=1$ if he/she preferred Bush, $y_i=0$ if he/she preferred Clinton. Third party preferred is exculded. 
+  \item For 1197 respondents, $y_i=1$ if the respondent preferred Bush, $y_i=0$ if the respondent preferred Clinton. Third party preference is exculded. 
     \vskip 12pt
   \item Income level is dicretized into 5 categories.
     \vskip 12pt
@@ -104,25 +117,52 @@
 \frame[t] {
   \frametitle{Voting and Income: Graphical Illustrations}
   
-    \begin{figure}[hbtp]
-      \centering
-      \includegraphics[width=6cm]{fitted_model.pdf}
-      \caption{\textsl{Fitted model of voting-income logistic regression}}
-    \end{figure}
+  \begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=6cm]{fitted_model.pdf}
+    \caption{\textsl{Fitted model of voting-income logistic regression}}
+  \end{figure}
 
 }
 
+\frame[t] {
+  \frametitle{Voting and Income and Gender: Adding interaction}
+  \begin{itemize}
+  \item
+    Further, we throw in female indicator (0 for male and 1 for female) and income-female interaction into this model.
+    \vskip 12pt
+  \item
+    The fitted model is given by  
+    \begin{eqnarray*} 
+      \text{logit}(P(y=1))&=&-1.89{\color{red}(0.33)}+0.49{\color{red}(0.10)}*\text{income}\\ & &+0.78{\color{red}(0.40)}*\text{female}\\
+      & &-0.28{\color{red}(0.12)}*\text{income}\times\text{female}
+    \end{eqnarray*}
+  \item
+    It is widely believed that males tend to support Republican more than females. But the estimate for female here is 0.78. Is that a contradiction to popular belief? We cannot overlook interaction term.
+  \end{itemize}
+}
+
+\frame[t] {
+  \frametitle{Voting and Income and Gender: Graphical Illustrations}
+  
+  \begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=6cm]{fitted_model_compare.pdf}
+    \caption{\textsl{Fitted model of income-voting curves for male (dashed line) and female (solid line)}}
+  \end{figure}
+
+}
 
 \frame[t] {
   \frametitle{Interpretation of the Coefficients: Odds Ratio}
   \begin{itemize}
   \item If two outcomes have the probabilites $(p,1-p)$, then $p/(1-p)$ is called the {\color{red} odds}.
-  \vskip 12pt
+    \vskip 12pt
   \item The ratio of two odds $\frac{p_1(1-p_2)}{(1-p_1)p_2}$ is called {\color{red} odds ratio}.
-  \vskip 12pt
+    \vskip 12pt
   \item In the voting and income example, the slope of income is actually the odds ratio when income increases by {\color{red}one} category.
-  \[\beta_{\text{income}}=\log\left(\frac{P(y=1)|\text{income}=k+1)}{P(y=0|\text{income}=k+1)}\Biggr/\frac{P(y=1)|\text{income}=k}{P(y=0|\text{income}=k)}\right)\]
-  \vskip 12pt
+    \[\beta_{\text{income}}=\log\left(\frac{P(y=1|\text{income}=k+1)}{P(y=0|\text{income}=k+1)}\Biggr/\frac{P(y=1|\text{income}=k)}{P(y=0|\text{income}=k)}\right)\]
+    \vskip 12pt
   \item Folks at biostat really like odds ratio. But for some applications, odds ratio seems obscure and difficult to understand.
   \end{itemize}
 
@@ -132,11 +172,11 @@
 \frame[t] {
   \frametitle{Interpretation of the Coefficients: Probability Scale}
   We take a look at the standard logistic function curve. 
-    \begin{figure}[hbtp]
-      \centering
-      \includegraphics[width=6cm]{logistic_curve.pdf}
-      \caption{Curve of inverse logistic function.}
-    \end{figure}
+  \begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=6cm]{logistic_curve.pdf}
+    \caption{Curve of inverse logistic function.}
+  \end{figure}
   
 
 }
@@ -145,11 +185,11 @@
 \frame[t] {
   \frametitle{Interpretation of the Coefficients: Probability Scale}
   \begin{itemize}
-  
+    
   \item The logistic curve is steepest at its center, with slope $\beta/4$. As a rule of convenience, we can take $\beta/4$ as an upper bound of predictive difference corresponding to one unit difference in predictor. This is valid near the midpoint of the logistic curve. 
-  \vskip 24pt
+    \vskip 24pt
   \item
-  In the voting-income example, the fitted model suggests that a difference of 1 in income category corresponds to at most an $.33/4\approx 8\%$ positive difference in the probability of supporting Bush.
+    In the voting-income example, the fitted model suggests that a difference of 1 in income category corresponds to at most an $.33/4\approx 8\%$ positive difference in the probability of supporting Bush.
 
   \end{itemize}
 
@@ -160,10 +200,10 @@
   \frametitle{Probit Model and Latent Variable Formulation}
   \begin{itemize}
   \item Another popular model for binary response data is Probit Model.
-  \vskip 24pt
-  \item In Probit Model, we choose a different mapping from $\mathbb{R}$ to $[0,1]$ unit interval: the CDF of standard normal. 
-  \vskip 24pt
-  \item If $\xi$ is a standard normal random variable and $\Phi$ is its CDF, \[p=\text{probit}(x^T\beta)=P(\xi+x^T\beta>0)=\Phi(-x^T\beta)\]
+    \vskip 24pt
+  \item In Probit Model, we choose a different mapping from $\mathbb{R}$ to $(0,1)$ unit interval: the CDF of standard normal. 
+    \vskip 24pt
+  \item If $\xi$ is a standard normal random variable and $\Phi$ is its CDF, \[p=\text{probit}(x^T\beta)=P(\xi+x^T\beta>0)=\Phi(x^T\beta)\]
 
   \end{itemize}
 
@@ -174,14 +214,14 @@
   \frametitle{Probit Model and Latent Variable Formulation}
   \begin{itemize}
   \item We can view probit model in a {\color{red}Latent Variable Formulation}. Each dicrete outcome $y_i$ is associated with a continuous, unobserved $z_i$ 
-  \begin{eqnarray*}
-  y_i &=& \begin{cases} 1 & \text{if } z_i>0\\ 0 & \text{if } z_i<0 \end{cases}\\
-  z_i &=& x_i^T\beta+\xi_i
-  \end{eqnarray*}
-  $\xi_i$ are i.i.d. standard normal random variables.
+    \begin{eqnarray*}
+      y_i &=& \begin{cases} 1 & \text{if } z_i>0\\ 0 & \text{if } z_i<0 \end{cases}\\
+      z_i &=& x_i^T\beta+\xi_i
+    \end{eqnarray*}
+    $\xi_i$ are i.i.d. standard normal random variables.
   \item 
-  In fact, we can incorporate logistic regression model into this formulation if we let $\xi_i$ follows {\color{red}logistic distribution}, which is defined by 
-  \[P(\xi_i<x)=\text{logit}^{-1}(x)\]
+    In fact, we can incorporate logistic regression model into this formulation if we let $\xi_i$ follows {\color{red}logistic distribution}, which is defined by 
+    \[P(\xi_i<x)=\text{logit}^{-1}(x)\]
   \end{itemize}
 
 }
@@ -191,31 +231,49 @@
   \frametitle{Probit Model and Latent Variable Formulation}
   \begin{itemize}
   \item A lot of statistical problems are easier to understand and tackle from a Latent Variable Formulation point of view.
-  \vskip 24pt
+    \vskip 24pt
   \item In practice, logistic regression and probit regression are not very different. In fact, logistic distribution is very close to normal distribution with mean 0 and standard deviation 1.6.
-  \vskip 24pt
+    \vskip 24pt
   \item
-  So to use logistic or probit regression is mostly just a matter of taste.
+    So to use logistic or probit regression is mostly just a matter of taste.
   \end{itemize}
 
 }
+
+\frame[t]{
+  \frametitle{Robust Regression: Robit Model}
+  \begin{itemize}
+  \item When a regression model can have occasionally very large errors, it is appropriate to use a Student-$t$ distribution for the errors.
+  \vskip 12pt
+  \item The Robit (robustified) Model is given by
+   \begin{eqnarray*}
+      y_i &=& \begin{cases} 1 & \text{if } z_i>0\\ 0 & \text{if } z_i<0 \end{cases}\\
+      z_i &=& x_i^T\beta+\xi_i\\
+      \xi_i&\sim& t_v\big(0, \frac{v-2}{v}\big)
+    \end{eqnarray*}
+  with degree of freedom $v$ is estimated from the data and the $t$ distribution is scaled to have standard deviation 1.
+  \end{itemize}
+}
+
 
 \frame[t]{
   \frametitle{Estimation}
   \begin{itemize}
 
   \item
-  Maximum likelihood approach is used to estimate the parameters of logistic regression
-  \[\bm{b}=\text{arg}\max \log L(\beta)\]
+    Maximum likelihood approach is used to estimate the parameters of logistic regression
+    \[\bm{b}=\text{arg}\max \log L(\beta)\]
+    \vskip 12pt
   \item
-  The covariance matrix of the estimators is given by the Hessian matrix of loglikelihood function.
-  \[\bm{s^2}\{\bm{b}\}=-\Big(\frac{\partial^2 log L(\beta)}{\partial \beta^2}\Big)^{-1}\]
-  \vskip 12pt
+    The covariance matrix of the estimators is given by the Hessian matrix of loglikelihood function.
+    \[\bm{s^2}\{\bm{b}\}=-\Big(\frac{\partial^2 log L(\beta)}{\partial \beta^2}\Big)^{-1}\big|_{\beta=b}\]
+    \vskip 12pt
   \item
-  {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
-  \vskip 12pt
+    {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
+    \vskip 12pt
+    
   \item
-  These estimations are routinely provided by standard softwares.
+    These estimates are routinely provided by standard softwares.
   \end{itemize}
 }
 
@@ -223,21 +281,81 @@
   \frametitle{Inference about parameters: Wald Test}
   \begin{itemize}
   \item
-  Testing and confidence interval building for a single parameter.
+    The {\color{red}Wald Test} is used for testing and confidence interval building for a single parameter.
+ 
+    \vskip 12pt 
   \item
-  The covariance matrix of the estimators is given by the Hessian matrix of loglikelihood function.
-  \[\bm{s^2}\{\bm{b}\}=-\Big(\frac{\partial^2 log L(\beta)}{\partial \beta^2}\Big)^{-1}\]
-  \vskip 12pt
+    It is given by
+    \[\frac{b_k-\beta_k}{s\{b_k\}}\to N(0,1)\]
+    \vskip 12pt
+    
   \item
-  {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
-  \vskip 12pt
-  \item
-  These estimations are routinely provided by standard softwares.
+    We can do hypothesis testing and build confidence interval based on this.
+
   \end{itemize}
 }
 
 \frame[t]{
-  \frametitle{Model Checking: Residuals}
+  \frametitle{Inference about parameters: Likelihood Ratio Test}
+  \begin{itemize}
+  \item
+    {\color{red}Likelihood Ratio Test} is used when we want to determine whether a subset of the $X$ predictor can be dropped. It is derived from general Likelihood Ratio Test framework. 
+  \item 
+    If the predictors are like this
+    \[X\beta=\beta_0+\beta_1X_1+\beta_2X_2+\ldots+\beta_{p-1}X_{p-1}\]
+  \item
+    And we want to test 
+    \begin{eqnarray*}
+      H_0:& \beta_q=\beta_{q+1}=\ldots=\beta_{p-1}=0\\
+      H_a:& \text{not all the }\beta_k\text{ in }H_0\text{ equal zero}
+    \end{eqnarray*}
+  \item
+    Let $L(F)$ represent the likelihood of the full model and $L(R)$ represent the likelihood of the reduced model $(H_0)$.
+  \end{itemize}
+}
+
+
+\frame[t]{
+  \frametitle{Inference about parameters: Likelihood Ratio Test}
+  \begin{itemize}
+  \item
+    Then we find the maximum likelihood of both the full and the reduced models, $\max_\beta L(F)$ and $\max_\beta L(R)$.
+    \vskip 24pt
+  \item
+    The Likelihood Ratio Test statistic is given by 
+    \[-2\log\frac{\max_\beta L(F)}{\max_\beta L(R)}\to \chi^2_{p-q}\]
+    \vskip 12pt
+ 
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Prediction and ROC curve}
+  \begin{itemize}
+  \item Naive prediction is to choose 0.5 as the cutoff point to predict, i.e. predicting $y_i=1$ when fitted value $\text{logit}^{-1}(x_i^T\hat\beta)>.5$ and $y_i=0$ if otherwise.
+    \vskip 12pt
+  \item Error Rate should be at least less than .5 (the error rate when we just randomly guess).
+    \vskip 12pt
+  \item But to fully express the predicting power of the model, we might want to find the best cutoff points. ROC curve is for displaying this information.
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Predition and ROC curve}
+  \begin{itemize}
+  \item ROC (receiver operating characteristic) curve comes from Signal Processing literature. It plots False Positive rate $(P(\hat{Y}=1|Y=0))$ against True Positive rate $(P(\hat{Y}=1|Y=1))$ for different cutoff point choices.
+
+  \item The ROC curve should be above the diagonal line (which means random guessing), and the further away it is, the better the predicting power is.
+    \begin{figure}[hbtp]
+      \centering
+      \includegraphics[width=4cm]{roc.jpg}
+      \caption{Curve of inverse logistic function.}
+    \end{figure}
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Model Diagnostics: Residuals}
   \begin{itemize}
   \item Based on the same rational of diagnostics of simple linear model, we may want to look at the {\color{red} Fitted values v.s. Residuals} plot.
   \item Because of the discreteness of the response, the plot doesn't show us much useful information.
@@ -250,7 +368,7 @@
 }
 
 \frame[t]{
-  \frametitle{Model Checking: Residuals}
+  \frametitle{Model Diagnostics: Residuals}
   \begin{itemize}
   \item
     Instead, we can look at the binned residual plot. 
@@ -262,44 +380,32 @@
     \end{figure}
 
   \item
-  We can see that most of the points lie inside the $95\%$ interval and no dramatic pattern appears.
+    We can see that most of the points lie inside the $95\%$ interval and no dramatic pattern appears.
 
   \end{itemize}
 }
 
 
 \frame[t]{
-  \frametitle{Model Checking: Error Rate}
-  \begin{itemize}
-  \item Another thing that we might want to look at is Error Rate.
-  \vskip 24pt
-  \item If we do deterministic prediction, i.e. guessing $y_i=1$ when fitted value $\text{logit}^{-1}(x_i^T\hat\beta)>.5$ and $y_i=0$ if otherwise, then we define the proportion of wrong prediciton as {\color{red} Error Rate}.
-  \vskip 24pt
-  \item Error Rate need to be at least less than .5(the error rate when we just randomly guess). 
-  \end{itemize}
-}
-
-
-\frame[t]{
-  \frametitle{Model Checking: Deviance}
+  \frametitle{Model Diagnostics: Deviance}
   \begin{itemize}
   \item {\color{red}Deviance} is defined as -2 times the logarithm of the likelihood function. The better the model fit, the lower the deviance is.
-  \vskip 24pt
+    \vskip 24pt
   \item If a predictor that is random noise is added to the model, we expect deviance to decrease on average by 1.
-  \vskip 24pt
+    \vskip 24pt
   \item If a predictor that is informative is added to the model, we expect deviance to decrease on average by more than 1. The larger the increase, the more relevant the predictor is for our model.
-  \vskip 24pt
+    \vskip 24pt
   \item Deviance is a fundmental concept in model comparison and selection.
   \end{itemize}
 }
 
 \frame[t]{
-  \frametitle{Model Checking: Deviance}
+  \frametitle{Model Diagnostics: Deviance}
   \begin{itemize}
   \item For the voting-income example, the null model (only has intercept) has a deviance of 1591.
-  \vskip 24pt
+    \vskip 24pt
   \item Added income as a predictor, the model has a deviance of 1557.
-  \vskip 24pt
+    \vskip 24pt
   \item This shows that income is informative for predicting vote outcome.
   \end{itemize}
 }
@@ -307,8 +413,10 @@
 \frame[t]{
   \frametitle{Software Implementations}
   \begin{itemize}
-  \item R: \texttt{glm}
-  \vskip 24pt
+  \item R: \texttt{glm(y $\sim$ x1 + x2, family = binomial('logit'))}\\
+   \quad \texttt{glm(y $\sim$ x1 + x2, family = binomial('probit'))}\\
+   \quad \texttt{glm(y $\sim$ x1 + x2, family = binomial('cauchit'))}
+    \vskip 12pt
   \item Matlab: \texttt{glmfit}
   \end{itemize}
 }
