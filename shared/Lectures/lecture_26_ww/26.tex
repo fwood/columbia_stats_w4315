@@ -9,7 +9,7 @@
 \usepackage{amsmath,amsthm,amssymb}
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
-\title{Poisson Regression(Loglinear Model) and Generalized Linear Model Framework}
+\title{Count Response, Categorical Response and Generalized Linear Model Framework}
 \author{Wei Wang}
 \date{Dec 9, 2010}
 % \date{\today}
@@ -28,6 +28,17 @@
 % \section{Bayesian Analysis}
 % \subsection{Single Parameter Model}
 
+\frame[t]{
+  \frametitle{Outline}
+  \begin{itemize}
+  \item Count Response
+  \vskip 12pt
+  \item Categorical Response
+  \vskip 12pt
+  \item Generalized Linear Models
+  \vskip 12pt
+  \end{itemize}
+}
 
 \frame[t] {
   \frametitle{Count Data}
@@ -41,10 +52,11 @@
   \end{itemize}
 }
 
+
 \frame[t] {
   \frametitle{Binomial Regression (Extension of Logistic Regression)}
   \begin{itemize}
-  \item If response $y_i$ can be naturally interprested as number of success in $n_i$ Bernoulli experiments, then we can still use logistics model.
+  \item If response $y_i$ can be naturally interprested as number of success in $n_i$ Bernoulli experiments, then we can still use logistic model.
     \vskip 24pt
   \item We only need to treat each observation as $n_i$ data points, with $y_i$ 1's and $(n_i-y_i)$ 0's.
   \end{itemize}
@@ -65,15 +77,15 @@
   \frametitle{Poisson Model}
   \begin{itemize}
   \item But in a lot of cases, a binomial model is not appropriate.
-  \vskip 24pt 
+    \vskip 16pt 
   \item 
     No natural explanation of success/failure rate; no natural limit of maximum number of incidences.
-  \vskip 24pt
+    \vskip 12pt
   \item A more flexible way to model count data is {\color{red}Poisson distribution}.
-   \[P(N=n)=\exp(-\lambda)\frac{\lambda^n}{n!}\]
-  \vskip 24pt
+    \[P(N=n)=\exp(-\lambda)\frac{\lambda^n}{n!}\]
+    \vskip 12pt
   \item The parameter (mean) of Poisson distribution $\lambda$ is positive, so we need a transformation that maps $x^T
-\beta$ to $[0,+\infty)$.
+    \beta$ to $[0,+\infty)$.
   \end{itemize}
 }
 
@@ -84,15 +96,14 @@
   \item An exponential transformation is a natural choice. 
     \vskip 12pt
   \item Formally, a {\color{red}Poisson Regression (Loglinear Model)} is given by 
-   \begin{eqnarray*}
-     Ey_i&=&\lambda_i\\
-     \lambda_i&=&\exp(x_i^T\beta)
-   \end{eqnarray*}
+    \begin{eqnarray*}
+     P(y_i=k)=\exp(-\exp(X_i^T\beta))\frac{(\exp(X_i^T\beta))^k}{k!}
+    \end{eqnarray*}
     \vskip 12pt
   \item Similar to logistic regression, there is no variance component in Poisson Regression. 
-  \vskip 12pt
-  \item But unlike logistic regression, we will see that absence of variance parameter could cause us trouble in model checking. 
-   
+    \vskip 12pt
+  \item But unlike logistic regression, we will see that absence of variance parameter could cause us trouble in model fitting.
+    
   \end{itemize}
 
 }
@@ -101,12 +112,12 @@
   \frametitle{Example: What cause traffic accidents?}
   \begin{itemize}
   \item
-  We study the number of traffic accidents at a group of street intersections. Intersections are indexed by $i$. $y_i$ is the number of traffic accidents in a particular year. For predictors, we have $X_1$, the average speed of vehicles at that intersection, and $X_2$, the indicator of whether the intersection has a traffic signal.
-  \vskip 24pt
+    We study the number of traffic accidents at a group of street intersections. Intersections are indexed by $i$. $y_i$ is the number of traffic accidents in a particular year. For predictors, we have $X_1$, the average speed of vehicles at that intersection, and $X_2$, the indicator of whether the intersection has a traffic signal.
+    \vskip 24pt
   \item 
-  With standard statistical software, we have the fitted model 
-  \[y_i\sim \text{Poisson}(\exp(2.8+0.012X_{i1}-0.20X_{i2}))\]
-  \vskip 18pt
+    With standard statistical software, we have the fitted model 
+    \[y_i\sim \text{Poisson}(\exp(2.8+0.012X_{i1}-0.20X_{i2}))\]
+    \vskip 12pt
   \item At first sight, the signs of the coefficient estimates make sense.
   \end{itemize}
 
@@ -118,7 +129,7 @@
   \frametitle{Interpretation of the Coefficients}
   \begin{itemize}
   \item The slope of $X_1$ is the expected difference in $y$ (on the log scale) for each additional mile-per-hour increase of the average speed of vehicles. The multiplicative increase is an $e^{0.012}-1=1.012-1=1.2\%$ positive difference in the rate of traffic accidents. 
-  \vskip 12pt
+    \vskip 12pt
   \item The parameter of $X_2$ tells us the expected difference in $y$ (on the log scale) if the intersection has a traffic signal. The multiplicative decrease is an $1-e^{0.20}=18\%$ in the rate of traffic accidents.
 
   \end{itemize}
@@ -129,123 +140,195 @@
 \frame[t] {
   \frametitle{Offset}
   \begin{itemize}
-  
+    
   \item In most application of Poisson Regression, we want to interpret the count relative to some baseline or "exposure".
-  \vskip 20pt
+    \vskip 12pt
   \item
-  In the traffic accidents example, it is natural to think that the rate of traffic accidents at one particular intersection should be proportional to the total number of vehicles that passed that intersection, which we denote as $u_i$.
-  \vskip 20pt
+    In the traffic accidents example, it is natural to think that the rate of traffic accidents at one particular intersection should be proportional to the total number of vehicles that passed that intersection, which we denote as $u_i$.
+    \vskip 12pt
   \item
-  So the Poisson Regression should be expressed as 
-  \[y_i\sim \text{Poisson}(u_i\exp(x_i^T\beta))\]
-  \vskip 20pt
+    So the Poisson Regression should be expressed as 
+    \[y_i\sim \text{Poisson}(u_i\exp(x_i^T\beta))\]
+    \vskip 12pt
   \item $\log(u_i)$ is called {\color{red}offset} in Poisson Regression terminology.
   \end{itemize}
 
 }
 
+\frame[t]{
+  \frametitle{Fitting the Model}
+  \begin{itemize}
+  \item In $\texttt{R}$, it looks like this
+    \\
+    \texttt{glm(accident $\sim$ ave\_speed + traf\_light,family=poisson, offset=log(num\_vehicle))}
+  \vskip 24pt
+  \pause
+\item In $\texttt{Matlab}$, I don't really know how it looks like.
+\end{itemize}
+}
 
 \frame[t] {
   \frametitle{Overdispersion}
   \begin{itemize}
-  \item Another popular model for binary response data is Probit Model.
-  \vskip 24pt
-  \item In Probit Model, we choose a different mapping from $\mathbb{R}$ to $[0,1]$ unit interval: the CDF of standard normal. 
-  \vskip 24pt
-  \item If $\xi$ is a standard normal random variable and $\Phi$ is its CDF, \[p=\text{probit}(x^T\beta)=P(\xi+x^T\beta>0)=\Phi(-x^T\beta)\]
-
+  \item For Poisson distribution, its variance is equal to its expecation. 
+    \vskip 12pt
+  \item But with real data, this requirement is often violated. In most of the cases, we have larger variance than expected if Poisson distribution really holds. It is called {\color{red}overdispersion}.
+    \vskip 12pt
+  \item It almost always happens with count data.
+    \vskip 12pt
+  \item We can see the tradeoff between the parismony and flexibility of the model.
   \end{itemize}
-
 }
 
+\frame[t]{
+  \frametitle{Detecting Overdispersion}
+  \begin{itemize}
+  \item Under Poisson distribution, the standardized residuals 
+    \[z_i=\frac{y_t-\hat{y}_t}{sd\{y_t\}}=\frac{y_t-\hat{y}_t}{\sqrt{\hat{y}_t}}\]
+    should be approximately independently distributed and have mean 0 and sd 1.
+  \item The sum of square of $z_i$ follows a $\chi^2_{n-p}$ distribution, where $p$ is the number of predictors (including intercept).
+    \[\sum_{i=1}^nz_i^2\to \chi^2_{n-p}\]
+  \item In the case of overdispersion, all the $z_i$'s are larger than 1 in absolute values and the sum of square should be much larger than $n-p$.   
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Dealing with Overdispersion}
+  \begin{itemize}
+    \item As we mentioned before, the problem of overdispersion is caused by the lack of variance parameter in Poisson distribution. 
+    \vskip 12pt
+    \item So the solution is to loosen the Poisson distribution to Quasi Poisson distribution, which includes an overdispersion parameter $\omega$, which is the ratio of variance and mean of the distribution. 
+    \vskip 12pt
+    \item \texttt{glm(accident $\sim$ ave\_speed + traf\_light, family=quasipoisson, offset=log(num\_vehicle))}
+    \vskip 12pt
+    \item Overdispersed-Poisson is a class of distribution, and we commonly use Negative-Binomial distribution.
+  \end{itemize}
+}
 
 \frame[t] {
-  \frametitle{Negative Binomial Regression}
+  \frametitle{Categorical Response}
   \begin{itemize}
-  \item We can view probit model in a {\color{red}Latent Variable Formulation}. Each dicrete outcome $y_i$ is associated with a continuous, unobserved $z_i$ 
+  \item Categorical Response can be either ordered (ordinal) or unordered (nominal).
+  \vskip 12pt
+  \item Examples of ordered categorical response include Democrat, Independent, Republican; Yes, Maybe, No; Always, Frequently, Often, Rarely, Never.
+  \vskip 12pt
+  \item Examples of unordered categorical response include Football, Basketball, Baseball, Hockey; Train, Bus, Automobile, Walk; White, Black, Hispanic, Asian, Other.
+  \end{itemize}
+}
+
+\frame[t] {
+  \frametitle{Ordered Categorical: multinomial logit regression}
+  \begin{itemize}
+  \item Outcome $y$ can take on values $1,2,\ldots,K$, then the multinomial logit regression is given by
   \begin{eqnarray*}
-  y_i &=& \begin{cases} 1 & \text{if } z_i>0\\ 0 & \text{if } z_i<0 \end{cases}\\
-  z_i &=& x_i^T\beta+\xi_i
+  P(y>1)&=&\text{logit}^{-1}(X\beta)\\
+  P(y>2)&=&\text{logit}^{-1}(X\beta-c_2)\\
+  P(y>3)&=&\text{logit}^{-1}(X\beta-c_3)\\
+  \ldots\\
+  P(y>K-1)&=&\text{logit}^{-1}(X\beta-c_{K-1})\\
+  \end{eqnarray*} 
+  \item Equivalently, the model can be given by
+  \[P(y=k)=P(y>k-1)-P(y>k)=\text{logit}^{-1}(X\beta-c_{k-1})-\text{logit}^{-1}(X\beta-c_k)\]
+  \end{itemize}
+}
+
+
+\frame[t]{
+  \frametitle{Latent Variable Formulation}
+  \begin{itemize}
+  \item
+    This model might be easier to understand if we choose the latent variable formulation point of view.
+    \begin{eqnarray*}
+      y_i &=& \begin{cases} 1 & \text{if } z_i<0\\ 2 & \text{if } z_i\in(0,c_2) \\
+      3 & \text{if } z_i\in(c_2,c_3)\\
+       \ldots \\
+      k-1 & \text{if } z_i\in(c_{k-1}, c_k)\\
+      k & \text{if } z_i>c_k\end{cases}\\
+      z_i &=& x_i^T\beta+\xi_i \quad \xi_i \text{ i.i.d. logistic} 
+    \end{eqnarray*}
+
+  \item
+   With different error distribution, we can have multinomial probit and multinomial robit models with latent variable formulation.
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{\texttt{R} Implementation}
+  \begin{itemize}
+  \item \texttt{polr} (\textsl{proportional odds logistic regression}) in package \texttt{MASS} is used to fit this class of models.
+  \vskip 12pt
+  \item logti\ \texttt{polr(y $\sim$ x\_1 + x\_2, method=c('logit'))}
+  \vskip 12pt
+  \item probit\ \texttt{polr(y $\sim$ x\_1 + x\_2, method=c('probit'))}
+  \vskip 12pt
+  \item cauchit\ \texttt{polr(y $\sim$ x\_1 + x\_2, method=c('cauchit'))}
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Unordered Categorical Response}
+  \begin{itemize}
+  \item When reponse is unordered categorical, to model is need more effort.
+  \vskip 12pt
+  \item Assume there are $J$ response categories, then the $i$th observation $y_i$ can be converted into $J$ binary reponse variables
+  \begin{equation*}
+  y_{ij}=\begin{cases} 1 & y_i\text{ is in category } j \\ 0 & \text{ otherwise}\end{cases}
+  \end{equation*}
+  \vskip 12pt
+  \item Recall that in logistic regression, we have 
+  \[\log\Big(\frac{p_i}{1-p_i}\Big)=X_i^T\beta\]
+  \end{itemize}
+}
+
+\frame[t]{
+  \frametitle{Unordered Categorical Response}
+  \begin{itemize}
+  \item In the unordered categorical response case, there are $\frac{J(J-1)}{2}$ pairs of categories.m 
+  \begin{eqnarray*}
+  \log\Big(\frac{p_{i1}}{p_{i2}}\Big)&=&X_i^T\beta_{12}\\
+  \log\Big(\frac{p_{i1}}{p_{i3}}\Big)&=&X_i^T\beta_{13}\\
+  \ldots
   \end{eqnarray*}
-  $\xi_i$ are i.i.d. standard normal random variables.
-  \item 
-  In fact, we can incorporate logistic regression model into this formulation if we let $\xi_i$ follows {\color{red}logistic distribution}, which is defined by 
-  \[P(\xi_i<x)=\text{logit}^{-1}(x)\]
+  \item Choose one category as baseline category (generally the last category $J$), the model is given by
+  \[\log\Big(\frac{p_{ij}}{p_{iJ}}\Big)=X_i^T\beta_j, j=1,2,\ldots, J-1\]
   \end{itemize}
-
-}
-
-
-\frame[t] {
-  \frametitle{Zero-Inflated Model}
-  \begin{itemize}
-  \item A lot of statistical problems are easier to understand and tackle from a Latent Variable Formulation point of view.
-  \vskip 24pt
-  \item In practice, logistic regression and probit regression are not very different. In fact, logistic distribution is very close to normal distribution with mean 0 and standard deviation 1.6.
-  \vskip 24pt
-  \item
-  So to use logistic or probit regression is mostly just a matter of taste.
-  \end{itemize}
-
 }
 
 \frame[t]{
-  \frametitle{Estimation}
+  \frametitle{Unordered Categorical Response}
   \begin{itemize}
-  \item
-  Unlike simple linear regression, no explicit maximum likelihood estimators can be given for logistic regression.
-  \vskip 24pt
-  \item
-  {\color{red}Iterative Weighted Least Squares} scheme is used to estimate the parameters. In some literature, it is also called {\color{red}Fisher's Scoring Method}.
-  \vskip 24pt
-  \item
+  \item Equivalently, the model can be expressed as 
+  \[\pi_{ij}=\frac{\exp(X_i^T\beta_j)}{1+\sum_{k=1}^{J-1}\exp(X_i^T\beta_k)}, j=1,2,\ldots, J-1\]
+  \vskip 12pt
+  \item Unordered categorical response is very unstructured, so there are a lot of parameters.
+  \vskip 12pt
+  \item We can use \texttt{mlogit} in package \texttt{mlogit} to fit the model\\
+   \texttt{mlogit(y $\sim$ x\_1 + x\_2, reflevel='1')}
   \end{itemize}
-  We don't delve into details here.
 }
 
-
 \frame[t]{
-  \frametitle{Model Checking: Error Rate}
+  \frametitle{Generalized Linear Models}
   \begin{itemize}
-  \item Another thing that we might want to look at is Error Rate.
-  \vskip 24pt
-  \item If we do deterministic prediction, i.e. guessing $y_i=1$ when fitted value $\text{logit}^{-1}(x_i^T\hat\beta)>.5$ and $y_i=0$ if otherwise, then we define the proportion of wrong prediciton as {\color{red} Error Rate}.
-  \vskip 24pt
-  \item Error Rate need to be at least less than .5(the error rate when we just randomly guess). 
+  \item Generalized Linear Model is a way of unifying various kinds of regression models, including Linear Regression, Logistic Regression and Poisson Regression.
+  \vskip 12pt
+  \item It is DIFFERENT from General Linear Model.
+  \vskip 12pt 
+  \item There is also an unified way to do maximum likelihood estimation for GLM, which is called {\color{red} Iteratively Reweighted Least Squares} algorithm.
   \end{itemize}
 }
 
 
 \frame[t]{
-  \frametitle{Model Checking: Deviance}
+  \frametitle{Generalized Linear Models}
+  There are three components for GLM
   \begin{itemize}
-  \item {\color{red}Deviance} is defined as -2 times the logarithm of the likelihood function. The better the model fit, the lower the deviance is.
-  \vskip 24pt
-  \item If a predictor that is random noise is added to the model, we expect deviance to decrease on average by 1.
-  \vskip 24pt
-  \item If a predictor that is informative is added to the model, we expect deviance to decrease on average by more than 1. The larger the increase, the more relevant the predictor is for our model.
-  \vskip 24pt
-  \item Deviance is a fundmental concept in model comparison and selection.
-  \end{itemize}
-}
-
-\frame[t]{
-  \frametitle{Model Checking: Deviance}
-  \begin{itemize}
-  \item For the voting-income example, the null model (only has intercept) has a deviance of 1591.
-  \vskip 24pt
-  \item Added income as a predictor, the model has a deviance of 1557.
-  \vskip 24pt
-  \item This shows that income is informative for predicting vote outcome.
-  \end{itemize}
-}
-
-\frame[t]{
-  \frametitle{Software Implementations}
-  \begin{itemize}
-  \item R: \texttt{glm}
-  \vskip 24pt
-  \item Matlab: \texttt{glmfit}
+  \item A probability distribution for response $y$, hopefully from the exponential family
+    \vskip 24pt
+  \item Linear predictor $\eta=X\beta$
+    \vskip 24pt
+  \item A link function $g$ such that $Ey=g^{-1}(X\beta)$
+    \vskip 24pt
   \end{itemize}
 }
 
