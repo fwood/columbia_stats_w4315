@@ -1,0 +1,55 @@
+---
+title: Syllabus
+in_menu: true
+routed_title: Syllabus
+---
+
+_Matlab mini-course information_
+
+Place and Time
+
+*	603 Hamilton on both Wednesday's 9/15 &  9/22 from 8-9 p.m.
+
+Material Covered
+
+*	The first course will be introductory in nature and will cover some basic programming concepts
+*	The second course will be more advanced and will cover more of Matlab's built in functionality and advanced matlab programming topics
+
+
+
+|---
+| Lecture | Slides | Chapter | Extras |
+|:-:|:-|:-|:-|:-|
+| 00 | [Introduction](../Lectures/lecture_1/lecture_1.pdf "Slides") | 1 | |
+| 01 | No lecture.
+| 02 | [Simple linear regression model; least squares; residuals](../Lectures/lecture_2/lecture_2.pdf "Slides") | 2 | |
+| 03 | Introduction to MATLAB | | [demo.m](/Code/introduction_to_matlab/general_matlab_demo.m) <br> [plot_gpa_fit.m](/Code/introduction_to_matlab/plot_gpa_fit.m) <br> [my_regress.m](/Code/introduction_to_matlab/my_regress.m)<br> [CH01PR19.txt](/Code/introduction_to_matlab/CH01PR19.txt)<br> [Getting started guide](http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/getstart.pdf)
+| 04 | [Normal error regression model; maximum likelihood](../Lectures/lecture_3/lecture_3.pdf)
+| 05 | [Confidence intervals and hypothesis testing in the normal regression model. ](../Lectures/lecture_4/lecture4.pdf)
+| 06 | [Proof of Gauss Markov Theorem](../Lectures/gauss_markov_theorem/main.pdf)
+| 07 | [Inference in Normal Regression Model](../Lectures/lecture_5/lecture_5.pdf) | 2.7-2.10
+| 08 | [ANOVA](../Lectures/lecture_6/lecture_6.pdf) | | [Cochran's theorem](../Misc/Gut_Intermediate_Course_In_Probability_Excerpt.pdf)
+| 09 | [Diagnostics and Remedial Measures](../Lectures/lecture_7/lecture_7.pdf) | 3 |
+| 10 | [Remedial Measures and Transformations](../Lectures/lecture_8/lecture_8.pdf) | 4 |
+| 11 | [Joint estimation, Bonferroni joint confidence intervals](../Lectures/lecture_9/lecture_9.pdf) | 5 |
+| 12 | [Linear Algebra Review](../Lectures/linear_algebra_review/notes.pdf) | | Cheat sheets <br></br> [Matrix](http://www.cs.toronto.edu/~roweis/notes/matrixid.pdf), [Gaussian](http://www.cs.toronto.edu/~roweis/notes/gaussid.pdf), [Linear Algebra](http://www.math.upatras.gr/~vpiperig/Mul/Algebra.pdf)
+| 13 | cont.
+| 14 | cont.
+| 15 | [Multivariate Normal Review](../Lectures/mvn/notes.pdf) | | 
+| 16 | cont.
+| 17 | [Matrix Linear Regression](../Lectures/lecture_11/lecture_11.pdf) | 5 |
+| 18 | [Multiple linear regression](../Lectures/lecture_12/lecture_12.pdf), [Testing](../Lectures/multivariate_regression_testing/notes.pdf) | 6 | 
+| 19 | [Proof of Cochran's Theorem](../Lectures/lecture_cochran/handwritten-notes.pdf), [extra](../Lectures/lecture_cochran/lin_regress_cochran_conn.pdf)
+| 20 | [ANOVA](../Lectures/lecture_13/13.pdf) | 7 |
+| 21 | Quantitative and Qualitative Inputs, Interactions, and Interpretation | 8 | 
+| 22 | Midterm
+| 23 | [Principal Components Analysis](../Lectures/principal_components_analysis/slides.pdf) 
+| 24 | TBD 
+| 25 | (*) [Generalized Linear Models](../Lectures/generalized_linear_models/notes.pdf)
+| 26 | (*) 
+| 27 | TBD
+<!--| 27 | [Neural Networks](../Lectures/neural_network/slides.pdf) [Model Selection](../Lectures/variable_selection/slides.pdf) | 9 |
+| 24 | (*) Weighted Least Squares, Ridge Regression | 11 |Sampling Continued
+| 25 | (*) [Introduction to Bayesian Inference](../Lectures/bayesian_inference_introduction/slides.pdf) 
+| 26 | (*) [Posterior Simulation](../Lectures/metropolis_hastings/notes.pdf)
+| 27 | [Convexity, Gradient Descent Methods, Convex Optimization](../Lectures/lecture_convexity/lecture_convexity.pdf)-->

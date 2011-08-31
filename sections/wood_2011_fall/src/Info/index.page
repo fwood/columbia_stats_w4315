@@ -1,0 +1,78 @@
+---
+title: Info
+in_menu: true
+routed_title: Info
+---
+
+<strong>This is a master's / advanced undergraduate level course in
+linear regression methods.</strong>
+
+<strong>Text:</strong> 
+<br>
+Required: 
+<u>Applied Linear Regression Models</u>
+ 4th Ed., by Kutner, Nachtsheim, and Neter. McGraw-Hill, 2004. 
+<br>
+
+Strongly recommended:
+<u> Pattern Recognition and Machine Learning</u>
+Christopher M. Bishop.  Springer, 2006.
+
+<strong>Prerequisite:</strong> 
+Calculus; probability and statistics at the level
+of W4150, or W4105 and W4107 taken concurrently.
+
+<strong>Corequisite:</strong> 
+Linear algebra. 
+
+<strong>Grading:</strong> 
+Grades will be assigned on a curve, using the
+following percentages: 25% Homework, 25% Midterm, 25% Final, 25% Quizzes.  
+
+Homework will include a mix of paper and computer problems.  Homework will
+be assigned in class as we go along; the assignments and due dates
+will be posted on this webpage.  Homework will not be graded, only checked
+for submission. 
+
+<strong>Midterm:</strong> 
+The midterm will be during class hours.
+
+<strong>Final:</strong> 
+
+<strong>Computing:</strong> 
+You will be required to use Matlab to complete your homework assignments.  Software of your choice may be used to complete the final project.
+See the <a href="http://www.columbia.edu/acis/">ACIS page</a> for
+information on software and computing labs.  
+
+<strong>Scope:</strong> 
+This class is about the theory and practice of
+regression analysis.  The theory will be approached from both the frequentist and Bayesian perspectives and use of the
+computer to analyze data will be emphasized.  The first part of the
+course will focus on the basic techniques with one-dimensional data,
+and will assume familiarity with the following topics from
+statistics (see appendix A in the book for a quick review, or e.g. <a
+href="http://www.amazon.com/gp/product/0534209343/104-6684482-8152708?v=glance&n=283155">Rice</a>
+or a similar textbook for more details):
+
+- Gaussian distributions
+- Joint, conditional distributions
+- Law of large numbers, central limit theorem
+- Estimation
+- Bias, variance, covariance
+- Maximum likelihood
+- Hypothesis testing
+- Confidence intervals
+
+The second part of the course will look specifically at the challenges
+posed by multivariate data.  We will do a very brief linear algebra
+review, but it will be essential to be familiar with the following
+topics from linear algebra:
+
+- Vectors, matrices 
+- Linear transformations, bases
+- Matrix inverse
+- Eigenvalues, eigenvectors
+- Quadratic forms
+- Determinants
+
+
