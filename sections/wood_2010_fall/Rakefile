@@ -45,5 +45,5 @@ end
 
 desc "Deploy the site"
 task :upload do
-  sh %{webgen; chmod -R 777 out/*; rsync -avz -e ssh out/* #{ENV['SSH_USER']}@www.stat.columbia.edu:~fwood/public_html/w4315}
+  sh %{webgen; chmod -R 777 out/*; rsync -avz -e ssh out/* #{ENV['SSH_USER']}@www.stat.columbia.edu:~fwood/public_html/w4315_fall2010}
 end

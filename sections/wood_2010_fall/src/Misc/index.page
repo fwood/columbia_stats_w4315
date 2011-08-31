@@ -1,0 +1,14 @@
+---
+title: Misc
+in_menu: true
+routed_title: Misc
+---
+
+[Informal Matlab Tutorial](Matlab_Walkthrough.tar.gz)
+
+[Matrix Identities](http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/3274/pdf/imm3274.pdf)
+
+
+From the late [Sam Roweis](http://cs.nyu.edu/~roweis/) 
+:	[Gaussian Identities](gaussid.pdf)
+:	[Matrix Identities](matrixid.pdf)
