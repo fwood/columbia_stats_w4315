@@ -2,8 +2,8 @@
    
 \documentclass[12pt]{article}
 \usepackage{epsfig,amsmath,amsthm,amssymb}
-%\usepackage[ questions]{urmathtest}[2001/05/12]
-\usepackage[answersheet]{urmathtest}[2001/05/12]
+\usepackage[ questions]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answers]{urmathtest}[2001/05/12]
 
 % For use with pdflatex
@@ -28,9 +28,9 @@
 % Beginning of the Document
 
 \begin{document}
-\examtitle{LINEAR REGRESSION MODELS W4315}{INTRO SURVEY}{01/19/2010}
+\examtitle{LINEAR REGRESSION MODELS W4315}{INTRO SURVEY}{09/06/2011}
  \begin{center}
-  Instructor: Frank Wood (Mathematics 417, Tu-Th, 10:30am-12pm) 
+  Instructor: Frank Wood (Pupin 329, Tu-Th,  9:10am-10:25am) 
  \end{center}
 %%\studentinfo
 \instructions{
@@ -60,11 +60,11 @@ What is your field of study?
 \item 
 What is your intended profession?  
 \item
-Why are you taking this course?
+Is this course required for you?  If not, why are you taking it?
 \item
-What regression applications do you have in mind?
+Name some problems you would formulate and solve using regression?
 \item
-What would you really like to learn in this course?
+What, in addition to regression basics, would you like to learn in this course?
 \endabcs
 }
 {
@@ -83,7 +83,7 @@ What would you really like to learn in this course?
 
 \problem{0}
 {
-Find the maximum of the function $x^2+ln(x)$, i.e. find  \[\argmax_{x}  \;\;-x^2+ln(x)\]  Simplify your answer.
+Find the value of $x$ that maximizes the function $x^2+ln(x)$, i.e. find  \[\argmax_{x}  \;\;-x^2+ln(x)\]  Simplify your answer.
 }
 {
 \vspace{3cm}
@@ -99,6 +99,23 @@ Find the maximum of the function $x^2+ln(x)$, i.e. find  \[\argmax_{x}  \;\;-x^2
   x &=& \frac{1}{2} \\
 \end{eqnarray}
 }
+
+\problem{0}
+{
+Pretend that you can't derive the answer to the previous question because the objective function is too complicated.  Write pseudo-code for a program that finds the value of $x$ that maximizes the function using nothing other than standard programming constructs (for, while, if, +,-,/,*, etc.) and evaluations of the function $y(x) = x^2+ln(x)$.
+}
+{
+\vspace{3.5in}
+\vfill
+\newpage
+  %\answer
+
+}
+{
+
+This is the solution.  
+}
+
 
 \problem{0}
 {
@@ -118,6 +135,7 @@ What conditions does your answer put on the matrix ${\bf A}$?
 {
 ${\bf x} = {\bf A}^{-1}{\bf b}$, ${\bf A}$, ${\bf A}$ must be square and invertible or ${\bf x} = {\bf A}^\dagger{\bf b}$ with fewer restrictions.
 }
+\newpage
 
 \problem{0}
 {

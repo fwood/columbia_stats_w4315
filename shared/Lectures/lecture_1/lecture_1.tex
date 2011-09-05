@@ -25,7 +25,7 @@ Authors: Kutner, Nachtsheim, Neter}
 \frame[t] {
  \frametitle{Not Registered Yet?}
 Fill out the form at\\
-\href{http://tinyurl.com/mqfq95}{http://tinyurl.com/mqfq95}
+\href{http://tinyurl.com/3jv6mdl}{http://tinyurl.com/3jv6mdl}
 \bigskip
 
 Additional books we will draw material from in this course:
@@ -49,10 +49,7 @@ of least squares. Extensive use of the computer to analyze data.
 \newline
 
 Course website
-\href{http://bit.ly/9QoeyL}{\underline{http://bit.ly/9QoeyL}}
-\newline 
-
-or \href{http://bit.ly/9QoeyL}{\underline{http://www.stat.columbia.edu/$\sim$fwood/w4315/}}
+or \href{http://www.stat.columbia.edu/$\sim$fwood/w4315/}{\underline{http://www.stat.columbia.edu/$\sim$fwood/w4315/}}
 
 }
 
@@ -72,8 +69,9 @@ If you are looking for a pure applied, pure frequentist treatment of regression 
 
 Available sections
 \begin{itemize}
-\item MW 9:10-10:25am, 702 Hamilton Hall (Lindquist)
-\item MW 6:10-7:25pm, 209 Havemeyer Hall (Yang)
+\item MW 10:35am-11:50am, (Zheng)
+\item MW 6:10pm-7:25pm (Stodden)
+\item F 10:00am-12:30pm (Lindquist)
 \end{itemize}
 
 }
@@ -94,43 +92,6 @@ Available sections
 \end{itemize}
 
 \end{itemize}
-
-}
-
-
-
-\frame[t] {
- \frametitle{Fair warning:}
-
-I am not perfect in attaining my goals...
-
-}
-
-\frame[t] {
- \frametitle{Feedback from prior years}
-\begin{quote}
-Frank was often better at relaying the information when he cared about the material. For example, the sections on Bayesian Statistics were explained more clearly and thoroughly than the earlier sections. Frank answered questions well in person, but rarely responded to emails.
-\newline
-
-Prof. Wood is clearly a brilliant, fascinating individual. Everyone in the class, I think, likes him on a personal level and his teaching style. However, overall, this course was a waste of \$4,000. I paid money for an applied course in linear regression models. Instead, basically, the course was taught from a theoretical standpoint.
-\end{quote}
-}
-
-\frame[t] {
- \frametitle{Feedback from prior years}
-\begin{quote}
-Frank definitely knows what he's doing; the material can sometimes be a little rough and it's not always clear what his motivations are in trying to explain some topics, but I wouldn't want to take this class with any other professor.
-\newline
-
-\end{quote}
-
-}
-
-\frame[t] {
- \frametitle{Feedback from prior years}
-\begin{quote}
-Never had I had such an effective statistics instructor at Columbia. Prof Wood explained the material so well, yet very quick, and got discouraged when he spent more time expected explaining certain topics... even though it was really to the benefit of the class. I honestly wish he could teach me all of the material I have to encounter before graduation and then maybe it would make sense. My only criticism is that as energetic as he was in class, he was quite intimidating, which I think was a disservice to most of the class when he tried to facilitate class participation. Only about 15\% of the class regularly participated as a result.
-\end{quote}
 
 }
 
@@ -158,7 +119,7 @@ My website: \href{http://www.stat.columbia.edu/~fwood}{http://www.stat.columbia.
 
 \frame[t] {
  \frametitle{Course Outline}
- First half of the course is on the traditional view of linear regression.  The first half of the first half is a formal, theoretical review of single variable regression and its classical, frequentist treatment.
+The first half of the first half is a formal, theoretical review of single variable regression and its classical, frequentist treatment.
 
  \begin{itemize}
  \item Roughly 1 chapter per week
@@ -266,16 +227,6 @@ The remainder of the course will deviate from the book and may be ordered differ
 
  \begin{itemize}
  \item For homework -- Matlab.
- \item For final project, don't care:
- \begin{itemize}
- \item R
- \item Matlab
- \item S-Plus
- \item SAS
- \item Minitab
- \item Excel
- \item java, c++, c, assembly, $\ldots$
- \end{itemize}
  \end{itemize}
  \end{itemize}
 
@@ -284,20 +235,20 @@ The remainder of the course will deviate from the book and may be ordered differ
 \frame[t] {
  \frametitle{Grading}
  \begin{itemize}
- \item Bi-weekly homework $(35\%)$
+ \item Bi-weekly homework $(25\%)$
  \begin{itemize}
  \item Due every other week
  \begin{itemize}
  \item no late homework accepted
  \end{itemize}
- \item None allowed to be missing
- \item No homeworks due during final project preparation period.
+ \item None skipped
  \end{itemize}
   \end{itemize}
  \begin{itemize}
- \item Participation $(5\%)$ (up a half grade if I know you by the end, down a half grade if not)
+ \item Participation (up a half grade if I know you by the end, down a half grade if not)
  \item Midterm examination $(25\%)$
- \item Final project $(35\%)$
+ \item Final project $(25\%)$
+ \item Quizzes $(25\%)$
  \item Curve
  \end{itemize}
 
@@ -309,11 +260,10 @@ The remainder of the course will deviate from the book and may be ordered differ
  \item $http://www.stat.columbia.edu/\sim fwood$
  \item Office hours : TBA
  \item Office : Room 1017
- \item TA : Wei Wang
+ \item TA : Ran He
  \begin{itemize}
  \item TA office hours TBD
- \item Email: ww2243@columbia.edu
- \item Office: 901 SSW
+ \item Email: ran@stat.columbia.edu
  \end{itemize}
  \end{itemize}
 }
@@ -321,8 +271,8 @@ The remainder of the course will deviate from the book and may be ordered differ
 \frame[t] {
  \frametitle{Why regression?}
  \begin{itemize}
- \item Want to model a functional relationship between an ``predictor variable'' (input, independent variable, etc.)
-      and a ``response variable'' (output, dependent variable, etc.)
+ \item Want to model a functional relationship between an ``predictor'' (input, independent variable, single or multiple, etc.)
+      and a ``response variable'' (output, dependent variable, potentially many simultaneous, etc.)
  \begin{itemize}
  \item Examples?
  \end{itemize}
@@ -335,7 +285,13 @@ The remainder of the course will deviate from the book and may be ordered differ
  \end{itemize}
  \item Two distinct goals
  \begin{itemize}
- \item Tests about natural of relationship between predictor variables and response variables
+ \item Tests about natura of relationship between predictor variables and response variables.
+ \begin{itemize}
+\item Positive 
+\item Negative
+\item No effect
+\end{itemize}
+
  \item Prediction
  \end{itemize}
  \end{itemize}
@@ -353,17 +309,8 @@ The remainder of the course will deviate from the book and may be ordered differ
  \item ``Regression'' stuck as the term to describe statistical relations between variables
  \end{itemize}
 }
-
 \frame[t] {
  \frametitle{Example Applications}
- Trend lines, eg. Google over 6 mo.
-\begin{figure}
-  \includegraphics[height=60mm]{google.png}
-\end{figure}
-}
-
-\frame[t] {
- \frametitle{Others}
  \begin{itemize}
  \item Epidemiology
  \begin{itemize}
