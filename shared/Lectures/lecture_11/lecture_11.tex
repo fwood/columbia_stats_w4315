@@ -146,11 +146,11 @@ Y_3-\Ave(Y_3)\\
  \frametitle{Regression Example}
  \begin{itemize}
  \item Take a regression example with $n=3$ with constant error
- terms $\sigma^2(\epsilon_i)$ and are uncorrelated so that
- $\sigma^2(\epsilon_i,\epsilon_j)=0$ for all $i \neq j$
+ terms $\sigma^2\{\epsilon_i\}$ and are uncorrelated so that
+ $\sigma^2\{\epsilon_i,\epsilon_j\}=0$ for all $i \neq j$
  \item The covariance matrix for the random vector $\epsilon$ is
  \begin{center}
- \[ \bf \sigma^2(\mathbf{\epsilon})=\begin{pmatrix}
+ \[ \bf \sigma^2\{\mathbf{\epsilon}\}=\begin{pmatrix}
  \sigma^2 &0&0\\
  0&\sigma^2&0\\
  0&0&\sigma^2
@@ -162,9 +162,9 @@ Y_3-\Ave(Y_3)\\
 
 \frame[t] {
  \frametitle{Basic Results}
- If $\bf{A}$ is a constant matrix and $\bf{Y}$ is a random matrix then $\bf
- W=AY$\\
- is a random matrix
+ If $\bf{A}$ is a constant matrix and $\bf{y}$ is a random vector then $\bf
+ W=Ay$\\
+ is a random vector
  \begin{center}
  $\Ave(\bfA)=\bfA$\\
  $\Ave(\bfW)=\Ave(\bfA\bfy)=\bfA\Ave(\bfy)$\\
@@ -189,7 +189,7 @@ Y_3-\Ave(Y_3)\\
  \item Let $\mu$ be a vector of $p$ means of each of the $p$
  observations
  \begin{center}
- \[\bf Y= \begin{pmatrix}
+ \[\mathbf{\mu}= \begin{pmatrix}
  \mu_1\\
  \mu_2\\
  .\\

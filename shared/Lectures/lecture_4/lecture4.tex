@@ -127,7 +127,7 @@ b_1 &=& \frac{\sum(X_i - \bar X)(Y_i - \bar Y)}{\sum(X_i-\bar X)^2} \\
 \begin{itemize}
 \item For a normal error regression model the sampling distribution of $b_1$ is normal, with mean and variance given by
 \begin{eqnarray*}
-\Ave\{b_1\} &=& \beta_1\\
+\Ave{b_1} &=& \beta_1\\
 \Var{b_1} &=& \frac{\sigma^2}{\sum(X_i-\bar X)^2}
 \end{eqnarray*}
 
@@ -185,7 +185,7 @@ properties of the sampling distributions of $b_1$ and $b_0$.
 \item A linear combination of independent normal random variables is normally distributed
 \item More formally: when $Y_1,\ldots,Y_n$ are independent normal random variables, the linear combination
 $a_1Y_1 + a_2Y_2 + \ldots + a_nY_n$ is normally distributed, with
-mean $\sum a_i\Ave\{Y_i\}$ and variance $\sum a_i^2\Var{Y_i} $
+mean $\sum a_i\Ave{Y_i}$ and variance $\sum a_i^2\Var{Y_i} $
 \end{itemize}
 \end{itemize}
 }
@@ -200,19 +200,19 @@ b_1 &=& \sum k_i Y_i, \, k_i = \frac{(X_i - \bar X)}{\sum(X_i-\bar
 X)^2}
 \end{eqnarray*}
 From previous slide
-\[\Ave\{b_1\} = \sum k_i \Ave\{Y_i\}, \; \; \Var{b_1} = \sum k_i^2 \Var{Y_i} \]
+\[\Ave{b_1} = \sum k_i \Ave{Y_i}, \; \; \Var{b_1} = \sum k_i^2 \Var{Y_i} \]
 
-This means $b_1 \sim N(\Ave\{b_1\}, \Var{b_1} )$.\newline
+This means $b_1 \sim N(\Ave{b_1}, \Var{b_1} )$.\newline
 
-To use this we must know $\Ave\{b_1\}$ and $\Var{b_1}$.
+To use this we must know $\Ave{b_1}$ and $\Var{b_1}$.
 }
 
 \frame[t] {
  \frametitle{$b_1$ is an unbiased estimator}
 This can be seen using two of the properties
 \begin{eqnarray*}
-\Ave\{b_1\} &=& \Ave\{\sum k_i Y_i\} \\
-&=& \sum k_i \Ave\{Y_i\} \\
+\Ave{b_1} &=& \Ave{\sum k_i Y_i} \\
+&=& \sum k_i \Ave{Y_i} \\
 &=& \sum k_i (\beta_0+\beta_1 X_i) \\
 &=& \beta_0 \sum k_i + \beta_1 \sum k_i X_i \\
 &=& \beta_0 (0) +  \beta_1  (1) \\

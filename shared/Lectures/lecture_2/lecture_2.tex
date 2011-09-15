@@ -48,8 +48,8 @@ $$Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$$
 \item $Y_i$ value of the response variable in the $i^{th}$ trial
 \item $\beta_0$ and $\beta_1$ are parameters
 \item $X_i$ is a known constant, the value of the predictor variable in the $i^{th}$ trial
-\item $\epsilon_i$ is a random error term with mean $\Ave(\epsilon_i)$ and variance
-$\Var(\epsilon_i)=\sigma^2 $
+\item $\epsilon_i$ is a random error term with mean $\Ave{\epsilon_i}=0$ and finite variance
+$\Var{\epsilon_i}=\sigma^2 $
 \item $i = 1,\ldots,n$
 \end{itemize}
 }
@@ -64,8 +64,8 @@ $\Var(\epsilon_i)=\sigma^2 $
 \end{itemize}
 \item The expected response is
 \begin{eqnarray*}
-\Ave(Y_i) &=& \Ave(\beta_0 + \beta_1 X_i + \epsilon_i)\\
- &=& \beta_0 + \beta_1 X_i + \Ave(\epsilon_i)\\
+\Ave{Y_i} &=& \Ave{\beta_0 + \beta_1 X_i + \epsilon_i}\\
+ &=& \beta_0 + \beta_1 X_i + \Ave{\epsilon_i}\\
 &=& \beta_0 + \beta_1 X_i
 \end{eqnarray*}
 \end{itemize}
@@ -75,10 +75,10 @@ $\Var(\epsilon_i)=\sigma^2 $
  \frametitle{Expectation Review}
 \begin{itemize}
 \item Definition
-$$\Ave(X) = \Ave(X) = \int X P(X) dX, \, X \in \mathcal{R}$$
+$$\Ave{X} = \Ave{X} = \int X P(X) dX, \, X \in \mathcal{R}$$
 \item Linearity property \begin{eqnarray*}
-\Ave(aX) &=& a \Ave(X)\\
-\Ave(aX + bY) &=& a\Ave(X) + b\Ave(Y)
+\Ave{aX} &=& a \Ave{X}\\
+\Ave{aX + bY} &=& a\Ave{X} + b\Ave{Y}
 \end{eqnarray*}
 
 \item Obvious from definition
@@ -90,9 +90,9 @@ $$\Ave(X) = \Ave(X) = \int X P(X) dX, \, X \in \mathcal{R}$$
 $$P(X) = 2X, 0 \leq X \leq 1$$
 Expectation
 \begin{eqnarray*}
-\Ave(X) &=& \int_0^1 X P(X) dX\\
- &=& \int_0^1 2X^3 dX\\
-&=& \frac{2X^2}{3} |_0^1\\
+\Ave{X} &=& \int_0^1 X P(X) dX\\
+ &=& \int_0^1 2X^2 dX\\
+&=& \frac{2X^3}{3} |_0^1\\
 &=& \frac{2}{3}
 \end{eqnarray*}
 
@@ -102,7 +102,7 @@ Expectation
  \frametitle{Expectation of a Product of Random Variables}
 If X,Y are random variables with joint distribution $P(X,Y)$ then
 the expectation of the product is given by
-$$\Ave(XY)=\int_{XY}XYP(X,Y)dXdY.$$
+$$\Ave{XY}=\int_{XY}XYP(X,Y)dXdY.$$
 }
 
 \frame[t] {
@@ -110,11 +110,11 @@ $$\Ave(XY)=\int_{XY}XYP(X,Y)dXdY.$$
 What if X and Y are independent? If X and Y are independent with
 density functions f and g respectively then
 \begin{eqnarray*}
-\Ave(XY)&=& \int_{XY}XYf(X)g(Y)dXdY\\
+\Ave{XY}&=& \int_{XY}XYf(X)g(Y)dXdY\\
 &&= \int_X\int_Y XYf(X)g(Y)dXdY\\
 &&= \int_X Xf(X)[\int_Y Yg(Y)dY]dX\\
-&&= \int_X Xf(X)\Ave(Y)dX\\
-&&=\Ave(X)\Ave(Y)
+&&= \int_X Xf(X)\Ave{Y}dX\\
+&&=\Ave{X}\Ave{Y}
 \end{eqnarray*}
 }
 
@@ -123,11 +123,11 @@ density functions f and g respectively then
 \begin{itemize}
 \item The response $Y_i$ comes from a probability distribution with mean
 \begin{eqnarray*}
-\Ave(Y_i) &=& \beta_0 + \beta_1 X_i
+\Ave{Y_i} &=& \beta_0 + \beta_1 X_i
 \end{eqnarray*}
 \item This means the regression function is
 \begin{eqnarray*}
-\Ave(Y) &=& \beta_0 + \beta_1 X
+\Ave{Y} &=& \beta_0 + \beta_1 X
 \end{eqnarray*}
 Since the regression function relates the means of the probability
 distributions of Y for a given X to the level of X
@@ -149,8 +149,8 @@ amount $\epsilon_i$
  \frametitle{Response Variance}
 Responses $Y_i$ have the same constant variance
 \begin{eqnarray*}
-\Var(Y_i) &=& \Var(\beta_0 + \beta_1 X_i + \epsilon_i)\\
- &=& \Var(\epsilon_i)\\
+\Var{Y_i} &=& \Var{\beta_0 + \beta_1 X_i + \epsilon_i}\\
+ &=& \Var{\epsilon_i}\\
 &=& \sigma^2
 \end{eqnarray*}
 
@@ -159,19 +159,19 @@ Responses $Y_i$ have the same constant variance
 \frame[t] {
  \frametitle{Variance ($2^{nd}$ central moment) Review}
 \begin{itemize}
-\item Continuous distribution $$\Var(X) = \Ave(( X -  \Ave(X) ) ^ 2) = \int (X - \Ave(X))^2 P(X) dX, \, X \in \mathcal{R}$$
-\item Discrete distribution $$\Var(X) = \Ave(( X -  \Ave(X) ) ^ 2) = \sum_i (X_i - \Ave(X))^2 P(X_i), \, X \in \mathcal{Z}$$
+\item Continuous distribution $$\Var{X} = \Ave{( X -  \Ave{X} ) ^ 2} = \int (X - \Ave{X})^2 P(X) dX, \, X \in \mathcal{R}$$
+\item Discrete distribution $$\Var{X} = \Ave{( X -  \Ave{X} ) ^ 2} = \sum_i (X_i - \Ave{X})^2 P(X_i), \, X \in \mathcal{Z}$$
 \end{itemize}
 }
 
 \frame[t] {
  \frametitle{Alternative Form for Variance}
 \begin{eqnarray*}
-\Var(X) &=&\Ave( ( X -  \Ave(X) ) ^ 2 ) \\
-& = &\Ave( ( X ^ 2 - 2X\Ave(X) + \Ave(X) ^ 2) ) \\
-&=&\Ave( X ^ 2) - 2\Ave(X)\Ave(X) + \Ave(X)  ^ 2 \\
-& =&\Ave( X ^ 2) - 2\Ave(X) ^ 2 + \Ave(X) ^ 2 \\
-&=&\Ave ( X ^ 2) - \Ave(X) ^ 2.
+\Var{X} &=&\Ave{( X -  \Ave{X} ) ^ 2 } \\
+& = &\Ave{( X ^ 2 - 2X\Ave{X} + \Ave{X} ^ 2) } \\
+&=&\Ave{X ^ 2} - 2\Ave{X}\Ave{X} + \Ave{X}  ^ 2 \\
+& =&\Ave{X ^ 2} - 2\Ave{X} ^ 2 + \Ave{X} ^ 2 \\
+&=&\Ave { X ^ 2} - \Ave{X} ^ 2.
 \end{eqnarray*}
 
 }
@@ -180,7 +180,7 @@ Responses $Y_i$ have the same constant variance
  \frametitle{Example Variance Derivation}
 $$P(X) = 2X, 0 \leq X \leq 1$$
 \begin{eqnarray*}
-\Var(X) &=& \Ave((X-\Ave(X))^2) = \Ave(X^2) - \Ave(X)^2 \\
+\Var{X} &=& \Ave{(X-\Ave{X})^2} = \Ave{X^2} - \Ave{X}^2 \\
  &=& \int_0^1 2X X^2 dX - (\frac{2}{3})^2\\
 &=& \frac{2X^4}{4}|_0^1- \frac{4}{9} \\
 &=& \frac{1}{2} -  \frac{4}{9} =  \frac{1}{18}
@@ -191,13 +191,13 @@ $$P(X) = 2X, 0 \leq X \leq 1$$
 \frame[t] {
  \frametitle{Variance Properties}
 \begin{eqnarray*}
-\Var(aX) &=& a^2 \Var(X)\\
-\Var(aX + bY) &=& a^2\Var(X) + b^2\Var(Y)\, \mathrm{if} X \independent Y \\
-\Var(a +cX)  &=& c^2 \Var(X)\; \mathrm{if} a, c\; \mathrm{both\ constant}
+\Var{aX} &=& a^2 \Var{X}\\
+\Var{aX + bY} &=& a^2\Var{X} + b^2\Var{Y}\, \mathrm{if} X \independent Y \\
+\Var{a +cX}  &=& c^2 \Var{X}\; \mathrm{if} a, c\; \mathrm{both\ constant}
 \end{eqnarray*}
 More generally
 \begin{eqnarray*}
-\Var(\sum a_i X_i) &=& \sum_i\sum_j a_i a_j \mathrm{Cov}(X_i,X_j)
+\Var{\sum a_i X_i} &=& \sum_i\sum_j a_i a_j \mathrm{Cov}(X_i,X_j)
 \end{eqnarray*}
 
 }
@@ -205,12 +205,12 @@ More generally
 \frame[t] {
  \frametitle{Covariance}
 \begin{itemize}
-\item The covariance between two real-valued random variables X and Y, with expected values $\Ave(X) = \mu$ and $\Ave(Y) = \nu$ is defined as
-$$Cov(X,Y)=\Ave((X-\mu)(Y-\nu))$$
+\item The covariance between two real-valued random variables X and Y, with expected values $\Ave{X} = \mu$ and $\Ave{Y} = \nu$ is defined as
+$$Cov(X,Y)=\Ave{(X-\mu)(Y-\nu)}$$
 \item Which can be rewritten as\begin{eqnarray*}
-Cov(X,Y)&=& \Ave(XY-\nu X-\mu Y +\mu\nu),\\
-Cov(X,Y)&=& \Ave(XY)-\nu \Ave(X)-\mu \Ave(Y) +\mu\nu,\\
-Cov(X,Y)&=& \Ave(XY)-\mu\nu.
+Cov(X,Y)&=& \Ave{XY-\nu X-\mu Y +\mu\nu},\\
+Cov(X,Y)&=& \Ave{XY}-\nu \Ave{X}-\mu \Ave{Y} +\mu\nu,\\
+Cov(X,Y)&=& \Ave{XY}-\mu\nu.
 \end{eqnarray*}
 \end{itemize}
 }
@@ -219,7 +219,7 @@ Cov(X,Y)&=& \Ave(XY)-\mu\nu.
  \frametitle{Covariance of Independent Variables}
 If X and Y are independent, then their covariance is zero. This
 follows because under independence
-$$\Ave(XY)=\Ave(X)\Ave(Y)=\mu\nu.$$
+$$\Ave{XY}=\Ave{X}\Ave{Y}=\mu\nu.$$
 and then
 $$Cov(XY)=\mu\nu-\mu\nu=0.$$
 }
@@ -227,7 +227,7 @@ $$Cov(XY)=\mu\nu-\mu\nu=0.$$
 \frame[t] {
  \frametitle{Least Squares Linear Regression}
 \begin{itemize}
-\item Seek to minimize $$Q = \sum_{i=1}^n (Y_i - (\beta_0 + \beta_1 X_i))^2$$
+\item Seek to minimize $$Q = \sum_{i=1}^n (Y_i - (b_0 + b_1 X_i))^2$$
 \item By careful choice of $b_0$ and $b_1$ where $b_0$ is a point estimator for $\beta_0$ and $b_1$ is the same for
 $\beta_1$ \newline
 

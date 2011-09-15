@@ -12,8 +12,8 @@ Squares and Maximum Likelihood}
 
 \date{}
 
-\DeclareMathOperator*{\Ave}{\mathbb{E}}
-\DeclareMathOperator*{\Var}{Var}
+\input{../definitions}
+
 
 \begin{document}
 
@@ -22,13 +22,13 @@ Squares and Maximum Likelihood}
 \frame[t] {
  \frametitle{Least Squares Max(min)imization}
  \begin{itemize}
-\item Function to minimize w.r.t. $\beta_0, \beta_1$
-$$Q = \sum_{i=1}^n (Y_i - (\beta_0 + \beta_1 X_i))^2$$
+\item Function to minimize w.r.t. $b_0, b_1$
+$$Q = \sum_{i=1}^n (Y_i - (b_0 + b_1 X_i))^2$$
 \item Minimize this by maximizing $-Q$
 \item Find partials and set both equal to zero
 \begin{eqnarray*}
-\frac{dQ}{d\beta_0} &=& 0 \\
-\frac{dQ}{d\beta_1} &=& 0
+\frac{dQ}{db_0} &=& 0 \\
+\frac{dQ}{db_1} &=& 0
 \end{eqnarray*}
 \end{itemize}
 }
@@ -82,7 +82,7 @@ b_0 &=& \bar Y - b_1 \bar X\\
 
 \frame[t] {
  \frametitle{Looking Ahead: Matrix Least Squares}
- $$\left[\begin{array}{c} Y_1 \\Y_2 \\ \vdots \\ Y_n \end{array} \right] =  \left[\begin{array}{cc} X_1 & 1\\X_2 & 1\\ {\vdots} \\ X_n & 1\end{array} \right]\left[ \begin{array}{cc} \beta_1 \\ \beta_0
+ $$\left[\begin{array}{c} Y_1 \\Y_2 \\ \vdots \\ Y_n \end{array} \right] =  \left[\begin{array}{cc} X_1 & 1\\X_2 & 1\\ {\vdots} \\ X_n & 1\end{array} \right]\left[ \begin{array}{cc}b_1 \\ b_0
  \end{array}\right]$$
  Solution to this equation is solution to least squares linear regression (and maximum likelihood under normal error distribution assumption)
 }
@@ -199,7 +199,7 @@ $$\hat \theta = f(\{ Y_1, \ldots, Y_n\})$$
 \item Unknown quantity / parameter
 $$\theta$$
 \item Definition: Bias of estimator
-$$B(\hat \theta) = \Ave(\hat \theta) - \theta$$
+$$B(\hat \theta) = \Ave{\hat \theta} - \theta$$
 \end{itemize}
 }
 
@@ -241,11 +241,11 @@ $$\theta = \mu, \quad \hat \theta = \bar Y = \frac{1}{n} \sum_{i=1}^{n} Y_i$$
 \begin{itemize}
 \item First moment
 \begin{eqnarray*}
-\Ave(\hat \theta) &=& \Ave(\frac{1}{n} \sum_{i=1}^{n} Y_i) \\
-&=& \frac{1}{n} \sum_{i=1}^{n} \Ave(Y_i) = \frac{n\mu}{n} = \theta
+\Ave{\hat \theta} &=& \Ave{\frac{1}{n} \sum_{i=1}^{n} Y_i} \\
+&=& \frac{1}{n} \sum_{i=1}^{n} \Ave{Y_i} = \frac{n\mu}{n} = \theta
 \end{eqnarray*}
 \item This is an example of an unbiased estimator
-$$B(\hat \theta) = \Ave(\hat \theta) - \theta = 0$$
+$$B(\hat \theta) = \Ave{\hat \theta} - \theta = 0$$
 \end{itemize}
 }
 
@@ -253,11 +253,11 @@ $$B(\hat \theta) = \Ave(\hat \theta) - \theta = 0$$
  \frametitle{Variance of Estimator}
 \begin{itemize}
 \item Definition: Variance of estimator
-$$\Var(\hat \theta) = \Ave([\hat \theta - \Ave(\hat \theta)]^2)$$
+$$\Var{\hat \theta} = \Ave{(\hat \theta - \Ave{\hat \theta})^2}$$
 \item Remember:
 \begin{eqnarray*}
-\Var(cY) &=& c^2\Var(Y)\\
-\Var(\sum_{i=1}^n Y_i) &=& \sum_{i=1}^n\Var(Y_i)
+\Var{cY} &=& c^2\Var{Y}\\
+\Var{\sum_{i=1}^n Y_i} &=& \sum_{i=1}^n\Var{Y_i}
 \end{eqnarray*}
 Only if the $Y_i$ are independent with finite variance
 
@@ -269,8 +269,8 @@ Only if the $Y_i$ are independent with finite variance
 \begin{itemize}
 \item For $N(0,1)$ mean estimator
 \begin{eqnarray*}
-\Var(\hat \theta) &=& \Var(\frac{1}{n} \sum_{i=1}^{n} Y_i) \\
-&=& \frac{1}{n^2} \sum_{i=1}^{n} \Var(Y_i) = \frac{n\sigma^2}{n^2} =
+\Var{\hat \theta} &=& \Var{\frac{1}{n} \sum_{i=1}^{n} Y_i} \\
+&=& \frac{1}{n^2} \sum_{i=1}^{n} \Var{Y_i} = \frac{n\sigma^2}{n^2} =
 \frac{\sigma^2}{n}
 \end{eqnarray*}
 
@@ -281,7 +281,7 @@ Only if the $Y_i$ are independent with finite variance
 \frame[t] {
  \frametitle{Central Limit Theorem Review}
 \begin{block}{Central Limit Theorem}
-Let $Y_1, Y_2, \ldots, Y_n$ be iid random variables with $\Ave(Y_i) = \mu$ and $\Var(Y_i) = \sigma^2 < \infty$.  Define.
+Let $Y_1, Y_2, \ldots, Y_n$ be iid random variables with $\Ave{Y_i} = \mu$ and $\Var{Y_i} = \sigma^2 < \infty$.  Define.
 \begin{equation}
 U_n = \sqrt{n}\left(\frac{\bar Y - \mu}{\sigma}\right) \;\;\; \mbox{where} \;\;\;  \bar Y = \frac{1}{n}\sum_{i=1}^n Y_i
 \end{equation}
@@ -307,22 +307,23 @@ P(a\leq U_n\leq b) \rightarrow \int_a^b \left(\frac{1}{\sqrt{2\pi}}\right) e^{\f
  \frametitle{Bias Variance Trade-off}
 \begin{itemize}
 \item The mean squared error of an estimator
-$$MSE(\hat \theta) = \Ave([\hat \theta -  \theta]^2)$$
+$$MSE(\hat \theta) = \Ave{[\hat \theta -  \theta]^2}$$
 \item Can be re-expressed
-$$MSE(\hat \theta) = \Var(\hat \theta) + (B( \hat \theta)^2)$$
+$$MSE(\hat \theta) = \Var{\hat \theta} + B( \hat \theta)^2$$
 \end{itemize}
 }
 
 \frame[t] {
- \frametitle{MSE = VAR + $BIAS^2$}
+ \frametitle{MSE = VAR + BIAS$^2$}
  Proof
 \begin{eqnarray*}
-MSE(\hat \theta) &=& \Ave((\hat \theta - \theta)^2) \\
-&=& \Ave(([\hat \theta -\Ave(\hat \theta)]+ [\Ave(\hat \theta)-\theta])^2) \\
-&=& \Ave([\hat \theta -\Ave(\hat \theta)]^2) + 2\Ave([\Ave(\hat \theta)-\theta][\hat \theta - \Ave(\hat \theta)]) + \Ave([\Ave(\hat \theta) - \theta]^2) \\
-&=& \Var(\hat \theta) + 2  \Ave([\Ave(\hat \theta)[\hat \theta - \Ave(\hat \theta)] - \theta[\hat \theta - \Ave(\hat \theta)]))  + (B(\hat \theta))^2\\
-&=& \Var(\hat \theta) + 2 (0 + 0) +  (B(\hat \theta))^2 \\
-&=& \Var(\hat \theta) + (B(\hat \theta))^2 \\
+MSE(\hat \theta) &=& \Ave{(\hat \theta - \theta)^2} \\
+&=& \Ave{([\hat \theta -\Ave{\hat \theta}]+ [\Ave{\hat \theta}-\theta])^2} \\
+&=& \Ave{[\hat \theta -\Ave{\hat \theta}]^2} + 2\Ave{[\Ave{\hat \theta}-\theta][\hat \theta - \Ave{\hat \theta}]} +\\
+& & \qquad \Ave{[\Ave{\hat \theta} - \theta]^2} \\
+&=& \Var{\hat \theta}+ 2  \Ave{[\Ave{\hat \theta}[\hat \theta - \Ave{\hat \theta}] - \theta[\hat \theta - \Ave{\hat \theta}]}  + B(\hat \theta)^2\\
+&=& \Var{\hat \theta}+ 2 (0 + 0) +  B(\hat \theta)^2 \\
+&=& \Var{\hat \theta}+ B(\hat \theta)^2 \\
 \end{eqnarray*}
 
 }
@@ -355,7 +356,7 @@ $X_i$
 $$s^2 = MSE = \frac{SSE}{n-2} = \frac{\sum(Y_i-\hat Y_i)^2}{n-2} = \frac{\sum e_i^2} {n-2}$$
 \begin{itemize}
 \item MSE is an unbiased estimator of $\sigma^2$
-$$\Ave(MSE) = \sigma^2$$
+$$\Ave{MSE} = \sigma^2$$
 \item The sum of squares SSE has n-2 ``degrees of freedom'' associated with it.
 \item Cochran's theorem (later in the course) tells us where degree's of freedom come from and how to calculate them.
 \end{itemize}
