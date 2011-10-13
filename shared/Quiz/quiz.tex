@@ -1,0 +1,161 @@
+% Essential Formatting
+
+\documentclass[12pt]{article}
+\usepackage{epsfig,amsmath,amsthm,amssymb}
+\usepackage[questions]{urmathtest}[2001/05/12]
+%\usepackage[answersheet]{urmathtest}[2001/05/12]
+%\usepackage[answers]{urmathtest}[2001/05/12]
+
+% For use with pdflatex
+% \pdfpagewidth\paperwidth
+% \pdfpageheight\paperheight
+
+% Basic User Defs
+
+\def\ds{\displaystyle}
+
+\newcommand{\ansbox}[1]
+{\work{
+  \pos\hfill \framebox[#1][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+\newcommand{\ansrectangle}
+{\work{
+  \pos\hfill \framebox[6in][l]{ANSWER:\rule[-.3in]{0in}{.7in}}
+}{}}
+
+% Beginning of the Document
+
+\begin{document}
+\examtitle{LINEAR REGRESSION MODELS W4315}{Quiz}{}
+ \begin{center}
+  Instructor: Frank Wood 
+ \end{center}
+\studentinfo
+\instructions{
+  %\textbf{Circle your Instructor's Name along with the Lecture Time:}
+
+
+
+  \begin{itemize}
+  \item
+    \textbf{Please show all your work.
+            You may use back pages if necessary.}
+  %\item
+   % \textbf{Please put your \underline{simplified}
+   %         final answers in the spaces provided.}
+  \end{itemize}
+}
+\finishfirstpage
+
+% Problems Start Here % ----------------------------------------------------- %
+
+
+\problem{30}
+{
+Prove the Law of Total Probability. Suppose events $A_1, A_2, \cdots, A_n$ form a \emph{partition} of $\Omega$. That is, the events are mutually disjoint and their union is all of $\Omega$. Then for any other event $B$, we have
+$$P(B)=P(A_1)\times P(B|A_1)+P(A_2)\times P(B|A_2)+\cdots+P(A_n)\times P(B|A_n).$$
+}
+{
+
+\vfill
+ \newpage
+
+}
+{
+}
+
+%\problem{30}
+%{
+%\abcs
+%\item Suppose there are events $A_1, A_2, \cdots, A_n$ in $\Omega$. For any other event $B$, please indicate under %which conditions that $A_1, A_2, \cdots, A_n$ satisfy, the following equation holds:
+%    \begin{equation}
+%    P(B)=P(A_1)\times P(B|A_1)+P(A_2)\times P(B|A_2)+\cdots+P(A_n)\times P(B|A_n).
+%    \end{equation}
+%\item Prove (1) under the conditions you just stated.
+%\endabcs
+%}
+%{
+%
+%\vfill
+% \newpage
+%
+%}
+%{
+%}
+%
+%\problem{40}
+%{
+%Please solve the following equations:
+%\[
+%\left\{
+%\begin{array}{ccc}
+% x_1 + 2x_2 + 3x_3 &= 1  \\
+% 3x_1 + 5x_2 - x_3 &= 3  \\
+% x_1 + x_2 - 7x_3 &= 1
+%\end{array}
+%\right.
+%\]
+%}
+%{
+%
+%\vfill
+% \newpage
+%
+%}
+%{
+%}
+
+\problem{40}
+{
+\[
+\left\{
+\begin{array}{ccc}
+ x_1 + 2x_2 + 3x_3 &= \alpha  \\
+ 3x_1 + 5x_2 - x_3 &= \beta \\
+ x_1 + x_2 - 7x_3 &= \gamma
+\end{array}
+\right.
+\]
+Under what conditions of $\alpha,\beta,\gamma$, the above equations have (a)unique solution (b)no solution (c)infinite solutions.
+}
+{
+
+\vfill
+ \newpage
+
+}
+{
+}
+
+%\problem{30}
+%{
+%Suppose $X_i\sim N(\mu, \sigma_i^2)$, $i=1, 2, \cdots, n$ where $\sigma_i^2$'s are known. Derive the Maximum %Likelihood Estimator of $\mu$.
+%}
+%{
+%
+%\vfill
+% \newpage
+%
+%}
+%{
+%}
+
+\problem{30}
+{
+Suppose $$Y_i = X_i\beta + \epsilon_i,$$ where $\epsilon_i \stackrel{iid}{\sim} N(0, \sigma_1^2)$, $i=1, 2, \cdots, n$ and $\epsilon_i \stackrel{iid}{\sim} N(0, \sigma_2^2)$, $i=n+1, n+2, \cdots, n+m$. Derive the Maximum Likelihood Estimator of $\beta$, $\sigma_1^2$ and $\sigma_2^2$.
+}
+{
+
+\vfill
+ \newpage
+
+}
+{
+}
+% Problems End Here % ------------------------------------------------------- %
+
+\problemsdone
+\end{document}
+
+% End of the Document
