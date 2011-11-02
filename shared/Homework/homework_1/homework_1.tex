@@ -1,11 +1,40 @@
 % Essential Formatting
 
 \documentclass[12pt]{article}
-\usepackage{epsfig,amsmath,amsthm,amssymb, graphicx}
+%\usepackage{epsfig,amsmath,amsthm,amssymb, graphicx}
 \usepackage[questions, answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answers]{urmathtest}[2001/05/12]
 
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{easybmat}
+%\usepackage{footmisc}
+%\usepackage{lscape}
+%\usepackage{subfigure}
+%\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{aistats2012}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{natbib}
+\usepackage{subfig}
+\usepackage{xspace}
+\usepackage[normalem]{ulem}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{balance}
+\renewcommand\algorithmiccomment[1]{// \textit{#1}}
+%
+\newcommand{\ignore}[1]{}
+\newcommand{\comment}[1]{}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 % For use with pdflatex
 % \pdfpagewidth\paperwidth
@@ -172,14 +201,18 @@ is just the MLE of $\sigma^2$.\\
 }
 
 
-\problem{20} {$X_1,X_2,X_3,\ldots,X_{100}$ are iid normal random 
-variables with mean $\mu$ and variance $\sigma^2$, we want to estimate 
-the mean $\mu$. Consider two estimators, $X_1$ and $\bar{X}=\frac{1}{100}\sum_{i=1}^{100}X_i$: \\
+\problem{20} {Let $X_1,X_2,X_3,\ldots,X_{100}$ be iid normal random 
+variables with mean $\mu$ and variance $\sigma^2$.  Assume that we want to estimate 
+the mean $\mu$ from observations. Consider two estimators, $X_1$ and $\bar{X}=\frac{1}{100}\sum_{i=1}^{100}X_i$: \\
 a. Show these two estimators are both unbiased. Also derive the
 distribution of each estimator. Which estimator do you think is better? Why?\\
-b. When $\mu=0$ and $\sigma^2=100$, generate $X_1,X_2,X_3,\ldots,X_{100}$. Calculate the estimate $\bar{X}$ and denote
-it as $\hat{\mu}_1$. Repeat this 100 times and plot the density histogram of $\hat{\mu}_1,
-\hat{\mu}_2,\hat{\mu}_3,\ldots,\hat{\mu}_{100}$. Overlay the probability density of $\bar{X}$ on the plot (see matlab function ``normpdf''). \\}
+b. With $\mu=0$ and $\sigma^2=100$, write matlab code to generate $X_1,X_2,X_3,\ldots,X_{100} \sim \mathcal{N}(\mu,\sigma^2)$ using only looping constructs and the builtin function {\em{randn}}. Using only looping constructs, write a function with inferface
+\[
+\mathrm{\bar{x} = mean(\bf x)}
+\]
+ for the estimator $\bar{X}$ where $\mathrm{\bf x}$ is a vector (of unknown length) consisting of the observed values of $X_1,X_2,X_3,\ldots,X_{100}$.  
+Generate 100 different datasets, denote the output of the function above as $\hat{\mu}_i$, and plot the density histogram of the set $\{\hat{\mu}_1,
+\hat{\mu}_2,\hat{\mu}_3,\ldots,\hat{\mu}_{100}\}$ using the function {\em bar}. Using {\em hold on} and {\em plot} overlay the probability density of $\bar{X}$ on the plot (see matlab function {\em normpdf}). \\}
  { \vfill
   \answer
 }
@@ -219,7 +252,9 @@ appropriate.
 \end{center}
 \end{table}\\
 
-a. Obtain estimated regression function.\\
+a. Write a matlab function with interface
+\[ \mathrm{\{b_0,b_1\} = linregress(\bf x,\bf y)}\]
+and use it to obtain a regression function estimate.\\
 b. Plot the estimated regression function and the data. How well
 does the estimated regression function fit the data?\\
 c. interpret $b_0$ in your estimated regression function. Does $b_0$
@@ -229,7 +264,7 @@ copiers are serviced.\\
 \indent~~~~Notice: You can get data for this problem on
 www.mhhe.com/KutnerALRM4e. Use MATLAB, do not
 use any other programming language. Only basic MATLAB operators are
-allowed, do not use any built-in functions to do the regression, i.e.~the function ``regress'' cannot be used except, perhaps, to verify that your answer is correct before submitting your own implementation. \\}
+allowed, do not use any built-in functions to do the regression, i.e.~the function {\em regress} cannot be used except, perhaps, to verify that your answer is correct before submitting your own implementation. \\}
  { \vfill
   \answer
 } {

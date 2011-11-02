@@ -2,9 +2,9 @@
 
 \documentclass[12pt]{article}
 \usepackage{epsfig,amsmath,amsthm,amssymb}
-\usepackage[questions, answersheet]{urmathtest}[2001/05/12]
+%\usepackage[questions, answersheet]{urmathtest}[2001/05/12]
 %\usepackage[answersheet]{urmathtest}[2001/05/12]
-%\usepackage[answers]{urmathtest}[2001/05/12]
+\usepackage[answers]{urmathtest}[2001/05/12]
 
 
 % For use with pdflatex
@@ -54,18 +54,17 @@
 
 
 \problem{35} {
-  Consider a simple linear regression model $Y=\beta_0+\beta_1X+\epsilon$. $X$ takes value at all the integers from 1 to 20. We denote the ordinary least squared estimates of $\beta_0$ and $\beta_1$ as $b_0$ and $b_1$. Now assume that $\beta_0=2$, $\beta_1=0.3$ and $\sigma^2=4$.\\
+  Consider a simple linear regression model $Y=\beta_0+\beta_1X+\epsilon$ with $\epsilon \sim N(0,\sigma^2)$.  Let $X_i = i \;  \forall \; i \in \{1, 2, \ldots, 20\}$ (integers from 1 to 20). We denote the maximum likelihood estimates of $\beta_0$ and $\beta_1$ as $b_0$ and $b_1$ under the normal regression model. Let the true values be $\beta_0=2$, $\beta_1=0.3$ and $\sigma^2=4$.\\
 
- a. What are the exact distributions of $b_0$ and $b_1$?
+ a. Re-derive the exact sampling distributions of $b_0$ and $b_1$.  Show your work and state your assumptions.
 
- b. Generate $Y$ according to the given model (there are 20 $X$'s, so you need to generate 20 $Y$'s), and calculate the OLS estimates $b_0$ and $b_1$ based on $X$ and the simulated $Y$. Repeat the process 1,000 times and you will have 1,000 estimates of $\beta_0$ and $\beta_1$. For each parameter, draw a density histogram of the estimates.
+ b. Using matlab, write a script to generate $Y_i = \beta_0+\beta_1X+\epsilon \; \forall i$ according to the given model (there are 20 $X_i$'s, so you need to generate 20 $Y_i$'s), and calculate the maximum likelihood estimates $b_0$ and $b_1$ based on the $\{X_i, Y_i\}$ data. Repeat this process 1,000 times to generate 1,000 estimates of $\beta_0$ and $\beta_1$. For each parameter, draw a density histogram of these estimates.
 
- c. Superimpose the $b_0$ and $b_1$'s probability density functions onto the two histograms respectively. Is the histogram a
- close approximation of the curve?
+ c. Using matlab, superimpose the $b_0$ and $b_1$'s theoretical probability density functions onto the two histogram plots respectively. Compare the plots.  
    }
  { \vfill
-  \answer
-} { }
+  \answer 
+} {This is the answer to question 1. }
 
 \problem{25} {
 Write a matlab function to produce the ANOVA table as in TABLE 2.2 page 67 of the textbook. Specifically, the interface of your function must be
@@ -73,7 +72,7 @@ Write a matlab function to produce the ANOVA table as in TABLE 2.2 page 67 of th
 \begin{center}                function [SSR, SSE, SSTO, df\_R, df\_E, df\_TO] = anova\_1d(X, Y)
 \end{center}
 
-This function accepts $X$ and $Y$ as arguments and returns $SSR$, $SSE$, $SSTO$ and their associated degrees of freedom. Please complete the function defined in the file ``anova\_1d.m'' that you can find on the homework section of the course website. We have provided you the exact function interface in that file. (As in homework 1, you are only allowed to use basic matlab commands to write this function. )
+This function accepts $X$ and $Y$ as arguments and returns $SSR$, $SSE$, $SSTO$ and their associated degrees of freedom. (As in homework 1, you are only allowed to use basic matlab commands to write this function (not, for instance, {\em regress}. )
 
   }
  { \vfill
@@ -95,7 +94,7 @@ function p\_value = p\_value\_of\_F\_test(X, Y)
 It takes $X$ and $Y$ as arguments and return p-value. Please implement the function defined in ``p\_value\_of\_F\_test.m'' that you can find on the homework section of the course website. We have provided you the exact function interface in that file. (As before, you are only allowed to use basic matlab commands.)
 }
  { \vfill
-  \ANSWER
+  \answer
 } {}
 
 
