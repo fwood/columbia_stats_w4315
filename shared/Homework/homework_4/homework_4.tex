@@ -31,9 +31,9 @@
 % Beginning of the Document
 
 \begin{document}
-\examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 4}{11/02/2011}
+\examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 4}{10/08/2009}
  \begin{center}
-  Instructor: Frank Wood 
+  Instructor: Frank Wood
  \end{center}
 %%\studentinfo
 \instructions{
@@ -65,8 +65,14 @@ $A$ is an $n\times p$ matrix (in typical multiple regression settings, $n$ is th
 }
  { \vfill
   \answer
-} { 
- }
+} {
+a. Verity the rule for product transpose $(AB)' = B'A'$.\\
+b. $\forall x$, $x'A'Ax = (Ax)'Ax$. Notice that $Ax$ is a vector, denote it as $y = (y_1, y_2, \cdots, y_n)$, then
+$$x'A'Ax = \sum^n_{i=1}y_i^2 \geq 0$$
+c. We only need to show that when $A$ has full column rank, $x'A'Ax = 0$ implies $x = 0$. In
+fact, $x'A'Ax = 0$ if and only if $Ax = 0$. But $A$ has full column rank, knowledge from linear
+algebra tells us $Ax = 0$ implies $x = 0$.
+}
 
 \problem{25} {
  $A$ is an $n\times p$ matrix with full column rank. Let $P\equiv A(A'A)^{-1}A'$
@@ -77,7 +83,22 @@ $A$ is an $n\times p$ matrix (in typical multiple regression settings, $n$ is th
 \end{enumerate}
 } { \vfill
   \answer
-} { }
+} {
+a. It is trivial to verify that $P$ is symmetric and idempotent.\\
+b. First, notice that projection matrices only have eigenvalues 0 and 1, which mean that its
+rank equals to its trace. Then
+$$rank(A(A'A)^{-1}A') = tr(A(A'A)^{-1}A') = tr((A'A)^{-1}A'A) = tr(I_p) = p$$
+Similarly,
+\begin{eqnarray*}
+rank(I - A(A'A)^{-1}A') &=& tr(I_n - A(A'A)^{-1}A')\\
+&=& tr(I_n) - tr(A(A'A)^{-1}A')\\
+&=& n - tr((A'A)^{-1}A'A)\\
+&=& n - tr(I_p) = n - p
+\end{eqnarray*}
+In the above displays, we use the two properties of trace, namely, $tr(A+B) = tr(A)+tr(B)$
+and $tr(AB) = tr(BA)$.\\
+c. Notice that $P'(I - P) = P - P^2 = 0$
+ }
 
 \problem{25} {
 $\vec{X}$ is a 3 dimensional Gaussian random vector, with distribution $N_3(\mu, \Sigma)$, in which
@@ -85,7 +106,12 @@ $\vec{X}$ is a 3 dimensional Gaussian random vector, with distribution $N_3(\mu,
 Let $Y_1=X_1+X_3$ and $Y_2=2X_2$, determine the distribution of $\vec{Y}=(Y_1,Y_2)'$ and the conditional distribution $Y_1|Y_2=10$.
 } { \vfill
   \answer
-} { }
+} {
+a. The distribution of $Y = (Y_1, Y_2)'$ is
+$$Y \sim N(\begin{pmatrix} 0\\8\end{pmatrix}, \begin{pmatrix} 16&-2\\-2&16\end{pmatrix})$$
+b. The conditional distribution is
+$$Y_1|Y_2 = 10 \sim N(-.25, 15.75)$$
+ }
 
 
 \problem{10} {
@@ -93,19 +119,26 @@ Prove $\vec{Y}\sim N(0_{n\times1}, I_{n\times n})$ implies that all $Y_i$ i.i.d.
 (This problem may seem ridiculously easy to you. Just write out the joint density and see what it tells us about the marginal distributions.)
 } { \vfill
   \answer
-} { }
+} {
+This question is trivial. Just write out the joint density and see that it can be decomposed
+into product of n standard normal densities.
+ }
 
 
 \problem{15} {\
 Assume that an $n$ dimensional Gaussian random vector $X$ is distributed as $N(\mu,\Sigma)$
 \begin{enumerate}
 \item[(1)] Find a transformation of $X$, $Y=f(X)$, such that $Y\sim N(0_{n\times 1}, I_{n\times n})$.
-\item[(2)] Prove that 
+\item[(2)] Prove that
 \[(X-\mu)'\Sigma^{-1}(X-\mu)\sim \chi^2(n)\]
 \end{enumerate}
 } { \vfill
   \answer
-} { }
+} {
+a. Just standardize X in matrix expressions.
+$$Y = \Sigma^{-1/2}(X - \mu)$$
+b. Because $Y \sim N(0_{n\times1}, I_{n\times n})$, so $Y'Y \sim \chi^2(n)$. Notice that
+$$(X - \mu)'\Sigma^{-1}(X -\mu) = Y'Y $$}
 
 
 % Problems End Here % ------------------------------------------------------- %

@@ -56,21 +56,29 @@
 
 \problem{25} {\footnote[1]{This is
 problem 2.5 in ``Applied Linear Regression Models(4th edition)'' by
-Kutner etc.} 
+Kutner etc.}
  Refer to \textbf{Copier maintenance} homework 1 problem 4. Find the data in ``copier.txt''.\\
  a. Estimate the change in the mean service time when the number of copiers serviced increases by one. Use a 90 percent confidence interval. Interpret your confidence interval.\\
  b. Conduct a \textit{t} test to determine whether or not there is a linear association between X and Y here; control the $\alpha$ risk at .10. State the alternatives, decision rule, and conclusion. What is the p-value of your test?\\
  c. Are your results in parts (a) and (b) consistent? Explain.\\
  d. The manufacturer has suggested that the mean required time should not increase by more than 14 minutes for each additional copier that is serviced on a service call. Conduct a test to decide whether this standard is being satisfied by Tri-City. Control the risk of a Type I error at .05. State the alternatives, decision rule, and conclusion. What is the p-value of the test?\\
- e. Does $b_0$ give any relevant information here about the ``start-up'' time on calls-i.e., about the time required before service work is begun on the copiers at a customer location? 
+ e. Does $b_0$ give any relevant information here about the ``start-up'' time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?
    }
  { \vfill
   \answer
-} { }
+} {
+a. $t(.95; 43) = 1.6811$, $15.0352 \pm 1.6811(.4831)$, $14.2231 \leq \beta_1 \leq 15.8473$\\
+b. $H_0: \beta_1 = 0$, $H_a: ет\beta_1 \neq 0$. $t^* = (15.0352 - 0)/.4831 = 31.122$. If $|t^*| \leq 1.681$
+conclude $H_0$, otherwise $H_a$. Conclude $H_a$. P-value = 0+\\
+c. Yes\\
+d. $H_0: \beta_1 \leq 14$, $H_a: \beta_1 > 14$. $t^* = (15.0352 - 14)/.4831 = 2.1428$. If $t^* \leq 1.681$
+conclude $H_0$, otherwise $H_a$. Conclude $H_a$. P-value = .0189\\
+e. No, it doesn't make practical sense and thus provides no relevant information.
+}
 
 \problem{25} {\footnote[2]{This is
 problem 2.13 in ``Applied Linear Regression Models(4th edition)'' by
-Kutner etc.} 
+Kutner etc.}
 The director of admissions of a small college selected 120 students at
 random from the new freshman class in a study to determine whether a student's grade
 point average(GPA) at the end of the freshman year($Y$) can be predicted from the ACT
@@ -87,11 +95,20 @@ part (a)? Should it be?
    }
  { \vfill
   \answer
-} { }
+} {
+a. $\hat{Y}_h = 89.6313$, $s\{\hat{Y}_h\} = 1.3964$, $t(.95; 43) = 1.6811$, $89.6313 \pm 1.6811(1.3964)$,
+$87.2838 \leq E\{Y_h\} \leq 91.9788$\\
+b. $s\{pred\} = 9.0222$, $89.6313 \pm 1.6811(9.0222)$, $74.4641 \leq Y_{h(new)} \leq 104.7985$, yes,
+yes\\
+c. $87.2838/6 = 14.5473$, $91.9788/6 = 15.3298$, $14.5473 \leq Mean time per machine
+\leq 15.3298$\\
+d. $W^2 = 2F(.90; 2, 43) = 2(2.4304) = 4.8608$, $W = 2.2047$, $89.6313 \pm 2.2047(1.3964)$,
+$86.5527 \leq \beta_0 + \beta_1X_h \leq 92.7099$, yes, yes
+}
 
 \problem{25} {\footnote[1]{This is
 problem 3.4 in ``Applied Linear Regression Models(4th edition)'' by
-Kutner etc.} 
+Kutner etc.}
  Refer to \textbf{Copier maintenance}.\\
  a. Prepare a dot plot for the number of copiers serviced $X_i$. What information is provided by this plot? Are there any outlying cases with respect to this variable?\\
  b. The cases are given in time order. Prepare a time plot for the number of copiers serviced. What does your plot show?\\
@@ -104,11 +121,33 @@ Kutner etc.}
 
  e. Prepare a normal probability plot of the residuals. Also obtain the coefficient of correlation between the ordered residuals and their expected values under normality(use the approximation given in (3.6) of textbook). Does the normality assumption appear to be tenable here? Use Table B.6 of the textbook and set $\alpha=.10$.\\
  h. The file ``copier\_more.txt'' provides two more variables into consideration(the third and fourth column), namely, mean operational age of copiers serviced on the call($X_2$, in months) and years of experience of the service person making the call($X_3$). Plot the residuals against $X_2$ and $X_3$ on separate graphs to ascertain whether the model can be improved by including either or both of these variables. What do you conclude?\\
-N.B. \textbf{You don't need to do part c, f and g.} 
+N.B. \textbf{You don't need to do part c, f and g.}
 }
  { \vfill
   \answer
-} { }
+} { 
+a. No obvious outlying cases.
+	\begin{center}
+	\includegraphics[width=.7\textwidth]{1.jpg}
+	\end{center}
+b. No particular trend.
+\begin{center}
+	\includegraphics[width=.7\textwidth]{2.jpg}
+	\end{center}
+\begin{center}
+	\includegraphics[width=\textwidth]{34de.jpg}
+	\end{center}
+
+h. From the graph below, we can see that adding $X_2$ might improve the model (a strong linear
+relations between residuals and $X_2$), while adding $X_3$ seems to be not that useful.
+\clearpage
+\begin{figure}[!h]
+\begin{center}
+	\includegraphics[width=\textwidth]{3.jpg}
+\centerline{\bf Left is for X2, right is for X3.}
+	\end{center}
+\end{figure}
+}
 
 \problem{25} {
  In normal probability plot (also referred to as Q-Q plot), we draw the expectation
@@ -123,7 +162,16 @@ Mark them on the graph.
 }
  { \vfill
   \answer
-} {}
+} {
+a. The pdf of order statistics $X_{(k)}$ is
+$$f_{X_{(k)}}(x)= \frac{n!}{(k-1)!(n-k)!}F(x)^{k-1}(1-F(x))^{n-k}f(x)$$
+in which $F(x)$ is the cdf of standard normal and $f(x)$ is the pdf of standard normal. n = 10.\\
+b. The graph is given below
+\begin{center}
+	\includegraphics[width=.7\textwidth]{4.jpg}
+	\end{center}
+c. Expectations are $EX_{(1)} = -1.55$,$EX_{(5)} = -0.122$, $EX_{(10)} = 1.55$
+}
 
 
 

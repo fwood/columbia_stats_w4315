@@ -55,12 +55,12 @@
 
 \problem{20}{\footnote[1]{This is
 problem 4.22 in `Applied Linear Regression Models(4th edition)' by
-Kutner etc.} 
+Kutner etc.}
 Bonferroni inequality (4.2a) which is given as
 \begin{center}
 $P(\bar{A_1}\bigcap\bar{A_2})\ge 1-\alpha-\alpha=1-2\alpha$
 \end{center}
-deals with the case of two statements, $A_1$ and $A_2$. Extend the inequality to 
+deals with the case of two statements, $A_1$ and $A_2$. Extend the inequality to
 the case of $n$ statements, namely, $A_1, A_2\ldots, A_n$, each with statement confidence coefficient $1-\alpha$.
 }
 { \vfill
@@ -75,7 +75,7 @@ So we have $P(\cap_{i=1}^n \bar A_i) \ge 1-n\alpha$
 
 \problem{40}{\footnote[3]{This is
 problem 6.27 in `Applied Linear Regression Models(4th edition)' by
-Kutner etc.} 
+Kutner etc.}
 In a small-scale regression study, the following data were obtained:
 \begin{table}[htdp]
 \begin{center}
@@ -95,8 +95,24 @@ with independent normal error terms is appropriate. Using matrix methods, obtain
 }
 {\vfill
   \answer
-}{}
+}{
+a. $$\begin{pmatrix} 33.93210\\2.78476\\-.26442\end{pmatrix}$$
+b. $$\begin{pmatrix} -2.6996\\-1.2300\\-1.6374\\-1.3299\\-.0900\\6.98682\end{pmatrix}$$
+c. $$\begin{pmatrix} .2314 &.2517& .2118& .1489& -.0548 &.2110\\
+.2517& .3124& .0944& .2663& -.1479& .2231\\
+.2118& .0944& .7044& -.3192& .1045& .2041\\
+.1489& .2663& -.3192& .6143& .1414& .1483\\
+-.0548& -.1479& .1045& .1414& .9404& .0163\\
+.2110& .2231& .2041& .1483& .0163& .1971\end{pmatrix}$$
+d. 3,009.926\\
+e. $$\begin{pmatrix} 715.4711 &-34.1589& -13.5949\\
+-34.1589& 1.6617& .6441\\
+-13.5949& .6441& .2625 \end{pmatrix}$$
+f. 53.8471\\
+g. 5.4247
 
+
+}
 \problem{40} {
 Consider the classical regression setup
 \[\bf{y}=\bf{X}\bf{\beta}+\bf{\epsilon}\]
@@ -106,10 +122,10 @@ b. if $\bf{\epsilon}\sim N(\bf{0},\Sigma)$ and $\Sigma$ is known. Derive the max
 }
 { \vfill
   \answer
-}{ 
+}{
   a. The log likelihood is proportional to
   \[-n\log(\sigma)-\frac{(y-X\beta)^T\Sigma^{-1}(y-X\beta)}{2\sigma^2}\]
-  take derivatives with respect to $\beta$ and $\sigma$, we have 
+  take derivatives with respect to $\beta$ and $\sigma$, we have
   \[\left\{
     \begin{array}{l}  -n/\sigma+\frac{(y-X\beta)^T\Sigma^{-1}(y-X\beta)}{\sigma^3}=0\\
       X^TX\beta-X^Ty=0
@@ -119,12 +135,12 @@ b. if $\bf{\epsilon}\sim N(\bf{0},\Sigma)$ and $\Sigma$ is known. Derive the max
     &\frac{\partial\beta^TA\beta}{\partial \beta}=2A\beta\\
     &\frac{\partial \alpha\beta}{\partial\beta}=\alpha^T
   \end{align*}
-  So 
+  So
   \begin{align*}
    &\hat{\beta}=(X^TX)^{-1}X^Ty\\
    &\hat{\sigma^2}=\frac{1}{n}y^T(I-X(X^TX)^{-1}X^T)y=\frac{\text{SSE}}{n}
   \end{align*}
-b. Very similarly, we have when $\bf{\epsilon}\sim N(\bf{0},\Sigma)$, the MLE of $\beta$ is 
+b. Very similarly, we have when $\bf{\epsilon}\sim N(\bf{0},\Sigma)$, the MLE of $\beta$ is
 \[\hat{\beta}=(X^T\Sigma^{-1}X)X^T\Sigma^{-1}y\]
 }
 

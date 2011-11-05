@@ -32,7 +32,7 @@
 \examtitle{LINEAR REGRESSION MODELS W4315}{HOMEWORK 6}%{10/22/2009}
 
  \begin{center}
- Due: 11/18/2010\\
+ Due: 03/09/2010\\
   Instructor: Frank Wood
  \end{center}
 %%\studentinfo
@@ -53,20 +53,23 @@
 % Problems Start Here % ----------------------------------------------------- %
 
 
-\problem{15} {
+\problem{20} {
  Refer to the design matrix given in ``hw6p1.dat'' on the course website.
  Read it into MATLAB ( the first  $\textbf{1}$ column is already added). Use ``load hw6p1.dat'' to load the file. What is the most complex model in terms of number of parameters
  that one could fit to this data?
- 
- Extra credit: If you fit a model with this number of parameters, how could  you figure out which  should be non-zero? 
+
+ Extra credit(5 points): If you fit a model with this number of parameters, how could  you figure out which  should be non-zero?
  }
  { \vfill
   \answer
-} { }
+} { 
+The most complex model has 61 parameters. \\
+For the extra credit, good answers may include: perform t-test for each variable; Principal Component Analysis; some kind of regularization.
+}
 
 
 
-\problem{15}{	 	
+\problem{35}{	 	
  Consider the classical matrix approach to multiple regression, i.e.
 	 	
  \begin{center}
@@ -86,12 +89,31 @@
  c. Prove that the rank of $\textbf{A}$ defined in part (b) is $n-p$.\\
 	 	
   N.B. $p$ columns in design matrix means there are $p-1$ predictors plus 1 intercept term. In your solutions please clearly notate the dimensions of all of the matrices.
- 
+
  }
  { \vfill
   \answer
 }
-{ }	
+{ 
+a. Note that $\hat{\beta}=(X'X)^{-1}X'y$
+\begin{eqnarray*}
+SSE&=&(y-X\hat{\beta})'(y-X\hat{\beta})\\
+&=& (y-X(X'X)^{-1}X'y)'(y-X(X'X)^{-1}X'y)\\
+&=& y'(I-X(X'X)^{-1}X')(I-X(X'X)^{-1}X')y\\
+&=& y'(I-X(X'X)^{-1}X')y
+\end{eqnarray*}
+b. It has already been shown in proof for part a.\\
+c. First, notice that idempotent matrix only has eigenvalues 0 and 1, which mean that its
+rank equals to its trace. Then
+\begin{eqnarray*}
+rank(I - X(X'X)^{-1}X') &=& tr(I_n - X(X'X)^{-1}X')\\
+&=& tr(I_n) - tr(X(X'X)^{-1}X')\\
+&=& n - tr((X'X)^{-1}X'X)\\
+&=& n - tr(I_p) = n - p
+\end{eqnarray*}
+In the above displays, we use the two properties of trace, namely, $tr(A+B) = tr(A)+tr(B)$
+and $tr(AB) = tr(BA)$.\\
+}	
 
 
 \problem{45}{
@@ -103,13 +125,36 @@
  Show the matrices corresponding to all the three quadratic terms in (3).\\
  b. Derive the rank of each matrix above. \\
  c. Use Cochran's theorem to prove $S\sim \sigma^2 \chi^2(n-1)$.
-
- 
 }
 { \vfill
-\answer 
+\answer
 }
-{}
+{
+a. Denote $\textbf{X} =(X_1,...,X_n)'$, then we have the matrix form of (1) as
+\begin{center}
+$\textbf{X}'\textbf{X}=\textbf{X}'(\textbf{I}-\frac{1}{n}\textbf{J})\textbf{X}+\textbf{X}'\frac{1}{n}\textbf{J}\textbf{X}$
+\end{center}
+where $\textbf{J}$ is an $n \times n$ matrix whose elements are all 1.
+So the corresponding matrics for (1) are respetively $\textbf{I},\bf{I}-\frac{1}{n}\textbf{J},\frac{1}{n}\textbf{J}$.\\
+b. \\
+Since $\textbf{I}$ is an $n \times n$ identity matrix, so $r(\textbf{I})=n$.\\
+For the 2nd matrix, it's easy to verify that $\textbf{I}-\frac{1}{n}\textbf{J}$ is idempotent, since
+\begin{align*}
+(\textbf{I}-\frac{1}{n}\textbf{J})(\textbf{I}-\frac{1}{n}\textbf{J})&=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n^2}\textbf{J}^2\\
+                                                                       &=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n^2}n\textbf{J}\\
+                                                                       &=\textbf{I}-\frac{2}{n}\textbf{J}+\frac{1}{n}\textbf{J}\\
+                                                                       &=\textbf{I}-\frac{1}{n}\textbf{J}
+\end{align*}
+The 2nd equation holds since $\textbf{J}^2=n\textbf{J}$. Now that $\bf{I}-\frac{1}{n}\bf{J}$ is idempotent, we have
+\begin{align*}
+rk(\textbf{I}-\frac{1}{n}\textbf{J})&=tr(\textbf{I}-\frac{1}{n}\textbf{J})\\
+                                                  &=tr(\textbf{I})-tr(\frac{1}{n}\textbf{J})\\
+                                                  &=n-\frac{1}{n}\times n\\
+                                                  &=n-1
+\end{align*}
+where $tr(\textbf{A})$ stands for the trace of matrix $\textbf{A}$, $rk(\textbf{A})$ for the rank of it. It's apparent from the definition of rank of a matrix that $rk(\frac{1}{n}\textbf{J})=1$.\\
+c. Since $rk(\textbf{I})=rk(\textbf{I}-\frac{1}{n}\textbf{J})+rk(\frac{1}{n}\textbf{J})$, we can directly apply Cochran's theorem, so $S\sim \sigma^2 \chi^2(n-1)$.
+}
 
 
 \end{document}
