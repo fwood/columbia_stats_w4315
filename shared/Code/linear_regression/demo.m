@@ -2,13 +2,13 @@
 %% generate data
 reset(RandStream.getDefaultStream);
 
-num_x = 25;
+num_x = 20;
 x = linspace(1,10,num_x) + rand(1,num_x);
 
 
-b_0 = 9;
+b_0 = 7;
 b_1 = 2;
-noise_var = 4;
+noise_var = 8;
 
 y = b_1*x + b_0 + randn(1,num_x)*sqrt(noise_var);
 
@@ -21,7 +21,7 @@ true_mse = y-b_1*x - b_0;
 true_mse = sum(true_mse.^2)/num_x;
 
 %% try some values for b_0 and b_1
-
+    
 b_0_hat = mean(y);
 b_1_hat = 0;
 
@@ -116,7 +116,7 @@ xlabel('( \beta est. - \beta) / \sigma_{\beta} est.')
 
 % compute the 1-alpha confidence interval given the _single_ last sample of X and Y
 
-alpha = .05;
+alpha = .0000005;
 
 right_interval = tinv(1-alpha/2,num_x-2);
 left_interval = tinv(alpha/2,num_x-2);
@@ -139,6 +139,9 @@ lower_limit_confidence = b_1_samples(i) - tinv(1-alpha/2, num_x -2)* hat_v_b_1
 % do two-sided hypothesis test, H_0 = slope zero, H_a = some other slope
 
 t_star = b_1_samples(end)/hat_v_b_1;
+cils = line([t_star ; t_star ], [0 ;  max(b_1_plot_y)]');
+set(cils,'Color',[0 1 1],'LineWidth',2)
+
 
 if t_star < tinv(1-alpha/2,num_x-2)
     disp('Null hypothesis holds - \beta_1 = 0');
@@ -152,9 +155,11 @@ two_sided_p_value = 2*(1-tcdf(t_star,num_x-2));
 
 disp(['Two sided p-value : ' num2str(two_sided_p_value)]) 
 
+
+
 %% Polyfit
 
-polynomial_order = 2;
+polynomial_order = 10;
 
 coeffs = polyfit(x,y,polynomial_order);
 poly_x = linspace(1,10+1,100);

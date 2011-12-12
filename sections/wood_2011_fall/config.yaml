@@ -31,7 +31,7 @@ default_processing_pipeline:
 
 patterns:
   Copy:
-    add: [**/*.pdf, **/*.dat, **/*.avi, **/*.m, **/*.tar.gz, **/*.zip, **/*.txt, **/*.ppt]
+    add: [**/*.csv, **/*.pdf, **/*.dat, **/*.avi, **/*.m, **/*.tar.gz, **/*.zip, **/*.txt, **/*.ppt]
 
 sources:
   - [/, Webgen::Source::FileSystem, src]

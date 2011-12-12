@@ -4,19 +4,6 @@ in_menu: true
 routed_title: Syllabus
 ---
 
-_Matlab mini-course information_
-
-Place and Time
-
-*	603 Hamilton on both Wednesday's 9/15 &  9/22 from 8-9 p.m.
-
-Material Covered
-
-*	The first course will be introductory in nature and will cover some basic programming concepts
-*	The second course will be more advanced and will cover more of Matlab's built in functionality and advanced matlab programming topics
-
-
-
 |---
 | Lecture | Slides | Chapter | Extras |
 |:-:|:-|:-|:-|:-|
@@ -39,17 +26,7 @@ Material Covered
 | 16 | cont.
 | 17 | [Matrix Linear Regression](../Lectures/lecture_11/lecture_11.pdf) | 5 |
 | 18 | [Multiple linear regression](../Lectures/lecture_12/lecture_12.pdf), [Testing](../Lectures/multivariate_regression_testing/notes.pdf) | 6 | 
-| 19 | [Proof of Cochran's Theorem](../Lectures/lecture_cochran/handwritten-notes.pdf), [extra](../Lectures/lecture_cochran/lin_regress_cochran_conn.pdf)
-| 20 | [ANOVA](../Lectures/lecture_13/13.pdf) | 7 |
-| 21 | Quantitative and Qualitative Inputs, Interactions, and Interpretation | 8 | 
-| 22 | Midterm
-| 23 | [Principal Components Analysis](../Lectures/principal_components_analysis/slides.pdf) 
-| 24 | TBD 
-| 25 | (*) [Generalized Linear Models](../Lectures/generalized_linear_models/notes.pdf)
-| 26 | (*) 
-| 27 | TBD
-<!--| 27 | [Neural Networks](../Lectures/neural_network/slides.pdf) [Model Selection](../Lectures/variable_selection/slides.pdf) | 9 |
-| 24 | (*) Weighted Least Squares, Ridge Regression | 11 |Sampling Continued
-| 25 | (*) [Introduction to Bayesian Inference](../Lectures/bayesian_inference_introduction/slides.pdf) 
-| 26 | (*) [Posterior Simulation](../Lectures/metropolis_hastings/notes.pdf)
-| 27 | [Convexity, Gradient Descent Methods, Convex Optimization](../Lectures/lecture_convexity/lecture_convexity.pdf)-->
+| 19 | [Quantitative and Qualitative Inputs, Interactions, and Interpretation](../Lectures/regression_models_for_quantitative_and_qualitative_predictors.pdf) | 8 | 
+| 20 | [ANOVA / Extra Sums of Squares](../Lectures/extra_sums_of_squares.pdf) | 7 |
+| 21 | [Proof of Cochran's Theorem](../Lectures/lecture_cochran/handwritten-notes.pdf), [extra](../Lectures/lecture_cochran/lin_regress_cochran_conn.pdf)
+

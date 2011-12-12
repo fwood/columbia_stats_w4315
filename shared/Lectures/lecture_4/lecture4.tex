@@ -117,7 +117,7 @@ b_1 &=& \frac{\sum(X_i - \bar X)(Y_i - \bar Y)}{\sum(X_i-\bar X)^2} \\
 %\bar X &=& \frac{\sum X_i}{n} \\
 %\bar Y&=&\frac{\sum Y_i}{n}
 \end{eqnarray*}
-\item The sampling distribution for $b_1$ is the distribution of $b_1$ that arises from the variability of $b_1$ when the predictor variables $X_i$ are held fixed and the observed outputs are repeatedly sampled
+\item The sampling distribution for $b_1$ is the distribution of $b_1$ that arises from the variability of $b_1$ when the predictor variables $X_i$ are held fixed and the errors are repeatedly sampled
 \item Note that the sampling distribution we derive for $b_1$ will be highly dependent on our modeling assumptions.
 \end{itemize}
 }
@@ -147,7 +147,7 @@ we observe
 &=& \sum(X_i - \bar X)Y_i - \bar Y \sum(X_i) + \bar Y n \frac{\sum X_i}{n} \\
 &=& \sum(X_i - \bar X)Y_i
 \end{eqnarray*}
-This will be useful because the sampling distribution of the estimators will be expressed in terms of the distribution of the $Y_i$'s which are random.
+This will be useful because the sampling distribution of the estimators will be expressed in terms of the distribution of the $Y_i$'s which are assumed to be equal to the regression function plus a random error term.
 }
 
 \frame[t] {
@@ -192,9 +192,9 @@ mean $\sum a_i\Ave{Y_i}$ and variance $\sum a_i^2\Var{Y_i} $
 
 \frame[t] {
  \frametitle{Normality of $b_1's$ Sampling Distribution}
-Since $b_1$ is a linear combination of the $Y_i's$ and each $Y_i$ is
-an independent normal random variable, then $b_1$ is distributed
-normally as well
+Since $b_1$ is a linear combination of the $Y_i's$ and each $Y_i = \beta_1 X_i + \beta_0 + e_i$ is (conditioned on $X_i, \beta_1,$ and $\beta_0$)
+an independent normal random variable, then then distribution of $b_1$ under sampling of the errors is
+normal as well
 \begin{eqnarray*}
 b_1 &=& \sum k_i Y_i, \, k_i = \frac{(X_i - \bar X)}{\sum(X_i-\bar
 X)^2}
@@ -280,7 +280,7 @@ plugging in we get
 \frame[t] {
  \frametitle{Sampling Distribution of $(b_1 - \beta_1)/\EstStd{b_1}$?}
 \begin{itemize}
-\item $b_1$ is normally distributed so $(b_1-\beta_1)/(\sqrt{\Var{b_1}})$ is a standard normal variable
+\item $b_1$ is normally distributed so $(b_1-\beta_1)/(\sqrt{\Var{b_1}})$ is a standard normal variable.  Why?
 \item We don't know $\Var{b_1}$ because we don't know $\sigma^2$ so it must be estimated from data.  We have already denoted it's estimate $\EstVar{b_1}$
 \item If using the estimate $\EstVar{b_1}$ we will show that
 $$\frac{b_1-\beta_1}{\EstStd{b_1}} \sim t(n-2)$$
